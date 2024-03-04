@@ -1,15 +1,14 @@
 //import 'antd/dist/antd.css';
 import '../styles/globals.css';
 import Head from 'next/head';
-// redux imports
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
+import realtys from '../reducers/realtys';
 import user from '../reducers/user';
 
 const store = configureStore({
-  reducer:{ user },
-});
-
+  reducer: { user, realtys }
+})
 
 function App({ Component, pageProps }) {
   return (
