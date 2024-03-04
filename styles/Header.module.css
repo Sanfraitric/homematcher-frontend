@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Ledger&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw; 
+    height: 15vh; 
+}
+
+.logoContainer {
+    color: #D32F2F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+    cursor: pointer;
+}
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 40px;
+    gap: 20px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+    background-color: #FF4D4D;
+    border-radius: 10px;
+    width: 100px;
+    height: 50px;
+    margin: 20px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.h1{
+    font-family: 'Ledger', serif;
+    font-size: 20px;
+    margin: 20px;   
+    height: auto;
+    width: auto;
+}
+
+.h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+}
+
+.modal{
+    border: 1px solid #D32F2F;
+}
