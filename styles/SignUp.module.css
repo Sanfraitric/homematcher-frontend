@@ -10,7 +10,6 @@
     font-family: "Montserrat", sans-serif;
     font-style: normal;
     font-size: 15px;
-    margin-bottom: 30px;
     margin-left: 20px;
     position: relative;
   }
@@ -19,6 +18,7 @@
   display: flex;
   justify-content: flex-start;
   position: relative;
+  align-items: center;
 }
 
   .h5 {
@@ -74,4 +74,11 @@
   align-items: center;
   text-align: center;
   display: grid;
+}
+
+.connectButton{
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  text-decoration: underline; 
 }
