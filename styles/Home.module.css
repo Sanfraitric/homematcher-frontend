@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Ledger&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
 .main {
   display:grid;
   grid-template-columns: repeat(3, 33.33vw);
@@ -24,12 +27,14 @@
   grid-row-start: 1;
   grid-row-end:6;
   text-align: center;
+  align-items: center;
   color: red;
   border: solid 3px rgb(17, 149, 193);
 }
 
 .title {
   margin-top: 50px;
+  font-family: "Ledger", sans-serif;
 }
 .achat {
   display: flex-box;
@@ -66,7 +71,9 @@
   grid-row-start: 6;
   grid-row-end:10;
   text-align: justify;
-  padding-left: 150px;
+  padding-left: 50px;
+  padding-right:25px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .LmidContent {
@@ -76,11 +83,7 @@
   grid-row-end:10;
   text-align: center;
   padding-top: 20px;
-}
-
-.carrousel {
-  height: 200px;
-  width: 180px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .LrightContent {
@@ -89,5 +92,7 @@
   grid-row-start: 6;
   grid-row-end:10;
   text-align: justify;
-  padding-left: 150px;
+  padding-left: 50px;
+  padding-right:25px;
+  font-family:'Montserrat', sans-serif;
 }

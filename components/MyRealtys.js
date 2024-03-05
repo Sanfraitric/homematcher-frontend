@@ -1,4 +1,5 @@
 import styles from '../styles/MyRealtys.module.css';
+import Header from '../components/Header_Connected'
 import Link from 'next/link'
 import HeaderConnected from './HeaderConnected';
 
