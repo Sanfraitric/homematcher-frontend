@@ -10,7 +10,7 @@
 .header {
   display:flex;
   grid-column-start:1;
-  grid-column-end:3;
+  grid-column-end:4;
   grid-row-start:0;
   grid-row-end:1;
 }

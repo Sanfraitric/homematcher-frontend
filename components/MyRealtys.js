@@ -4,17 +4,20 @@ import Link from 'next/link'
 
 function MyRealtys() {
   return (
-    <div className={styles.main}>
-      < Header />
-      <main >
-        
-        <div className={styles.container}>
-        <Link href='/AddRealtyPage'>
-            <button> Ajouter un bien </button>
-        </Link>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <Header />
+      </div>
+      <div className={styles.myRealty}>
+       
+          <div className={styles.add}>
+            <Link href='/AddRealtyPage'>
+              <button > Ajouter un bien </button>
+            </Link>
+          </div>
+     
+          </div>
         </div>
-      </main>
-    </div>
   );
 }
 

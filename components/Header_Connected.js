@@ -17,13 +17,20 @@ const router = useRouter();
 const pageTitle = router.route.split('/').pop();
 const [isOpen, setIsOpen] = useState(false);
 const dispatch = useDispatch();
+
 const handleLogout = () => {
 dispatch(logout());
+router.push('/');
 };
+
+const returnHome = () => {
+    router.push('/');
+    console.log('click')
+}
 
 return (
 <div className={styles.header}>
-<div className={styles.logoContainer}>
+<div className={styles.logoContainer} onClick={() => returnHome()}>
 <Image src="/logo.png" alt="Logo" width={50} height={50} />
 <h1 className={styles.h1}>Home Matcher</h1>
 </div>
@@ -37,13 +44,13 @@ return (
 <h2 className={styles.h2} >Match</h2>
 </div>
 </Link>
-<Link href="/page1">
+<Link href="/LikePage">
 <div className={styles.button}>
 <FontAwesomeIcon icon={faThumbsUp} className={styles.btn} />
 <h2 className={styles.h2} >Likes</h2>
 </div>
 </Link>
-<Link href="/page3">
+<Link href="/MatchPage">
 <div className={styles.button}>
 <FontAwesomeIcon icon={faComments} className={styles.btn}/>
 <h2 className={styles.h2}>Message</h2>
@@ -54,7 +61,7 @@ return (
 <h2 className={styles.h2}>Profil</h2>
 {isOpen && (
 <div className={styles.dropdownMenu}>
-<Link href="/page5"><a>Mon compte</a></Link>
+<Link href="/ProfilPage"><a>Mon compte</a></Link>
 <Link href="/RealtysPage"><a>Mes biens</a></Link>
 <a onClick={() => handleLogout()}>Se déconnecter</a>
 </div>

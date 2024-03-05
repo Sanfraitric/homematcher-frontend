@@ -1,21 +1,31 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import { showSignInModal } from '../reducers/modal.js';
 import styles from '../styles/Home.module.css';
 import Header from './Header';
-import React from 'react';
-import ReactDOM from 'react-dom';
 import ImageCarrousel from './Carrousel';
 
+
 function Home() {
+  const user = useSelector((state) => state.user.value);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleAcheterClick = () => {
-    dispatch(showSignInModal());
+    if(!user.token) {
+      dispatch(showSignInModal());
+    }else {
+      router.push('/ProfilPage');
+    }
   };
 
   const handleVendreClick = () => {
-    dispatch(showSignInModal());
+    if(!user.token) {
+      dispatch(showSignInModal());
+    }else {
+      router.push('/RealtysPage');
+    }
   };
   const images = [
     "appart1.jpg",
@@ -31,7 +41,7 @@ function Home() {
 
       <div className={styles.middleContent}>
         <h1 className={styles.title}>Quel est votre Projet ?</h1>
-        <button className={styles.achat} onClick={handleAcheterClick}>Acheter</button>
+        <button className={styles.achat} onClick={handleAcheterClick}>Acheter</button><br></br>
         <button className={styles.vente} onClick={handleVendreClick}>Vendre</button>
       </div>
 

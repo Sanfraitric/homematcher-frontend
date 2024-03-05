@@ -1,5 +1,5 @@
 import styles from '../styles/Profil.module.css';
-import Header from './Header';
+import Header from '../components/Header_Connected'
 
 function Profil() {
     return (

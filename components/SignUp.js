@@ -36,7 +36,7 @@ headers: { 'Content-Type': 'application/json' },
 body: JSON.stringify({ email: signUpEmail,password: signUpPassword }),
 }).then(response => response.json())
 .then(data => {
-data.result && dispatch(login({ token: data.token, mail }));
+data.result && dispatch(login({ token: data.user.token, email: data.user.email }));
 setSignUpEmail('');
 setSignUpPassword('');
 });
