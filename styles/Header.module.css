@@ -23,7 +23,7 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 40px;
-    gap: 20px;
+    margin: 0 5px;
 }
 
 .button {
@@ -33,9 +33,10 @@
     flex-direction: column;
     background-color: #FF4D4D;
     border-radius: 10px;
-    width: 100px;
+    width: 10vb;
+    height: 10vh;
     height: 50px;
-    margin: 20px;
+    margin : 30px;
     padding: 5px;
     cursor: pointer;
 }

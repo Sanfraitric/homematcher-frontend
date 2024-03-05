@@ -23,10 +23,12 @@ const ImageCarousel = ({ images }) => {
 
   // Rendu du carrousel
   return (
-    <div>
-      <img src={images[currentIndex]} alt="image du carrousel" style={{ width: "100%", height: "auto" }} />
-      <FontAwesomeIcon icon={faArrowLeft} onClick={goToPrevious} className={styles.ArrowLeft}/>
-      <FontAwesomeIcon icon={faArrowRight} onClick={goToNext} className={styles.ArrowRight}/>
+    <div className={styles.body}>
+        <img className={styles.height} src={images[currentIndex]} alt="image du carrousel" />
+        <div className={styles.parentArrow}>
+          <FontAwesomeIcon icon={faArrowLeft} onClick={goToPrevious} className={styles.arrow}/>
+          <FontAwesomeIcon icon={faArrowRight} onClick={goToNext} className={styles.arrow}/>
+        </div>
     </div>
   );
 };
