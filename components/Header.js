@@ -56,12 +56,14 @@ function Header() {
                     <FontAwesomeIcon icon={faPen}  className={styles.btn}/> 
                     <h2 className={styles.h2}  >S'inscrire</h2>
                 </div>
+                <div styles={styles.modal}>
             <Modal onCancel={() => handleCancelSignUp()} open={signUpModalVisible} footer={null} >
             <SignUp />
             </Modal>
-            <Modal onCancel={() => handleCancelSignIn()} open={signInModalVisible} footer={null} styles={styles.modal} >
+            <Modal onCancel={() => handleCancelSignIn()} open={signInModalVisible} footer={null} >
             <SignIn />
             </Modal>
+            </div>
             </div>
         </div>
     );

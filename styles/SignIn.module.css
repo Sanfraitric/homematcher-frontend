@@ -1,63 +1,84 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 20px;
-  }
-  
-  .title {
-    display: flex;
-    justify-content: center;
-    font-family: "Montserrat", sans-serif;
-    font-style: bold;
-    font-size: 40px;
-    margin: 20px;
-  }
-  
-  .toConnect{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    align-items: center;
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
 
-  }
+.h4{
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-size: 15px;
+  margin-left: 20px;
+  position: relative;
+}
 
-  .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    width: 400px;
-    background-color: #D32F2F;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 18px;
-    border-radius: 40px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-     margin: auto;
-     margin-top: 30px;
-  }
-  
-  .input {
-    height: 40px;
-    width: 400px;
-    margin-bottom: 15px;
-    border: 1px rgb(114, 131, 148) solid;
-    border-radius: 3px;
-    background-color: transparent;
-    font-weight: 600;
-    padding: 10px;
-    margin: auto;
-  }
-  
-  .input:focus {
-    outline: none;
-    background-color: transparent;
-  }
-  .h5{
-    padding-left: 10px;
-  }
+.toConnect{
+display: flex;
+justify-content: flex-start;
+position: relative;
+align-items: center;
+}
+
+.h5 {
+  font-family: "Montserrat", sans-serif;
+  font-style: bold;
+  font-size: 12px;
+  text-decoration: underline; 
+  cursor: pointer;
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-style: bold;
+  font-size: 40px;
+  margin: 20px;
+  text-align: left;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 90%;
+  margin-left: 20px;
+  background-color: #D32F2F;
+  border-color: white;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.input {
+  height: 40px;
+  width: 90%;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  border: 1px rgb(114, 131, 148) solid;
+  border-radius: 3px;
+  background-color: transparent;
+}
+
+.input:focus {
+  outline: none;
+  background-color: transparent;
+}
+
+.connect{
+align-items: center;
+text-align: center;
+display: grid;
+}
+
+.connectButton{
+border: none;
+background-color: white;
+cursor: pointer;
+text-decoration: underline; 
+}

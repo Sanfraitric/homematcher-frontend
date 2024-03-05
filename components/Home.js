@@ -7,7 +7,7 @@ function Home() {
     <div className={styles.main}>
 
       <div className={styles.header}>
-        <h1>Header</h1>
+        <Header/>
       </div>
 
       <div className={styles.middleContent}>
