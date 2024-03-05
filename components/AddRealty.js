@@ -3,6 +3,7 @@ import Header from '../components/Header_Connected'
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
 import { useDispatch } from 'react-redux';
+import HeaderConnected from './HeaderConnected';
 import React from 'react';
 
 function AddRealty() {
@@ -61,10 +62,7 @@ for (let i = 0; i < files.length; i++) {
 
   return (
     <div>
-      <header className={styles.header}>
-<Header />
-      </header>
-
+    <HeaderConnected/>
       <main className={styles.main}>
         <div className={styles.container}>
           {/* Container avec le titre centré en haut */}
