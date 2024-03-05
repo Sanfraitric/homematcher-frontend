@@ -1,11 +1,11 @@
 import styles from '../styles/Profil.module.css';
-import Header from '../components/Header_Connected'
+import HeaderConnected from './HeaderConnected'
 
 function Profil() {
     return (
         <div className={styles.main}>
             <div className={styles.header}>
-                <Header/>
+                <HeaderConnected/>
             </div>
             <div className={styles.profil}>
                 <img src="helmuthd.jpg" className={styles.profilpic}/>

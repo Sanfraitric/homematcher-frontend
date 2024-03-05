@@ -1,13 +1,12 @@
 import styles from '../styles/MyRealtys.module.css';
-import Header from '../components/Header_Connected'
 import Link from 'next/link'
-import Header from './HeaderConnected';
+import HeaderConnected from './HeaderConnected';
 
 function MyRealtys() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <Header />
+        <HeaderConnected />
       </div>
       <div className={styles.myRealty}>
        

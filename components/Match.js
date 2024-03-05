@@ -1,5 +1,5 @@
 import styles from '../styles/Match.module.css';
-import Header from '../components/Header_Connected'
+import HeaderConnected from './HeaderConnected'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,7 +8,7 @@ function Match() {
     return (
         <div className={styles.main}>
             <div className={styles.header}>
-                <Header/>
+                <HeaderConnected/>
             </div>
             <div className={styles.body}>
                 <div className={Match}>

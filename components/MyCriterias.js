@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import styles from '../styles/MyCriterias.module.css'
 //import { useDispatch, useSelector } from 'react-redux';
 //import { addRealtyToStore } from '../reducers/realtys';
 import HeaderConnected from './HeaderConnected';
 
 function AddRealty() {
+  const router = useRouter();
     //Mes constantes d'effet
   const [budget, setBudget] = useState(10000);
   const [area, setArea] = useState('');
@@ -13,7 +15,10 @@ function AddRealty() {
   const [indoorSurface, setIndoorSurface] = useState('');
   const [rooms, setRooms] = useState('');
   const [outdoor, setOutdoor] = useState('');
-
+// fonction permettant de naviguer vers la page time to match
+const goToMatch = () => {
+  router.push('/timeToMatch')
+}
   //Définir les minimum et maximum pour les inputs
   const minBudget = 0;
   const maxBudget = 1000000;
@@ -114,7 +119,7 @@ setRooms(newRooms);
         <p className={styles.text}>Aucun bien ne correspond à vos critères. </p>
         {/* ) : ( */}
           <p className={styles.text}>Un bien correspond à votre recherche !</p>
-          <button className={styles.button}> Trouver mon cocon ❤️</button>
+          <button className={styles.button} onClick={goToMatch}> Trouver mon cocon ❤️</button>
         {/* )} */}
       </div>
     </div>

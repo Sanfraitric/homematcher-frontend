@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Header from '../components/Header_Connected'
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
 import { useDispatch } from 'react-redux';

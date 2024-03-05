@@ -17,33 +17,39 @@ function Header() {
     const pageTitle = router.route.split('/').pop();
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
+
     const handleLogout = () => {
         dispatch(logout());
+        router.push('/')
       };
+
+      const returnHome = () => {
+        router.push('/')
+      }
 
     return (
         <div className={styles.header}>
             <div className={styles.logoContainer}>
-                <Image src="/logo.png" alt="Logo" width={50} height={50}  />
+                <Image src="/logo.png" alt="Logo" width={50} height={50} onClick={returnHome} />
                 <h1 className={styles.h1}>Home Matcher</h1>
             </div>
             <div>
                 <h3 className={styles.h3}>{pageTitle}</h3>
             </div>
             <div className={styles.buttonsContainer}>
-    <Link href="/page1">
+    <Link href="/MyCriteriasPage">
         <div className={styles.button}>
                 <FontAwesomeIcon icon={faHeart} className={styles.btn} /> 
                 <h2 className={styles.h2} >Match</h2>
         </div>
     </Link>
-    <Link href="/page1">
+    <Link href="/LikePage">
         <div className={styles.button}>
                 <FontAwesomeIcon icon={faThumbsUp} className={styles.btn} /> 
                 <h2 className={styles.h2} >Likes</h2>
         </div>
     </Link>
-    <Link href="/page3">
+    <Link href="/MatchPage">
         <div className={styles.button}>
                 <FontAwesomeIcon icon={faComments}  className={styles.btn}/> 
                 <h2 className={styles.h2}>Message</h2>
@@ -54,8 +60,8 @@ function Header() {
                 <h2 className={styles.h2}>Profil</h2>
                 {isOpen && (
                     <div className={styles.dropdownMenu}>
-                        <Link href="/page5"><a>Mon compte</a></Link>
-                        <Link href="/page6"><a>Mes biens</a></Link>
+                        <Link href="/ProfilPage"><a>Mon compte</a></Link>
+                        <Link href="/RealtyPage"><a>Mes biens</a></Link>
                         <a onClick={() => handleLogout()}>Se déconnecter</a>
                     </div>
                 )}
