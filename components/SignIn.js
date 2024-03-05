@@ -47,10 +47,10 @@ function SignIn() {
         }).then(response => response.json())
             .then(data => {
                 console.log(data)
-                data.result && dispatch(login({ token: data.token, firstName: data.firstName, username: data.username }));
+                data.result && dispatch(login({ token: data.user.token,  email: data.user.email }));
                 setSignInEmail('');
                 setSignInPassword('');
-                
+                dispatch(hideSignInModal());
             });
     };
 
