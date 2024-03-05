@@ -18,7 +18,7 @@ import { logout } from '../reducers/user';
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
-    //const user = useSelector(state => state.user.value)
+    const user = useSelector(state => state.user.value)
     const signInModal = useSelector(state => state.modal.value.signInModalVisible)
     const SignUpModal = useSelector(state => state.modal.value.signUpModalVisible)
     const dispatch = useDispatch();
@@ -49,9 +49,9 @@ const toggleMenu  = () => {
     setIsOpen(!isOpen);
     console.log(isOpen);
 };
-let user = true;
+
     let userSection;
-    if (user) {
+    if (user.token) {
         userSection = (
             <div className={styles.buttonsContainer}>
                 <div className={styles.button} onClick={toggleMenu}>
