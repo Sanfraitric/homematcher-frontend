@@ -21,6 +21,19 @@ position: relative;
 align-items: center;
 }
 
+.forgotPassword{
+  display: flex;
+  justify-content: flex-end;
+  text-decoration: underline;
+  font-weight: 100;
+  position: relative;
+  align-items: center;
+  border: none;
+  background-color: white;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
 .h5 {
   font-family: "Montserrat", sans-serif;
   font-style: bold;

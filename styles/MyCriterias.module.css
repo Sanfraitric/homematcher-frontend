@@ -14,11 +14,11 @@
     background-color: white;
     border-radius: 100px;
     border: solid 6px #FF4D4D;
-    margin-left: 390px;
+    margin: auto;
     align-items: center;
     justify-content: center;
-    height: 700px; 
-    width: 1000px; 
+    height: 100vh;
+    width: 100vw; 
 }
 
 

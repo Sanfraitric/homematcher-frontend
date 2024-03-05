@@ -18,6 +18,7 @@ import { logout } from '../reducers/user';
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
+    //ne pas boublier de supprimer le commentaire pour remettre le reduceur en marche ces changement on ete fait pour afficher la modal connecté en dur 
     const user = useSelector(state => state.user.value)
     const signInModal = useSelector(state => state.modal.value.signInModalVisible)
     const SignUpModal = useSelector(state => state.modal.value.signUpModalVisible)
@@ -45,9 +46,10 @@ function Header() {
         dispatch(hideSignInModal());
 
     };
-
+    // penser a bien mettre la ligne du dessous en commentaire avannt de push 
+//let user = true
     let userSection;
-    if (user.token) {
+    if (user.token) { //et bien penser a remttre le user.token dans la condition
         userSection = (
             <div className={styles.buttonsContainer}>
                 <div className={styles.button} onClick={() => setIsOpen(!isOpen)}>
