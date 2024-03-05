@@ -18,7 +18,7 @@ import { logout } from '../reducers/user';
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
-    const user = useSelector(state => state.user.value)
+    //const user = useSelector(state => state.user.value)
     const signInModal = useSelector(state => state.modal.value.signInModalVisible)
     const SignUpModal = useSelector(state => state.modal.value.signUpModalVisible)
     const dispatch = useDispatch();
@@ -45,21 +45,25 @@ function Header() {
         dispatch(hideSignInModal());
 
     };
-
+const toggleMenu  = () => {
+    setIsOpen(!isOpen);
+    console.log(isOpen);
+};
+let user = true;
     let userSection;
-    if (user.token) {
+    if (user) {
         userSection = (
             <div className={styles.buttonsContainer}>
-                <div className={styles.button} onClick={() => setIsOpen(true)}>
+                <div className={styles.button} onClick={toggleMenu}>
                     <FontAwesomeIcon icon={faUser} className={styles.btn} />
                     <h2 className={styles.h2} >Mon compte</h2>
                     {isOpen && (
-                        <div className={styles.dropdownMenu}>
-                            <Link href="/ProfilPage"><a>Mon compte</a></Link>
-                            <Link href="/RealtysPage"><a>Mes biens</a></Link>
-                            <a onClick={() => handleLogout()}>Se déconnecter</a>
-                        </div>
-                    )}
+                    <div className={styles.dropdownMenu}>
+                        <Link href="/ProfilPage"><a>Mon compte</a></Link>
+                        <Link href="/RealtyPage"><a>Mes biens</a></Link>
+                        <a onClick={() => handleLogout()}>Se déconnecter</a>
+                    </div>
+                )}
                 </div>
             </div>
         );
