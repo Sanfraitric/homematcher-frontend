@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Header from '../components/Header_Connected'
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
 import { useDispatch } from 'react-redux';
@@ -24,10 +25,7 @@ function AddRealty() {
   return (
     <div>
       <header className={styles.header}>
-      <h1 className={styles.title}>
-            Proposer mon bien
-          </h1>
-        {/* Header occupe 10% de l'écran avec fond rouge */}
+<Header />
       </header>
 
       <main className={styles.main}>
