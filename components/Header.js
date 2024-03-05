@@ -50,7 +50,7 @@ function Header() {
     if (user.token) {
         userSection = (
             <div className={styles.buttonsContainer}>
-                <div className={styles.button} onClick={() => setIsOpen(!isOpen)}>
+                <div className={styles.button} onClick={() => setIsOpen(true)}>
                     <FontAwesomeIcon icon={faUser} className={styles.btn} />
                     <h2 className={styles.h2} >Mon compte</h2>
                     {isOpen && (
