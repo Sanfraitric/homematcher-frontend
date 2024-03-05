@@ -1,0 +1,104 @@
+.main {
+    display:grid;
+    grid-template-columns: repeat(3, 33.33vw);
+    grid-template-rows: repeat(9, 10vh);
+    
+}
+
+/*Header*/
+
+.header {
+  display:flex;
+  grid-column-start:1;
+  grid-column-end:3;
+  grid-row-start:0;
+  grid-row-end:1;
+}
+/*Left content*/
+
+.profil {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end:10;
+    background-color: #f5e6e7;
+}
+.profilpic {
+    margin-left:350px;
+    margin-top:50px;   
+    height:200px;
+    width:200px;
+    border: solid red 3px;
+    border-radius: 500px;
+}
+
+/*Mid content*/
+
+.inputs {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end:10;
+    background-color: #f5e6e7;
+}
+
+.prenominput {
+    border-radius: 5px;
+    border:solid 0px white;
+    height:25px;
+}
+
+.nominput {
+    border-radius: 5px;
+    border:solid 0px white;
+    height:25px;
+}
+
+.ageinput {
+    border-radius: 5px;
+    border:solid 0px white;
+    height:25px;
+}
+
+.situaproinput {
+    border-radius: 5px;
+    border:solid 0px white;
+    width:250px;
+    height:25px;
+}
+
+.achatprêtinput {
+    border-radius: 5px;
+    border:solid 0px white;
+    width:250px;
+    height:25px;
+}
+
+.descinput {
+    height:150px;
+    width:500px;
+    border-radius: 5px;
+    border:solid 0px white;
+}
+
+.MAJProfil {
+   cursor: pointer;
+   background-color:#ff4d4d;
+   height:50px;
+   width:400px;
+   border-radius: 5px;
+   margin-top: 50px;
+   font-size: larger;
+   border:solid 0px white;
+   color: white;
+}
+
+/*Right content*/
+
+.cvidelol {
+    background-color:#f5e6e7;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end:10;
+}
