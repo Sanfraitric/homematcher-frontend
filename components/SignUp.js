@@ -6,36 +6,39 @@ import styles from '../styles/SignUp.module.css';
 import GoogleLogin from 'react-google-login';
 import SignIn from './SignIn';
 import { Modal } from 'antd';
+import { showSignInModal, hideSignUpModal, hideSignInModal } from '../reducers/modal.js';
 
 function SignUp() {
-  const BACKEND_URL= process.env.BACKEND_URL
+  const URL= 'http://localhost:3000/'
   const dispatch = useDispatch();
   const router = useRouter();
-  const user = useSelector((state) => state.user.value);
-  const [signInModalVisible, setSignInModalVisible] = useState(false);
-  const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
+  const signInModal = useSelector(state => state.modal.value.signInModalVisible)
 
-  const showSignInModal = () => {
-    setSignInModalVisible(true);
-    setSignUpModalVisible(false);
+  const handleShowModalSignIn = () => {
+    dispatch(showSignInModal());
+    dispatch(hideSignUpModal());
+ 
   };
 
-  const handleCancelSignIn = () => {
-    setSignInModalVisible(false);
-  };
+    const handleCancelSignIn = () => {
+      dispatch(hideSignInModal());
+      
+    };
 
   const handleSubmit = () => {
-    fetch(`${BACKEND_URL}/users/signup`, {
+    fetch(`${URL}users/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: signUpEmail,password: signUpPassword }),
     }).then(response => response.json())
       .then(data => {
-        data.result && dispatch(login({ token: data.token, mail }));
+        console.log(data)
+        data.result && dispatch(login({ token: data.user.token, email: data.user.email }));
         setSignUpEmail('');
         setSignUpPassword('');
+        dispatch(hideSignUpModal())
       });
   };
 
@@ -43,14 +46,13 @@ function SignUp() {
     console.log(response);
   }
 
-
   return (
     <div className={styles.container}>
 
         <h2 className={styles.title}>Créer un compte</h2>
         <div className={styles.toConnect}>
           <h4 className={styles.h4}>Vous avez déjà un compte ?</h4>
-          <button className={styles.connectButton} onClick={showSignInModal}>Se connecter</button>
+          <button className={styles.connectButton} onClick={handleShowModalSignIn}>Se connecter</button>
         </div>
         <h4 className={styles.h4}>Votre e-mail:</h4>
         <input type="text" className={styles.input} onChange={(e) => setSignUpEmail(e.target.value)} value={signUpEmail} />
@@ -67,12 +69,11 @@ function SignUp() {
           cookiePolicy={'single_host_origin'}
         />
       </div>
-      <Modal onCancel={handleCancelSignIn} visible={signInModalVisible} footer={null}>
+      <Modal onCancel={handleCancelSignIn} open={signInModal} footer={null}>
         <SignIn />
       </Modal>
     </div>
   );
 }
-
 
 export default SignUp;

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
 import { useDispatch } from 'react-redux';
 import { addRealtyToStore } from '../reducers/realtys';
+import HeaderConnected from './HeaderConnected';
 
 function AddRealty() {
 
@@ -23,13 +24,7 @@ function AddRealty() {
 
   return (
     <div>
-      <header className={styles.header}>
-      <h1 className={styles.title}>
-            Proposer mon bien
-          </h1>
-        {/* Header occupe 10% de l'écran avec fond rouge */}
-      </header>
-
+    <HeaderConnected/>
       <main className={styles.main}>
         <div className={styles.container}>
           {/* Container avec le titre centré en haut */}

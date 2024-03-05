@@ -12,7 +12,7 @@ function Home() {
 
       <div className={styles.middleContent}>
         <h1 className={styles.title}>Quel est votre Projet ?</h1>
-        <button className={styles.achat}>Acheter</button>
+        <button className={styles.achat}>Acheter</button><br></br>
         <button className={styles.vente}>Vendre</button>
       </div>
       
