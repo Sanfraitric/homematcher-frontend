@@ -1,18 +1,11 @@
 import { useState } from 'react';
-import Header from '../components/Header_Connected'
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
 import { useDispatch } from 'react-redux';
 import { addRealtyToStore } from '../reducers/realtys';
 import React from 'react';
-import {Cloudinary} from "@cloudinary/url-gen";
-import cloudinary from 'cloudinary';
 
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-})
+
 
 
 
@@ -21,7 +14,7 @@ function AddRealty() {
 
   const dispatch = useDispatch();
 
-  const cld = new Cloudinary({cloud: {cloudName: 'dej75zvmb'}});
+  
 
 
   const addRealty = (newRealty) => {
@@ -76,7 +69,10 @@ for (let i = 0; i < files.length; i++) {
   return (
     <div>
       <header className={styles.header}>
-<Header />
+      <h1 className={styles.title}>
+            Proposer mon bien
+          </h1>
+        {/* Header occupe 10% de l'écran avec fond rouge */}
       </header>
 
       <main className={styles.main}>
