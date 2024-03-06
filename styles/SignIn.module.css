@@ -3,35 +3,35 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  padding: 25px;
 }
+
+/*Texte*/
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 35px;
+  margin: 20px;
+  text-align: left;
+}
+
+.p{
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.toConnect{
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  margin-left: 20px;
+  }
 
 .h4{
   font-family: "Montserrat", sans-serif;
   font-style: normal;
-  font-size: 15px;
+  font-size: 14px;
   margin-left: 20px;
   position: relative;
-}
-
-.toConnect{
-display: flex;
-justify-content: flex-start;
-position: relative;
-align-items: center;
-}
-
-.forgotPassword{
-  display: flex;
-  justify-content: flex-end;
-  text-decoration: underline;
-  font-weight: 100;
-  position: relative;
-  align-items: center;
-  border: none;
-  background-color: white;
-  margin-top: 10px;
-  cursor: pointer;
 }
 
 .h5 {
@@ -42,13 +42,58 @@ align-items: center;
   cursor: pointer;
 }
 
-.title {
+.h6 {
   font-family: "Montserrat", sans-serif;
-  font-style: bold;
-  font-size: 40px;
-  margin: 20px;
-  text-align: left;
+  font-size: 14px;
+  font-weight: 120;
+  position: relative;
+  text-align: center;
+
 }
+
+/*Création de ligne à droite et gauche */
+
+.h6::before,
+.h6::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 150px; 
+    height: 0.1px; 
+    background: black;
+}
+
+.h6::before {
+    left: 0px;
+}
+
+.h6::after {
+    right: 0px;
+}
+
+
+/*Boutons*/
+
+.forgotPassword{
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+  position: relative;
+  align-items: center;
+  border: none;
+  background-color: white;
+  font-weight: 700;
+  color: #D32F2F;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.connect{
+  align-items: center;
+  text-align: center;
+  display: grid;
+  }
 
 .button {
   display: flex;
@@ -61,12 +106,28 @@ align-items: center;
   border-color: white;
   color: white;
   font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   border-radius: 40px;
   font-weight: 600;
   cursor: pointer;
   border: none;
 }
+
+.connectButton{
+font-family: 'Montserrat', sans-serif;
+border: none;
+background-color: white;
+cursor: pointer;
+text-decoration: underline; 
+font-weight: 700;
+font-size: 14px;
+}
+
+.googleButton {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/*Input*/
 
 .input {
   height: 40px;
@@ -81,17 +142,4 @@ align-items: center;
 .input:focus {
   outline: none;
   background-color: transparent;
-}
-
-.connect{
-align-items: center;
-text-align: center;
-display: grid;
-}
-
-.connectButton{
-border: none;
-background-color: white;
-cursor: pointer;
-text-decoration: underline; 
 }

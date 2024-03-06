@@ -5,15 +5,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import HeaderConnected from './HeaderConnected';
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
+import ImageCarrousel from './Carrousel';
+
 
 function AddRealty() {
-
+  const images = [
+    'appart1.jpg',
+    'appart2.jpg',
+    'appart3.jpg'
+  ]
   const dispatch = useDispatch();
   const router = useRouter();
   const token = useSelector((state) => state.user.value.token);
   //console.log(token)
   const addRealty = (newRealty) => {
-    dispatch( addRealtyToStore(newRealty))
+    dispatch(addRealtyToStore(newRealty))
   }
 
   // Hooks d'états pour les inputs:
@@ -41,24 +49,24 @@ function AddRealty() {
   const maxDelay = 52; // Par exemple, définissez la valeur maximale pour le délai en semaines
 
   const handleDelayChange = (e) => {
-  let newDelay = parseInt(e.target.value);
-  // S'assurer que le délai reste dans la fourchette définie
-  newDelay = Math.min(Math.max(minDelay, newDelay), maxDelay);
-  setDelay(newDelay);
-};
+    let newDelay = parseInt(e.target.value);
+    // S'assurer que le délai reste dans la fourchette définie
+    newDelay = Math.min(Math.max(minDelay, newDelay), maxDelay);
+    setDelay(newDelay);
+  };
 
-const handlePhotoChange = (e) => {
-  const files = e.target.files;
+  const handlePhotoChange = (e) => {
+    const files = e.target.files;
 
 
-for (let i = 0; i < files.length; i++) {
-  const file = files[i];
-  console.log("Nom du fichier:", file.name);
-  console.log("Taille du fichier:", file.size, "octets");
-  console.log("Type MIME du fichier:", file.type);
-  console.log("Date de dernière modification du fichier:", file.lastModifiedDate);
-}
-}
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      console.log("Nom du fichier:", file.name);
+      console.log("Taille du fichier:", file.size, "octets");
+      console.log("Type MIME du fichier:", file.type);
+      console.log("Date de dernière modification du fichier:", file.lastModifiedDate);
+    }
+  }
 
 const handleSubmit = () => {
   fetch('http://localhost:3000/realtys/addRealtys', {
@@ -92,18 +100,18 @@ const handleSubmit = () => {
       <main className={styles.main}>
         <div className={styles.container}>
           {/* Container avec le titre centré en haut */}
-         
+
 
           {/* Inputs dans la partie gauche */}
           
          <div className={styles.leftContainer}>
-          Description
-          <input type="text" className={styles.inputText} placeholder='Description:...'  onChange={(e) => setDescription(e.target.value)} value={description}/>
-          Superficie
+          
+          <input type="text" className={styles.desc} placeholder='Description:...'  onChange={(e) => setDescription(e.target.value)} value={description}/>
+          
           <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
-          Nombre de pièces 
+           
           <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
-          Prix de vente souhaité
+          
           <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
          </div>
         
@@ -118,47 +126,50 @@ const handleSubmit = () => {
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
-          <h2>Image</h2>
+          <ImageCarrousel images={images} className={styles.carrousel}/>
           {/* Bouton pour ajouter le bien */}
           <button className={styles.button} onClick={handleSubmit}> Ajouter un bien </button>
           </div>
 
           {/* Titre "Documents" dans la partie droite */}
           <div className={styles.rightContainer}>
-            <button> Ajouter Document(s)</button>
-            <h2>Documents Obligatoires</h2>
+            <button className={styles.button}> Ajouter Document(s)</button>
+          
+            <h2>Documents Obligatoires</h2> 
+            <FontAwesomeIcon icon={faQuestion} className={styles.info} title='les documents obligatoires sont...'/>
+          
             <div>
               <h2> Profil acheteur souhaité</h2>
               Délai :
               <input
-              type="range"
-              min={minDelay}
-              max={maxDelay}
-              value={delay}
-              onChange={handleDelayChange}
-              className={styles.inputRange}
+                type="range"
+                min={minDelay}
+                max={maxDelay}
+                value={delay}
+                onChange={handleDelayChange}
+                className={styles.inputRange}
               />
               <span>{delay} semaine(s)</span>
-              <div> 
-              Budget :
-              <input
-              type="range"
-              min={minBudget}
-              max={maxBudget}
-              step={10000} // Incréments de 10 000
-              value={budget}
-              onChange={handleBudgetChange}
-              className={styles.inputRange}
-              />
-            <span>{budget} €</span>
-          </div>
-             Financement :
+              <div>
+                Budget :
+                <input
+                  type="range"
+                  min={minBudget}
+                  max={maxBudget}
+                  step={10000} // Incréments de 10 000
+                  value={budget}
+                  onChange={handleBudgetChange}
+                  className={styles.inputRange}
+                />
+                <span>{budget} €</span>
+              </div>
+              Financement :
               <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
               <label htmlFor="financed-yes">Oui</label>
               <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
               <label htmlFor="financed-no">Non</label>
             </div>
-          </div>        
+          </div>
         </div>
       </main>
     </div>
