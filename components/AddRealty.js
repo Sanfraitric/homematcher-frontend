@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import HeaderConnected from './HeaderConnected';
 import React from 'react';
 
 function AddRealty() {
 
   const dispatch = useDispatch();
-
-
+  const router = useRouter();
+  const token = useSelector((state) => state.user.value.token);
+  //console.log(token)
   const addRealty = (newRealty) => {
     dispatch( addRealtyToStore(newRealty))
   }
@@ -58,6 +60,31 @@ for (let i = 0; i < files.length; i++) {
 }
 }
 
+const handleSubmit = () => {
+  fetch('http://localhost:3000/realtys/addRealtys', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `${token}` // Incluez le token dans l'en-tête Authorization
+    },
+    body: JSON.stringify({
+      description: "Ceci est une description test",
+      location: "Votre location",
+      numberOfRooms: 3,
+      price: 340000,
+      landArea: 100,
+      livingArea: 80,
+      propertyType: "Maison",
+      terrace: true
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    router.push('/RealtysPage')
+  })
+  .catch(error => console.error('Erreur:', error));
+}
 
   return (
     <div>
@@ -93,9 +120,7 @@ for (let i = 0; i < files.length; i++) {
           />
           <h2>Image</h2>
           {/* Bouton pour ajouter le bien */}
-          <Link href='/RealtysPage'>
-          <button className={styles.button}> Ajouter un bien </button>
-          </Link>
+          <button className={styles.button} onClick={handleSubmit}> Ajouter un bien </button>
           </div>
 
           {/* Titre "Documents" dans la partie droite */}

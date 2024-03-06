@@ -47,7 +47,7 @@ function Header() {
     };
 const toggleMenu  = () => {
     setIsOpen(!isOpen);
-    console.log(isOpen);
+    //console.log(user);
 };
 
     let userSection;

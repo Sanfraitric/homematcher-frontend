@@ -10,6 +10,7 @@ import { Modal } from 'antd';
 import { showSignUpModal, hideSignUpModal, hideSignInModal, handleForgotPassword , closeForgotPassword} from '../reducers/modal.js';
 
 function SignIn() {
+    const user = useSelector((state) => state.user.value);
     const BACKEND_URL = process.env.BACKEND_URL
     const dispatch = useDispatch();
     const router = useRouter();
