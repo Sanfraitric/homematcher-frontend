@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/MyCriterias.module.css'
-//import { useDispatch, useSelector } from 'react-redux';
-//import { addRealtyToStore } from '../reducers/realtys';
 import HeaderConnected from './HeaderConnected';
 
 function AddRealty() {
   const router = useRouter();
+
     //Mes constantes d'effet
   const [budget, setBudget] = useState(10000);
   const [area, setArea] = useState('');
@@ -15,12 +14,15 @@ function AddRealty() {
   const [indoorSurface, setIndoorSurface] = useState('');
   const [rooms, setRooms] = useState('');
   const [outdoor, setOutdoor] = useState('');
-// fonction permettant de naviguer vers la page time to match
-const goToMatch = () => {
+
+// Naviguer vers la page time to match
+  const goToMatch = () => {
+  let audio = new Audio('/click.wav');
+  audio.play();
   router.push('/timeToMatch')
 }
-  //Définir les minimum et maximum pour les inputs
-  const minBudget = 0;
+//Création Jauge Budget
+    const minBudget = 0;
   const maxBudget = 1000000;
 
   const handleBudgetChange = (e) => {
@@ -29,6 +31,8 @@ const goToMatch = () => {
     newBudget = Math.min(Math.max(minBudget, newBudget), maxBudget);
     setBudget(newBudget);
   };
+
+//Création Jauge Jardin
 
   const minOutdoorSurface = 0;
   const maxOutdoorSurface = 600; 
@@ -39,6 +43,8 @@ const goToMatch = () => {
   setOutdoorSurface(newOutdoorSurface);
 };
 
+//Création Jauge Surface Habitable
+
 const minIndoorSurface = 0;
 const maxIndoorSurface = 600; 
 
@@ -47,6 +53,8 @@ let newIndoorSurface = parseInt(e.target.value);
 newIndoorSurface = Math.min(Math.max(minIndoorSurface, newIndoorSurface), maxIndoorSurface);
 setIndoorSurface(newIndoorSurface);
 };
+
+//Création Jauge Nombre de Pièces
 
 const minRooms = 1;
 const maxRooms = 10; 
@@ -57,10 +65,19 @@ newRooms = Math.min(Math.max(minRooms, newRooms), maxRooms);
 setRooms(newRooms);
 };
 
+//Pouvoir Cocher Maison ET Appartement
+const handleTypeChange = (e) => {
+  const { checked, value } = e.target;
+  setType(prevType =>
+    checked ? [...prevType, value] : prevType.filter(type => type !== value)
+  );
+};
   return (
 <div>
-  <HeaderConnected />
   <main className={styles.main}>
+    <div className={styles.header}>
+      <HeaderConnected />
+    </div>
     <div className={styles.container}>
       <div className={styles.leftContainer}>
         <div className={styles.input}>
@@ -80,10 +97,10 @@ setRooms(newRooms);
         </div>
         <div className={styles.input}>
             <label className={styles.text}>Type de Bien:</label>
-            <select className={styles.inputElement} value={type} onChange={(e) => setType(e.target.value)}>
-                <option value="Appartement">Appartement</option>
-                <option value="Maison">Maison</option>
-            </select>
+            <div className={styles.choice}>
+            <input type="checkbox" name="type" value="Appartement" checked={type.includes('Appartement')} onChange={handleTypeChange} /> Appartement
+            <input type="checkbox" name="type" value="Maison" checked={type.includes('Maison')} onChange={handleTypeChange} /> Maison
+            </div>
         </div>
         <div className={styles.input}>
             <label className={styles.text}>Surface du terrain:</label>
@@ -109,8 +126,8 @@ setRooms(newRooms);
         <div className={styles.input}>
             <label className={styles.text}>Terrasse Exterieure:</label>
             <div className={styles.choice}>
-            <input type="radio" name="outdoor" value="Oui" checked={outdoor === 'Oui'} onChange={(e) => setOutdoor(e.target.value)} /> Oui
-            <input  type="radio" name="outdoor" value="Non" checked={outdoor === 'Non'} onChange={(e) => setOutdoor(e.target.value)} /> Non
+            <input type="checkbox" name="outdoor" value="Oui" checked={outdoor === 'Oui'} onChange={(e) => setOutdoor(e.target.value)} /> Oui
+            <input  type="checkbox" name="outdoor" value="Non" checked={outdoor === 'Non'} onChange={(e) => setOutdoor(e.target.value)} /> Non
             </div>
         </div>
     </div>

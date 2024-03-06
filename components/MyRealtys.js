@@ -1,23 +1,50 @@
 import styles from '../styles/MyRealtys.module.css';
 import Link from 'next/link'
 import HeaderConnected from './HeaderConnected';
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import RealtyCard from './RealtyCard';
 
 function MyRealtys() {
+  const token = useSelector((state) => state.user.value.token);
+  const [myRealty, setMyRealty] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/realtys', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${token}` // Incluez le token dans l'en-tête Authorization
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        setMyRealty(data.realtys);
+      });
+  }, []);
+
+  const realtys = myRealty.map((data, i) => {
+    return <RealtyCard key={i} {...data} />;
+  })
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <HeaderConnected />
       </div>
-      <div className={styles.myRealty}>
-       
-          <div className={styles.add}>
-            <Link href='/AddRealtyPage'>
-              <button > Ajouter un bien </button>
-            </Link>
-          </div>
-     
-          </div>
+      <div className={styles.background}>
+        <div className={styles.addRealty}>
+          <Link href='/AddRealtyPage'>
+            <button className={styles.btn}> + Ajouter un bien </button>
+          </Link>
         </div>
+        <div className={styles.realtyCard}>
+          {realtys}
+        </div>
+      </div>
+    </div>
   );
 }
 

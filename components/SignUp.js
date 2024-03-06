@@ -15,19 +15,23 @@ function SignUp() {
     const [signUpEmail, setSignUpEmail] = useState('');
     const [signUpPassword, setSignUpPassword] = useState('');
     const signInModal = useSelector(state => state.modal.value.signInModalVisible)
-
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleShowModalSignIn = () => {
         dispatch(showSignInModal());
         dispatch(hideSignUpModal());
+    const handleShowModalSignIn = () => {
+        dispatch(showSignInModal());
+        dispatch(hideSignUpModal());
 
+    };
     };
 
 
     const handleCancelSignIn = () => {
         dispatch(hideSignInModal());
 
-    };
+        };
 
     const handleSubmit = () => {
         fetch('http://localhost:3000/users/signup', {
@@ -36,13 +40,20 @@ function SignUp() {
             body: JSON.stringify({ email: signUpEmail, password: signUpPassword }),
         }).then(response => response.json())
             .then(data => {
-                data.result && dispatch(login({ token: data.user.token, email: data.user.email }));
+               if (data.result) {
+                dispatch(login({ token: data.token, email : data.email }));
                 setSignUpEmail('');
                 setSignUpPassword('');
-                dispatch(hideSignUpModal());
+               } else {
+                console.log(data.error)
+                setErrorMessage(data.error);
+               }
             });
     };
 
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
     const responseGoogle = (response) => {
         console.log(response);
     }
@@ -60,8 +71,10 @@ function SignUp() {
             <input type="text" className={styles.input} onChange={(e) => setSignUpEmail(e.target.value)} value={signUpEmail} />
             <h4 className={styles.h4}>Votre mot de passe:</h4>
             <input type="password" className={styles.input} onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
+            {errorMessage && <p>{errorMessage}</p>}
             <div className={styles.connect}>
                 <button className={styles.button} onClick={() => handleSubmit()}>Créer un compte</button>
+
                 <h4 className={styles.h4}>ou</h4>
                 <GoogleLogin
                     clientId="313442107107-r67n8849np3ndu8sqllj4qblsbd0eh7c.apps.googleusercontent.com"

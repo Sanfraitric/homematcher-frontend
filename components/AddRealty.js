@@ -1,12 +1,28 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import HeaderConnected from './HeaderConnected';
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
+import ImageCarrousel from './Carrousel';
 
 
 function AddRealty() {
-
+  const images = [
+    'appart1.jpg',
+    'appart2.jpg',
+    'appart3.jpg'
+  ]
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const token = useSelector((state) => state.user.value.token);
+  //console.log(token)
+  const addRealty = (newRealty) => {
+    dispatch(addRealtyToStore(newRealty))
+  }
 
   // Hooks d'états pour les inputs:
   const [description, setDescription] = useState('');
@@ -74,6 +90,31 @@ const handleAddRealty = () => {
 //   console.log("Date de dernière modification du fichier:", file.lastModifiedDate);
 //   setImageUrl(imageUrl)
 
+const handleSubmit = () => {
+  fetch('http://localhost:3000/realtys/addRealtys', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `${token}` // Incluez le token dans l'en-tête Authorization
+    },
+    body: JSON.stringify({
+      description: "Ceci est une description test",
+      location: "Votre location",
+      numberOfRooms: 3,
+      price: 340000,
+      landArea: 100,
+      livingArea: 80,
+      propertyType: "Maison",
+      terrace: true
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    router.push('/RealtysPage')
+  })
+  .catch(error => console.error('Erreur:', error));
+}
 
   return (
     <div>
@@ -81,18 +122,18 @@ const handleAddRealty = () => {
       <main className={styles.main}>
         <div className={styles.container}>
           {/* Container avec le titre centré en haut */}
-         
+
 
           {/* Inputs dans la partie gauche */}
           
          <div className={styles.leftContainer}>
-          Description
-          <input type="text" className={styles.inputText} placeholder='Description:...'  onChange={(e) => setDescription(e.target.value)} value={description}/>
-          Superficie
+          
+          <input type="text" className={styles.desc} placeholder='Description:...'  onChange={(e) => setDescription(e.target.value)} value={description}/>
+          
           <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
-          Nombre de pièces 
+           
           <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
-          Prix de vente souhaité
+          
           <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
          </div>
         
@@ -107,7 +148,7 @@ const handleAddRealty = () => {
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
-          <h2>Image</h2>
+          <ImageCarrousel images={images} className={styles.carrousel}/>
           {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
           <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
@@ -116,40 +157,43 @@ const handleAddRealty = () => {
 
           {/* Titre "Documents" dans la partie droite */}
           <div className={styles.rightContainer}>
-            <button> Ajouter Document(s)</button>
-            <h2>Documents Obligatoires</h2>
+            <button className={styles.button}> Ajouter Document(s)</button>
+          
+            <h2>Documents Obligatoires</h2> 
+            <FontAwesomeIcon icon={faQuestion} className={styles.info} title='les documents obligatoires sont...'/>
+          
             <div>
               <h2> Profil acheteur souhaité</h2>
               Délai :
               <input
-              type="range"
-              min={minDelay}
-              max={maxDelay}
-              value={delay}
-              onChange={handleDelayChange}
-              className={styles.inputRange}
+                type="range"
+                min={minDelay}
+                max={maxDelay}
+                value={delay}
+                onChange={handleDelayChange}
+                className={styles.inputRange}
               />
               <span>{delay} semaine(s)</span>
-              <div> 
-              Budget :
-              <input
-              type="range"
-              min={minBudget}
-              max={maxBudget}
-              step={10000} // Incréments de 10 000
-              value={budget}
-              onChange={handleBudgetChange}
-              className={styles.inputRange}
-              />
-            <span>{budget} €</span>
-          </div>
-             Financement :
+              <div>
+                Budget :
+                <input
+                  type="range"
+                  min={minBudget}
+                  max={maxBudget}
+                  step={10000} // Incréments de 10 000
+                  value={budget}
+                  onChange={handleBudgetChange}
+                  className={styles.inputRange}
+                />
+                <span>{budget} €</span>
+              </div>
+              Financement :
               <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
               <label htmlFor="financed-yes">Oui</label>
               <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
               <label htmlFor="financed-no">Non</label>
             </div>
-          </div>        
+          </div>
         </div>
       </main>
     </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useRouter } from 'next/router';
 //Import Style et Logo
 import styles from '../styles/Header.module.css';
 import Image from 'next/image';
@@ -16,6 +15,7 @@ import { showSignInModal, showSignUpModal, hideSignUpModal, hideSignInModal } fr
 import Link from 'next/link';
 import { logout } from '../reducers/user'; 
 
+
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const user = useSelector(state => state.user.value)
@@ -24,30 +24,36 @@ function Header() {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(logout());
         };
 
     const handleShowModalSignIn = () => {
         dispatch(showSignInModal());
+        let audio = new Audio('/click.wav');
+        audio.play();
     };
 
     const handleShowModalSignUp = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(showSignUpModal());
-
     };
 
     const handleCancelSignUp = () => {
         dispatch(hideSignUpModal());
-
     };
 
     const handleCancelSignIn = () => {
         dispatch(hideSignInModal());
-
     };
+
 const toggleMenu  = () => {
+    let audio = new Audio('/click.wav');
+    audio.play();
     setIsOpen(!isOpen);
-    console.log(isOpen);
+    //console.log(user);
 };
 
     let userSection;
@@ -59,9 +65,9 @@ const toggleMenu  = () => {
                     <h2 className={styles.h2} >Mon compte</h2>
                     {isOpen && (
                     <div className={styles.dropdownMenu}>
-                        <Link href="/ProfilPage"><a>Mon compte</a></Link>
-                        <Link href="/RealtysPage"><a>Mes biens</a></Link>
-                        <a onClick={() => handleLogout()}>Se déconnecter</a>
+                        <Link className={styles.texte} href="/ProfilPage"><a>Mon compte</a></Link>
+                        <Link className={styles.texte} href="/RealtysPage"><a>Mes biens</a></Link>
+                        <a className={styles.text} onClick={() => handleLogout()}>Se déconnecter</a>
                     </div>
                 )}
                 </div>
