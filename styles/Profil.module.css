@@ -1,3 +1,5 @@
+
+
 .main {
     display:grid;
     grid-template-columns: repeat(3, 33.33vw);
@@ -95,7 +97,7 @@
 
 /*Right content*/
 
-.cvidelol {
+.toBeChanged {
     background-color:#f5e6e7;
     grid-column-start: 3;
     grid-column-end: 4;

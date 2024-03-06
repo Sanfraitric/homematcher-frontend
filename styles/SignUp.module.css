@@ -3,40 +3,79 @@
   .container {
     display: flex;
     flex-direction: column;
+    padding: 25px;
+  }
+
+  /*Texte*/
+
+  .title {
+    font-family: "Montserrat", sans-serif;
+    font-style: bold;
+    font-size: 35px;
     margin: 20px;
+    text-align: left;
+  }
+
+  .p{
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+  }
+
+  .toConnect{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 20px;
+
   }
 
   .h4{
     font-family: "Montserrat", sans-serif;
     font-style: normal;
-    font-size: 15px;
+    font-size: 14px;
     margin-left: 20px;
     position: relative;
   }
 
-.toConnect{
-  display: flex;
-  justify-content: flex-start;
-  position: relative;
-  align-items: center;
-}
-
   .h5 {
     font-family: "Montserrat", sans-serif;
     font-style: bold;
-    font-size: 12px;
+    font-size: 14px;
     text-decoration: underline; 
     cursor: pointer;
   }
 
-  .title {
+  .h6 {
     font-family: "Montserrat", sans-serif;
-    font-style: bold;
-    font-size: 40px;
-    margin: 20px;
-    text-align: left;
+    font-size: 14px;
+    font-weight: 120;
+    position: relative;
+    text-align: center;
+  }  
+  
+  /*Création de ligne à droite et gauche */
+  
+  .h6::before,
+  .h6::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 150px; 
+      height: 0.1px; 
+      background: black;
   }
   
+  .h6::before {
+      left: 0px;
+  }
+  
+  .h6::after {
+      right: 0px;
+  }
+  
+
+/*Boutons*/
+
   .button {
     display: flex;
     justify-content: center;
@@ -54,6 +93,28 @@
     cursor: pointer;
     border: none;
   }
+
+  .connect{
+    align-items: center;
+    text-align: center;
+    display: grid;
+  }
+  
+  .connectButton{
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+    text-decoration: underline; 
+    font-weight: 700;
+    font-size: 14px;
+    }
+
+  .googleButton {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /*Inputs*/
   
   .input {
     height: 40px;
@@ -70,15 +131,3 @@
     background-color: transparent;
   }
 
-.connect{
-  align-items: center;
-  text-align: center;
-  display: grid;
-}
-
-.connectButton{
-  border: none;
-  background-color: white;
-  cursor: pointer;
-  text-decoration: underline; 
-}

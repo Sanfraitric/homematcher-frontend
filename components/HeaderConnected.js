@@ -19,11 +19,15 @@ function Header() {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(logout());
         router.push('/')
       };
 
       const returnHome = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         router.push('/')
       }
 
@@ -60,9 +64,9 @@ function Header() {
                 <h2 className={styles.h2}>Profil</h2>
                 {isOpen && (
                     <div className={styles.dropdownMenu}>
-                        <Link href="/ProfilPage"><a>Mon compte</a></Link>
-                        <Link href="/RealtysPage"><a>Mes biens</a></Link>
-                        <a onClick={() => handleLogout()}>Se déconnecter</a>
+                        <Link className={styles.texte} href="/ProfilPage"><a>Mon compte</a></Link>
+                        <Link className={styles.texte} href="/RealtysPage"><a>Mes biens</a></Link>
+                        <a className={styles.text} onClick={() => handleLogout()}>Se déconnecter</a>
                     </div>
                 )}
         </div>

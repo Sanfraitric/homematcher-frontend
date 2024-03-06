@@ -26,7 +26,7 @@ function Profil() {
                 <br/>
                 <button className={styles.MAJProfil}>Mettre à jour mon profil</button>
             </div>
-            <div className={styles.cvidelol}>
+            <div className={styles.toBeChanged}>
 
             </div>
         </div>
