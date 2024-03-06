@@ -1,6 +1,6 @@
 import styles from '../styles/TimeToMatch.module.css';
 import Link from 'next/link'
-import Header from '../components/Header_Connected'
+import HeaderConnected from './HeaderConnected'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faRotate, faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,7 +8,7 @@ function TimeToMatch() {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <Header />
+                <HeaderConnected />
             </div>
             <div className={styles.landMatch}>
                 <div className={styles.test}>

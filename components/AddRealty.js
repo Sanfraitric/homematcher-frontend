@@ -2,20 +2,26 @@ import { useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
 import { useDispatch } from 'react-redux';
-import { addRealtyToStore } from '../reducers/realtys';
+import HeaderConnected from './HeaderConnected';
 import React from 'react';
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 05ba5687785b7d50564cae3022ff18b0c54d6f4f
 
 function AddRealty() {
 
   const dispatch = useDispatch();
 
+<<<<<<< HEAD
   
 
+=======
+>>>>>>> 05ba5687785b7d50564cae3022ff18b0c54d6f4f
 
   const addRealty = (newRealty) => {
     dispatch( addRealtyToStore(newRealty))
@@ -68,6 +74,7 @@ for (let i = 0; i < files.length; i++) {
 
   return (
     <div>
+<<<<<<< HEAD
       <header className={styles.header}>
       <h1 className={styles.title}>
             Proposer mon bien
@@ -75,6 +82,9 @@ for (let i = 0; i < files.length; i++) {
         {/* Header occupe 10% de l'écran avec fond rouge */}
       </header>
 
+=======
+    <HeaderConnected/>
+>>>>>>> 05ba5687785b7d50564cae3022ff18b0c54d6f4f
       <main className={styles.main}>
         <div className={styles.container}>
           {/* Container avec le titre centré en haut */}

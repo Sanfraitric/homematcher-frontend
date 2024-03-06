@@ -1,20 +1,23 @@
 import styles from '../styles/MyRealtys.module.css';
-import Header from '../components/Header_Connected'
 import Link from 'next/link'
+import HeaderConnected from './HeaderConnected';
 
 function MyRealtys() {
   return (
-    <div className={styles.main}>
-      < Header />
-      <main >
-        
-        <div className={styles.container}>
-        <Link href='/AddRealtyPage'>
-            <button> Ajouter un bien </button>
-        </Link>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <HeaderConnected />
+      </div>
+      <div className={styles.myRealty}>
+       
+          <div className={styles.add}>
+            <Link href='/AddRealtyPage'>
+              <button > Ajouter un bien </button>
+            </Link>
+          </div>
+     
+          </div>
         </div>
-      </main>
-    </div>
   );
 }
 

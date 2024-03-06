@@ -47,10 +47,10 @@ function SignIn() {
         }).then(response => response.json())
             .then(data => {
                 console.log(data)
-                data.result && dispatch(login({ token: data.token, firstName: data.firstName, username: data.username }));
+                data.result && dispatch(login({ token: data.user.token,  email: data.user.email }));
                 setSignInEmail('');
                 setSignInPassword('');
-                
+                dispatch(hideSignInModal());
             });
     };
 
@@ -73,7 +73,7 @@ function SignIn() {
                     <input type="password" className={styles.input} onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword} />
                     <button className={styles.button} onClick={() => handleSubmit()}>Se connecter</button>
 
-                    <p onClick={clickForgotPassword} className={styles.forgotPassword}>Mot de passe oublié ?</p>
+                    <button onClick={clickForgotPassword} className={styles.forgotPassword}>Mot de passe oublié ?</button>
 
                     <h4 className={styles.h4}>ou</h4>
                     <GoogleLogin
@@ -97,4 +97,3 @@ function SignIn() {
 }
 
 export default SignIn;
-
