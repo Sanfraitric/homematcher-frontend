@@ -1,7 +1,39 @@
-.ArrowLeft {
-    padding-right: 20px;
-  }
-  
-  .ArrowRight {
-    padding-left:20px;
-  }
+/*Contenu entier*/
+.body { 
+  display: flex;
+  justify-content: center;
+  height: 35vh; 
+  flex-direction: column;
+}
+
+/*Image*/
+
+.height {
+  display: flex;
+  justify-content: center;
+  padding-left: 50px;
+  align-items: center;
+  object-fit: cover;
+  height: 30vh;
+  width: 20vb;
+  align-content: center;
+  width: auto;
+}
+
+/*Arrows*/
+
+.parentArrow{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2vh; 
+  margin-top: 2vh;
+}
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2vh; 
+  padding-left: 50px;
+  cursor: pointer;
+}

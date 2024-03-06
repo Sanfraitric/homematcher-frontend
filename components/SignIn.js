@@ -48,13 +48,15 @@ function SignIn() {
         }).then(response => response.json())
             .then(data => {
                 if(data.result){
-                    dispatch(login({ token: data.token, firstName: data.firstName, username: data.username }));
+                    dispatch(login({ token: data.user.token,  email: data.user.email }));
                     setSignInEmail('');
                     setSignInPassword('');
+                    dispatch(hideSignInModal());
                 }else {
                     console.log(data.error)
                     setErrorMessage(data.error);
                 }
+                
             });
     };
 
@@ -67,7 +69,7 @@ function SignIn() {
             <div className={styles.container}>
                 <h2 className={styles.title}>Se connecter</h2>
                 <div className={styles.toConnect}>
-                    <h4 className={styles.h4}>Vous n'etes pas encore inscrit ?</h4>
+                    <p className={styles.p}>Vous n'avez pas de compte ?</p>
                     <button onClick={handleShowModalSignUp} className={styles.connectButton}>Créer un compte</button>
                 </div>
                 <h4 className={styles.h4}>Votre e-mail:</h4>
@@ -78,10 +80,11 @@ function SignIn() {
                     {errorMessage && <p>{errorMessage}</p>}
                     <button className={styles.button} onClick={() => handleSubmit()}>Se connecter</button>
 
-                    <p onClick={clickForgotPassword} className={styles.forgotPassword}>Mot de passe oublié ?</p>
+                    <button onClick={clickForgotPassword} className={styles.forgotPassword}>Mot de passe oublié ?</button>
 
-                    <h4 className={styles.h4}>ou</h4>
+                    <h6 className={styles.h6}>ou</h6>
                     <GoogleLogin
+                        className={styles.googleButton}
                         clientId="313442107107-r67n8849np3ndu8sqllj4qblsbd0eh7c.apps.googleusercontent.com"
                         buttonText="Sign In with Google"
                         onSuccess={responseGoogle}
@@ -102,4 +105,3 @@ function SignIn() {
 }
 
 export default SignIn;
-

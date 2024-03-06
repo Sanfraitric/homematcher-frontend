@@ -1,49 +1,21 @@
 import { useState } from 'react';
-import Header from '../components/Header_Connected'
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
 import { useDispatch } from 'react-redux';
-import { addRealtyToStore } from '../reducers/realtys';
+import HeaderConnected from './HeaderConnected';
 import React from 'react';
-import { Cloudinary } from "@cloudinary/url-gen";
-import cloudinary from 'cloudinary';
-import { UseSelector } from 'react-redux';
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-})
-
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
+import ImageCarrousel from './Carrousel';
 
 
 function AddRealty() {
-  const token = useSelector((state) => state.user.value.token);
-  const handleSubmit = () => {
-    fetch('http://localhost:3000/realtys/addRealtys', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `${token}` // Incluez le token dans l'en-tête Authorization
-      },
-      body: JSON.stringify({
-        description: "Votre description",
-        location: "Votre location",
-        numberOfRooms: 3,
-        price: 100000,
-        landArea: 100,
-        livingArea: 80,
-        propertyType: "Maison",
-        terrace: true
-      })
-    })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Erreur:', error));
-  }
+  const images = [
+    'appart1.jpg',
+    'appart2.jpg',
+    'appart3.jpg'
+  ]
   const dispatch = useDispatch();
-
-  const cld = new Cloudinary({ cloud: { cloudName: 'dej75zvmb' } });
 
 
   const addRealty = (newRealty) => {
@@ -97,50 +69,50 @@ function AddRealty() {
 
   return (
     <div>
-      <header className={styles.header}>
-        <Header />
-      </header>
-
+    <HeaderConnected/>
       <main className={styles.main}>
         <div className={styles.container}>
           {/* Container avec le titre centré en haut */}
 
 
           {/* Inputs dans la partie gauche */}
-
-          <div className={styles.leftContainer}>
-            Description
-            <input type="text" className={styles.inputText} placeholder='Description:...' onChange={(e) => setDescription(e.target.value)} value={description} />
-            Superficie
-            <input type="text" className={styles.inputText} placeholder='Superficie: ...m²' onChange={(e) => setArea(e.target.value)} value={area} />
-            Nombre de pièces
-            <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms} />
-            Prix de vente souhaité
-            <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €' onChange={(e) => setPrice(e.target.value)} value={price} />
-          </div>
-
-
+          
+         <div className={styles.leftContainer}>
+          
+          <input type="text" className={styles.desc} placeholder='Description:...'  onChange={(e) => setDescription(e.target.value)} value={description}/>
+          
+          <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
+           
+          <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
+          
+          <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
+         </div>
+        
+        
 
           {/* Titre "Image" dans la partie du milieu */}
           <div className={styles.middleContainer}>
-            <input
-              type="file"
-              accept="image/*" // Accepte uniquement les fichiers images
-              multiple // Permet à l'utilisateur de sélectionner plusieurs fichiers
-              onChange={handlePhotoChange}
-              className={styles.inputFile}
-            />
-            <h2>Image</h2>
-            {/* Bouton pour ajouter le bien */}
-            <Link href='/RealtysPage'>
-              <button className={styles.button} onClick={handleSubmit()}> Ajouter un bien </button>
-            </Link>
+          <input
+           type="file"
+           accept="image/*" // Accepte uniquement les fichiers images
+           multiple // Permet à l'utilisateur de sélectionner plusieurs fichiers
+           onChange={handlePhotoChange}
+           className={styles.inputFile}
+          />
+          <ImageCarrousel images={images} className={styles.carrousel}/>
+          {/* Bouton pour ajouter le bien */}
+          <Link href='/RealtysPage'>
+          <button className={styles.button}> Ajouter un bien </button>
+          </Link>
           </div>
 
           {/* Titre "Documents" dans la partie droite */}
           <div className={styles.rightContainer}>
-            <button> Ajouter Document(s)</button>
-            <h2>Documents Obligatoires</h2>
+            <button className={styles.button}> Ajouter Document(s)</button>
+          
+            <h2>Documents Obligatoires</h2> 
+            <FontAwesomeIcon icon={faQuestion} className={styles.info} title='les documents obligatoires sont...'/>
+          
             <div>
               <h2> Profil acheteur souhaité</h2>
               Délai :

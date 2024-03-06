@@ -20,14 +20,18 @@ function SignUp() {
     const handleShowModalSignIn = () => {
         dispatch(showSignInModal());
         dispatch(hideSignUpModal());
+    const handleShowModalSignIn = () => {
+        dispatch(showSignInModal());
+        dispatch(hideSignUpModal());
 
+    };
     };
 
 
     const handleCancelSignIn = () => {
         dispatch(hideSignInModal());
 
-    };
+        };
 
     const handleSubmit = () => {
         fetch('http://localhost:3000/users/signup', {
@@ -47,6 +51,9 @@ function SignUp() {
             });
     };
 
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
     const responseGoogle = (response) => {
         console.log(response);
     }
