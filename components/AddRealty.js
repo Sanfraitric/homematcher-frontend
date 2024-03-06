@@ -1,18 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
-import { useDispatch } from 'react-redux';
 import HeaderConnected from './HeaderConnected';
 import React from 'react';
 
+
 function AddRealty() {
 
-  const dispatch = useDispatch();
-
-
-  const addRealty = (newRealty) => {
-    dispatch( addRealtyToStore(newRealty))
-  }
 
   // Hooks d'états pour les inputs:
   const [description, setDescription] = useState('');
@@ -22,6 +16,7 @@ function AddRealty() {
   const [delay, setDelay] = useState(0);
   const [budget, setBudget] = useState(10000);
   const [financed, setFinanced] = useState('yes');
+  const [imageUrl, setImageUrl] = useState('')
 
   const minBudget = 0;
   const maxBudget = 1000000
@@ -45,18 +40,39 @@ function AddRealty() {
   setDelay(newDelay);
 };
 
+
+  
 const handlePhotoChange = (e) => {
-  const files = e.target.files;
+  const file = e.target.files[0];
+  console.log(e.target.files)
+
+  const formData = new FormData()
+
+  formData.append('photoFromFront', file)
+ fetch('http://localhost:3000/realtys/upload', {
+  method: "POST",
+  body: formData
+ }).then(response => response.json())
+   .then(data => setImageUrl(data.url))
+}
 
 
-for (let i = 0; i < files.length; i++) {
-  const file = files[i];
-  console.log("Nom du fichier:", file.name);
-  console.log("Taille du fichier:", file.size, "octets");
-  console.log("Type MIME du fichier:", file.type);
-  console.log("Date de dernière modification du fichier:", file.lastModifiedDate);
+
+const handleAddRealty = () => {
+  fetch('http://localhost:3000/realtys/addRealtys', {
+    method: "POST",
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl})
+  }).then(response => response.json())
 }
-}
+
+// for (let i = 0; i < files.length; i++) {
+//   const file = files[i];
+//   console.log("Nom du fichier:", file.name);
+//   console.log("Taille du fichier:", file.size, "octets");
+//   console.log("Type MIME du fichier:", file.type);
+//   console.log("Date de dernière modification du fichier:", file.lastModifiedDate);
+//   setImageUrl(imageUrl)
 
 
   return (
@@ -94,7 +110,7 @@ for (let i = 0; i < files.length; i++) {
           <h2>Image</h2>
           {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
-          <button className={styles.button}> Ajouter un bien </button>
+          <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
           </Link>
           </div>
 
@@ -141,3 +157,75 @@ for (let i = 0; i < files.length; i++) {
 }
 
 export default AddRealty;
+
+// const handlePhotoChange = async (e) => {
+//   const files = e.target.files;
+
+//   // Vérifier si des fichiers ont été sélectionnés
+//   if (files.length > 0) {
+//     const file = files[0]; // Nous supposons qu'un seul fichier est sélectionné
+
+//     // Créer un objet FormData pour envoyer le fichier
+//     const formData = new FormData();
+//     formData.append('file', file);
+
+//     try {
+//       // Envoyer le fichier vers votre route de téléchargement d'image sur le serveur
+//       const response = await fetch('http://localhost:3000/realtys/upload', {
+//         method: 'POST',
+//         body: formData,
+//       });
+
+//       // Analyser la réponse JSON pour obtenir l'URL de l'image
+//       const data = await response.json();
+//       const imageUrl = data.imageUrl;
+
+//       // Mettre à jour l'URL de l'image dans l'état local du composant
+//       setImageUrl(imageUrl);
+//     } catch (error) {
+//       console.error('Error uploading image:', error);
+//     }
+//   }
+// };
+
+
+// const handleSubmit = async () => {
+//   try {
+//     const newRealty = {
+//       description,
+//       area,
+//       rooms,
+//       price,
+//       delay,
+//       budget,
+//       financed,
+//       imageUrl, // Ajouter l'URL de l'image à l'objet
+//       // Autres champs du formulaire...
+//     };
+
+//     // Envoyer les données au backend
+//     const response = await fetch('http://localhost:3000/realtys/addRealtys', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(newRealty),
+//     });
+
+//     const data = await response.json();
+//     addRealty(data); // Ajouter la nouvelle propriété au store Redux
+//   } catch (error) {
+//     console.error('Error adding realty:', error);
+//   }
+// };
+
+
+// //   const handleSubmit = () => {
+// //     fetch('http://.../upload', {
+// //  method: 'POST',
+// //  body: formData,
+// // }).then((response) => response.json())
+// //  .then((data) => {
+// //    ...
+// // });
+//   }
