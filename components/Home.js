@@ -3,8 +3,7 @@ import { useDispatch } from 'react-redux';
 import { showSignInModal } from '../reducers/modal.js';
 import styles from '../styles/Home.module.css';
 import Header from './Header';
-import React from 'react';
-import ReactDOM from 'react-dom';
+
 import ImageCarrousel from './Carrousel';
 
 function Home() {

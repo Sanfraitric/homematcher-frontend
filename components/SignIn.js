@@ -16,6 +16,7 @@ function SignIn() {
     const SignUpModal = useSelector(state => state.modal.value.signUpModalVisible)
     const [signInEmail, setSignInEmail] = useState('');
     const [signInPassword, setSignInPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const showForgotPasswordModal = useSelector(state => state.modal.value.ForgotPasswordModal)
     
@@ -46,11 +47,14 @@ function SignIn() {
             body: JSON.stringify({ email: signInEmail, password: signInPassword }),
         }).then(response => response.json())
             .then(data => {
-                console.log(data)
-                data.result && dispatch(login({ token: data.token, firstName: data.firstName, username: data.username }));
-                setSignInEmail('');
-                setSignInPassword('');
-                
+                if(data.result){
+                    dispatch(login({ token: data.token, firstName: data.firstName, username: data.username }));
+                    setSignInEmail('');
+                    setSignInPassword('');
+                }else {
+                    console.log(data.error)
+                    setErrorMessage(data.error);
+                }
             });
     };
 
@@ -71,6 +75,7 @@ function SignIn() {
                 <h4 className={styles.h4}>Votre mot de passe:</h4>
                 <div className={styles.connect}>
                     <input type="password" className={styles.input} onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword} />
+                    {errorMessage && <p>{errorMessage}</p>}
                     <button className={styles.button} onClick={() => handleSubmit()}>Se connecter</button>
 
                     <p onClick={clickForgotPassword} className={styles.forgotPassword}>Mot de passe oublié ?</p>

@@ -9,7 +9,7 @@ const ForgotPasswordModal = () => {
 
 const[email, setEmail] = useState(null)
 const dispatch = useDispatch();
-
+const [resMessage, setResMessage] = useState('');
 
 
 const handleSubmit = ()=>{
@@ -20,7 +20,13 @@ const handleSubmit = ()=>{
 })
  .then(response => response.json())
  .then(data => {
-   console.log(data);
+  if(data.result){
+    console.log(data);
+    setResMessage(data.message);
+  }else{
+    setResMessage(data.error);
+  }
+  
    
  });
 }
@@ -41,7 +47,7 @@ const seconnceterClick =()=>{
           onChange={(e) => setEmail(e.target.value)}
         />
         <button type="submit" onClick={handleSubmit}> Envoyer</button>
-
+        {resMessage && <p>{resMessage}</p>}
       <p>J'ai retrouvé mon mot de passe :<button onClick={()=>seconnceterClick()} type='button' >Se connecter</button></p>
     </div>
   );

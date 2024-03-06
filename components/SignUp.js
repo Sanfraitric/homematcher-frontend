@@ -9,72 +9,79 @@ import { Modal } from 'antd';
 import { showSignInModal, hideSignUpModal, hideSignInModal } from '../reducers/modal.js';
 
 function SignUp() {
-const BACKEND_URL= process.env.BACKEND_URL
-const dispatch = useDispatch();
-const router = useRouter();
-const [signUpEmail, setSignUpEmail] = useState('');
-const [signUpPassword, setSignUpPassword] = useState('');
-const signInModal = useSelector(state => state.modal.value.signInModalVisible)
+    const BACKEND_URL = process.env.BACKEND_URL
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const [signUpEmail, setSignUpEmail] = useState('');
+    const [signUpPassword, setSignUpPassword] = useState('');
+    const signInModal = useSelector(state => state.modal.value.signInModalVisible)
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleShowModalSignIn = () => {
+        dispatch(showSignInModal());
+        dispatch(hideSignUpModal());
+
+    };
 
 
-const handleShowModalSignIn = () => {
-dispatch(showSignInModal());
-dispatch(hideSignUpModal());
+    const handleCancelSignIn = () => {
+        dispatch(hideSignInModal());
 
-};
+    };
 
+    const handleSubmit = () => {
+        fetch('http://localhost:3000/users/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: signUpEmail, password: signUpPassword }),
+        }).then(response => response.json())
+            .then(data => {
+               if (data.result) {
+                dispatch(login({ token: data.token, email : data.email }));
+                setSignUpEmail('');
+                setSignUpPassword('');
+               } else {
+                console.log(data.error)
+                setErrorMessage(data.error);
+               }
+            });
+    };
 
-const handleCancelSignIn = () => {
-dispatch(hideSignInModal());
-
-};
-
-const handleSubmit = () => {
-fetch(`${BACKEND_URL}/users/signup`, {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ email: signUpEmail,password: signUpPassword }),
-}).then(response => response.json())
-.then(data => {
-data.result && dispatch(login({ token: data.token, mail }));
-setSignUpEmail('');
-setSignUpPassword('');
-});
-};
-
-const responseGoogle = (response) => {
-console.log(response);
-}
+    const responseGoogle = (response) => {
+        console.log(response);
+    }
 
 
-return (
-<div className={styles.container}>
+    return (
+        <div className={styles.container}>
 
-<h2 className={styles.title}>Créer un compte</h2>
-<div className={styles.toConnect}>
-<h4 className={styles.h4}>Vous avez déjà un compte ?</h4>
-<button className={styles.connectButton} onClick={handleShowModalSignIn}>Se connecter</button>
-</div>
-<h4 className={styles.h4}>Votre e-mail:</h4>
-<input type="text" className={styles.input} onChange={(e) => setSignUpEmail(e.target.value)} value={signUpEmail} />
-<h4 className={styles.h4}>Votre mot de passe:</h4>
-<input type="password" className={styles.input} onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
-<div className={styles.connect}>
-<button className={styles.button} onClick={() => handleSubmit()}>Créer un compte</button>
-<h4 className={styles.h4}>ou</h4>
-<GoogleLogin
-clientId="313442107107-r67n8849np3ndu8sqllj4qblsbd0eh7c.apps.googleusercontent.com"
-buttonText="Sign Up with Google"
-onSuccess={responseGoogle}
-onFailure={responseGoogle}
-cookiePolicy={'single_host_origin'}
-/>
-</div>
-<Modal onCancel={handleCancelSignIn} open={signInModal} footer={null}>
-<SignIn />
-</Modal>
-</div>
-);
+            <h2 className={styles.title}>Créer un compte</h2>
+            <div className={styles.toConnect}>
+                <h4 className={styles.h4}>Vous avez déjà un compte ?</h4>
+                <button className={styles.connectButton} onClick={handleShowModalSignIn}>Se connecter</button>
+            </div>
+            <h4 className={styles.h4}>Votre e-mail:</h4>
+            <input type="text" className={styles.input} onChange={(e) => setSignUpEmail(e.target.value)} value={signUpEmail} />
+            <h4 className={styles.h4}>Votre mot de passe:</h4>
+            <input type="password" className={styles.input} onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
+            {errorMessage && <p>{errorMessage}</p>}
+            <div className={styles.connect}>
+                <button className={styles.button} onClick={() => handleSubmit()}>Créer un compte</button>
+
+                <h4 className={styles.h4}>ou</h4>
+                <GoogleLogin
+                    clientId="313442107107-r67n8849np3ndu8sqllj4qblsbd0eh7c.apps.googleusercontent.com"
+                    buttonText="Sign Up with Google"
+                    onSuccess={responseGoogle}
+                    onFailure={responseGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
+            </div>
+            <Modal onCancel={handleCancelSignIn} open={signInModal} footer={null}>
+                <SignIn />
+            </Modal>
+        </div>
+    );
 }
 
 export default SignUp;
