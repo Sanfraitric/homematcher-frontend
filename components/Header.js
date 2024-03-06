@@ -60,7 +60,7 @@ const toggleMenu  = () => {
                     {isOpen && (
                     <div className={styles.dropdownMenu}>
                         <Link href="/ProfilPage"><a>Mon compte</a></Link>
-                        <Link href="/RealtyPage"><a>Mes biens</a></Link>
+                        <Link href="/RealtysPage"><a>Mes biens</a></Link>
                         <a onClick={() => handleLogout()}>Se déconnecter</a>
                     </div>
                 )}
