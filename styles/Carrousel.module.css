@@ -1,9 +1,12 @@
+/*Contenu entier*/
 .body { 
   display: flex;
   justify-content: center;
   height: 35vh; 
   flex-direction: column;
 }
+
+/*Image*/
 
 .height {
   display: flex;
@@ -16,6 +19,8 @@
   align-content: center;
   width: auto;
 }
+
+/*Arrows*/
 
 .parentArrow{
   display: flex;
