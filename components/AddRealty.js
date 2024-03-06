@@ -4,9 +4,17 @@ import styles from '../styles/AddRealty.module.css'
 import { useDispatch } from 'react-redux';
 import HeaderConnected from './HeaderConnected';
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestion } from '@fortawesome/free-solid-svg-icons';
+import ImageCarrousel from './Carrousel';
+
 
 function AddRealty() {
-
+  const images = [
+    'appart1.jpg',
+    'appart2.jpg',
+    'appart3.jpg'
+  ]
   const dispatch = useDispatch();
 
 
@@ -70,13 +78,13 @@ for (let i = 0; i < files.length; i++) {
           {/* Inputs dans la partie gauche */}
           
          <div className={styles.leftContainer}>
-          Description
-          <input type="text" className={styles.inputText} placeholder='Description:...'  onChange={(e) => setDescription(e.target.value)} value={description}/>
-          Superficie
+          
+          <input type="text" className={styles.desc} placeholder='Description:...'  onChange={(e) => setDescription(e.target.value)} value={description}/>
+          
           <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
-          Nombre de pièces 
+           
           <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
-          Prix de vente souhaité
+          
           <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
          </div>
         
@@ -91,7 +99,7 @@ for (let i = 0; i < files.length; i++) {
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
-          <h2>Image</h2>
+          <ImageCarrousel images={images} className={styles.carrousel}/>
           {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
           <button className={styles.button}> Ajouter un bien </button>
@@ -100,8 +108,11 @@ for (let i = 0; i < files.length; i++) {
 
           {/* Titre "Documents" dans la partie droite */}
           <div className={styles.rightContainer}>
-            <button> Ajouter Document(s)</button>
-            <h2>Documents Obligatoires</h2>
+            <button className={styles.button}> Ajouter Document(s)</button>
+          
+            <h2>Documents Obligatoires</h2> 
+            <FontAwesomeIcon icon={faQuestion} className={styles.info} title='les documents obligatoires sont...'/>
+          
             <div>
               <h2> Profil acheteur souhaité</h2>
               Délai :

@@ -1,6 +1,6 @@
 .container{
   display:grid;
-  grid-template-columns: repeat(5, 20vw);
+  grid-template-columns: repeat(3, 33.33vw);
   grid-template-rows: repeat(10, 10vh);
   background-color: #F4E6E6;
 }
@@ -14,16 +14,63 @@
 }
 
 .myRealty{
-  grid-column-start: 2;
+  grid-column-start: 1;
   grid-column-end: 5;
   grid-row-start: 2;
-  grid-row-end: 7;
+  grid-row-end: 3;
   border-radius: 20px;
   background-color: #F4E6E6;
   
 }
 
 .add{
-  display: flex;
+  grid-column-start: 0;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
   justify-content: center;
+  text-align: center;
+}
+
+.addRealty{
+  background-color:#ff4d4d;
+  color:white;
+  height:50px;
+  width:200px;
+  font-size: larger;
+  border: solid 0px white;
+  border-radius: 20px;
+  cursor:pointer;
+  margin-top:30px;
+}
+
+.firstRealty{
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 5;
+  margin-left:10px;
+}
+
+.firstpic {
+  margin-left:20px;
+  display:flex;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 5;
+  text-align: center;
+  align-items: center;
+}
+
+.delete {
+  display:flex;
+  margin-left:145px;
+  background-color: #ff4d4d;
+  color: white;
+  height:25px;
+  width: 25px;
+  border-radius: 50px;
+  cursor:pointer;
+
 }
