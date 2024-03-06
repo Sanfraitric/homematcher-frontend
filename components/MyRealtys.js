@@ -21,7 +21,7 @@ function MyRealtys() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        //console.log(data)
         data.result && dispatch(addRealtyToStore(data));
       });
   }, []);
@@ -29,7 +29,7 @@ function MyRealtys() {
   const realtys = myRealty.map((data, i) => {
     return <RealtyCard key={i} {...data} />;
   })
-
+  console.log(realtys)
   return (
     <div className={styles.container}>
       <div className={styles.header}>
