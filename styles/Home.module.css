@@ -25,12 +25,14 @@
   background-image:  url("/placeholderappart.jpg");
   background-position: center;
   background-size: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   grid-column-start:1;
   grid-column-end:4;
   grid-row-start: 1;
   grid-row-end:5;
-  text-align: center;
-  align-items: center;
   z-index: 0; 
 }
 
@@ -45,30 +47,25 @@
   z-index: -1; 
 }
 
-.title, .achat, .vente {
-  position: relative;
-  z-index: 2; 
-}
-
 .title {
-  margin-top: 50px;
   font-family: 'Montserrat', serif;
   font-weight: 500px;
   font-style: bold;
   color:#D32F2F;
 }
-.achat {
+.achat, .vente {
   font-family: 'Montserrat', serif;
-  display: flex-box;
-  align-items: center;
-  padding-top:20px;
-  padding-left:60px;
-  padding-right:60px;
-  padding-bottom:20px;
+  margin-top:10px;
   border-color:#FF4D4D;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10vw; 
+  height: 6vh; 
   border-radius:5px;
   color:#D32F2F;
-  font-size: larger;
+  font-size: large;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -83,9 +80,10 @@
   font-size: 14px;
   color: black;
   text-align: center;
-  margin-left: 50px;
+  margin-left: 9%;
   font-weight: bold;
 }
+
 .contenttextp {
   font-family: 'Montserrat', serif;
   font-size: 12px;
@@ -94,22 +92,7 @@
   line-height: 1.5;
   letter-spacing: 0.1em;
 }
-.vente {
-  font-family: 'Montserrat', serif;
-  display: flex-box;
-  justify-content: center;
-  align-items: center;
-  margin-top:10px;
-  padding-top:20px;
-  padding-left:60px;
-  padding-right:60px;
-  padding-bottom:20px;
-  border-color:#FF4D4D;
-  border-radius:5px;
-  color:#D32F2F;
-  font-size: larger;
-  cursor: pointer;
-}
+
 /*lower content style*/
 
 .LleftContent {

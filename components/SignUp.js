@@ -18,22 +18,23 @@ function SignUp() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleShowModalSignIn = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(showSignInModal());
         dispatch(hideSignUpModal());
-    const handleShowModalSignIn = () => {
-        dispatch(showSignInModal());
-        dispatch(hideSignUpModal());
-
-    };
     };
 
 
     const handleCancelSignIn = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(hideSignInModal());
 
         };
 
     const handleSubmit = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         fetch('http://localhost:3000/users/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
