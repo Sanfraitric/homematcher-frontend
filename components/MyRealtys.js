@@ -1,15 +1,15 @@
 import styles from '../styles/MyRealtys.module.css';
 import Link from 'next/link'
 import HeaderConnected from './HeaderConnected';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { addRealtyToStore } from '../reducers/realtys';
 import RealtyCard from './RealtyCard';
 
 function MyRealtys() {
+  const dispatch = useDispatch();
   const token = useSelector((state) => state.user.value.token);
-  const [myRealty, setMyRealty] = useState([]);
+  const myRealty= useSelector((state) => state.realtys.value);
 
   useEffect(() => {
     fetch('http://localhost:3000/realtys', {
@@ -21,7 +21,8 @@ function MyRealtys() {
     })
       .then(response => response.json())
       .then(data => {
-        setMyRealty(data.realtys);
+        console.log(data)
+        data.result && dispatch(addRealtyToStore(data));
       });
   }, []);
 

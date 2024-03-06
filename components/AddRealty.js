@@ -77,7 +77,10 @@ const handlePhotoChange = (e) => {
 const handleAddRealty = () => {
   fetch('http://localhost:3000/realtys/addRealtys', {
     method: "POST",
-    headers: { 'Content-Type': 'application/json'},
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`
+    },
     body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl})
   }).then(response => response.json())
 }

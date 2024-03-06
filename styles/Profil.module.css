@@ -3,7 +3,7 @@
 .main {
     display:grid;
     grid-template-columns: repeat(3, 33.33vw);
-    grid-template-rows: repeat(9, 10vh);
+    grid-template-rows: repeat(10, 10vh);
     
 }
 

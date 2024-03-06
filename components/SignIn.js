@@ -23,6 +23,8 @@ function SignIn() {
     
 
     const handleShowModalSignUp = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(showSignUpModal());
         dispatch(hideSignInModal());
 
@@ -30,6 +32,8 @@ function SignIn() {
 
 
     const handleCancelSignUp = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(hideSignUpModal());
 
     };
@@ -42,6 +46,8 @@ function SignIn() {
 
 
     const handleSubmit = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         fetch('http://localhost:3000/users/signin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -80,9 +86,7 @@ function SignIn() {
                     <input type="password" className={styles.input} onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword} />
                     {errorMessage && <p>{errorMessage}</p>}
                     <button className={styles.button} onClick={() => handleSubmit()}>Se connecter</button>
-
                     <button onClick={clickForgotPassword} className={styles.forgotPassword}>Mot de passe oublié ?</button>
-
                     <h6 className={styles.h6}>ou</h6>
                     <GoogleLogin
                         className={styles.googleButton}

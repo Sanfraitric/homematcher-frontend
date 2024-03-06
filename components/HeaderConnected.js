@@ -47,7 +47,7 @@ function Header() {
                 <h2 className={styles.h2} >Match</h2>
         </div>
     </Link>
-    <Link href="/LikePage">
+    <Link href="/NotificationsPage">
         <div className={styles.button}>
                 <FontAwesomeIcon icon={faThumbsUp} className={styles.btn} /> 
                 <h2 className={styles.h2} >Likes</h2>
