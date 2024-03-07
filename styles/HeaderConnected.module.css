@@ -64,10 +64,10 @@
     cursor: pointer;
 }
 
-.btn{
+.icon{
     height: 3vh;
-    cursor: pointer;
 }
+
 /*Menu déroulant*/
 
 .dropdownMenu {

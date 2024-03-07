@@ -2,8 +2,9 @@
 
 .container {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  padding: 25px;
+  padding: 40px;
 }
 
 /*Texte*/
@@ -11,7 +12,6 @@
 .title {
   font-family: "Montserrat", sans-serif;
   font-size: 35px;
-  margin: 20px;
   text-align: left;
 }
 
@@ -23,7 +23,6 @@
 .toConnect{
   display: flex;
   font-family: "Montserrat", sans-serif;
-  margin-left: 20px;
   }
 
 .h4{
@@ -91,16 +90,13 @@
 .connect{
   align-items: center;
   text-align: center;
-  display: grid;
-  }
+}
 
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 40px;
-  width: 90%;
-  margin-left: 20px;
   background-color: #D32F2F;
   border-color: white;
   color: white;
@@ -122,17 +118,11 @@ font-weight: 700;
 font-size: 14px;
 }
 
-.googleButton {
-  font-family: 'Montserrat', sans-serif;
-}
-
 /*Input*/
 
 .input {
   height: 40px;
-  width: 90%;
   margin-bottom: 30px;
-  margin-left: 20px;
   border: 1px rgb(114, 131, 148) solid;
   border-radius: 3px;
   background-color: transparent;

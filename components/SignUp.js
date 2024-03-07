@@ -7,6 +7,7 @@ import GoogleLogin from 'react-google-login';
 import SignIn from './SignIn';
 import { Modal } from 'antd';
 import { showSignInModal, hideSignUpModal, hideSignInModal } from '../reducers/modal.js';
+import click from "../public/click.wav";
 
 function SignUp() {
     const BACKEND_URL = process.env.BACKEND_URL
@@ -18,22 +19,23 @@ function SignUp() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleShowModalSignIn = () => {
+        let audio = new Audio(click);
+        audio.play();
         dispatch(showSignInModal());
         dispatch(hideSignUpModal());
-    const handleShowModalSignIn = () => {
-        dispatch(showSignInModal());
-        dispatch(hideSignUpModal());
-
-    };
     };
 
 
     const handleCancelSignIn = () => {
+        let audio = new Audio(click);
+        audio.play();
         dispatch(hideSignInModal());
 
         };
 
     const handleSubmit = () => {
+        let audio = new Audio(click);
+        audio.play();
         fetch('http://localhost:3000/users/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -41,9 +43,10 @@ function SignUp() {
         }).then(response => response.json())
             .then(data => {
                if (data.result) {
-                dispatch(login({ token: data.token, email : data.email }));
+                dispatch(login({ token: data.user.token,  email: data.user.email  }));
                 setSignUpEmail('');
                 setSignUpPassword('');
+                dispatch(hideSignUpModal());
                } else {
                 console.log(data.error)
                 setErrorMessage(data.error);

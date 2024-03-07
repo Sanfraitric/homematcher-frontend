@@ -10,6 +10,7 @@ import { faHeart, faThumbsUp, faComments, faUser } from '@fortawesome/free-solid
 //Liens
 import Link from 'next/link';
 import { logout } from '../reducers/user';
+import click from "../public/click.wav";
 
 
 function Header() {
@@ -19,14 +20,14 @@ function Header() {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
         dispatch(logout());
         router.push('/')
       };
 
       const returnHome = () => {
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
         router.push('/')
       }
@@ -43,24 +44,24 @@ function Header() {
             <div className={styles.buttonsContainer}>
     <Link href="/MyCriteriasPage">
         <div className={styles.button}>
-                <FontAwesomeIcon icon={faHeart} className={styles.btn} /> 
+                <FontAwesomeIcon icon={faHeart} className={styles.icon} /> 
                 <h2 className={styles.h2} >Match</h2>
         </div>
     </Link>
     <Link href="/NotificationsPage">
         <div className={styles.button}>
-                <FontAwesomeIcon icon={faThumbsUp} className={styles.btn} /> 
+                <FontAwesomeIcon icon={faThumbsUp} className={styles.icon} /> 
                 <h2 className={styles.h2} >Likes</h2>
         </div>
     </Link>
     <Link href="/MatchPage">
         <div className={styles.button}>
-                <FontAwesomeIcon icon={faComments}  className={styles.btn}/> 
+                <FontAwesomeIcon icon={faComments}  className={styles.icon}/> 
                 <h2 className={styles.h2}>Message</h2>
         </div>
     </Link>
         <div className={styles.button} onClick={() => setIsOpen(!isOpen)}>
-                <FontAwesomeIcon icon={faUser}  className={styles.btn}/> 
+                <FontAwesomeIcon icon={faUser}  className={styles.icon}/> 
                 <h2 className={styles.h2}>Profil</h2>
                 {isOpen && (
                     <div className={styles.dropdownMenu}>
