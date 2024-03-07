@@ -10,7 +10,10 @@ export const realtysSlice = createSlice({
     initialState,
     reducers: {
         addRealtyToStore: (state, action) => {
-            state.value.push(action.payload);
+            state.value.unshift(action.payload)
+        },
+        gitRealtys : (state, action) => {
+            state.value =action.payload
         },
         deleteRealty: (state, action) => {
             state.value = state.value.filter(realty => realty._id !== action.payload);
@@ -18,5 +21,5 @@ export const realtysSlice = createSlice({
     }
 })
 
-export const { addRealtyToStore, deleteRealty } = realtysSlice.actions;
+export const { addRealtyToStore, deleteRealty , gitRealtys} = realtysSlice.actions;
 export default realtysSlice.reducer

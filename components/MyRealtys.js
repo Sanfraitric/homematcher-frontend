@@ -2,14 +2,15 @@ import styles from '../styles/MyRealtys.module.css';
 import Link from 'next/link'
 import HeaderConnected from './HeaderConnected';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { addRealtyToStore } from '../reducers/realtys';
+import { useEffect, useState } from 'react';
+import { addRealtyToStore , gitRealtys} from '../reducers/realtys';
 import RealtyCard from './RealtyCard';
 
 function MyRealtys() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.value.token);
-  const myRealty= useSelector((state) => state.realtys.value);
+  const realty = useSelector((state) => state.realtys.value);
+  
 
   useEffect(() => {
     fetch('http://localhost:3000/realtys', {
@@ -21,15 +22,14 @@ function MyRealtys() {
     })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
-        data.result && dispatch(addRealtyToStore(data));
+        dispatch(gitRealtys(data.realtys))
       });
   }, []);
 
-  const realtys = myRealty.map((data, i) => {
+  const realtys = realty.map((data, i) => {
     return <RealtyCard key={i} {...data} />;
   })
-
+  
   return (
     <div className={styles.container}>
       <div className={styles.header}>
