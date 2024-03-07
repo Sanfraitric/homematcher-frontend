@@ -21,26 +21,47 @@
 .container {
   font-family: 'Montserrat', sans-serif;
   display: flex;
-  background-color: white;
   width: 90%; 
   height: 90%; 
   border-radius: 10px;
-  border: solid 6px #FF4D4D;
   align-items: center;
   justify-content: center;
   margin: auto; 
   position: absolute; 
   top: 0; right: 0; bottom: 0; left: 0; 
 }
-.leftContainer, .rightContainer {
+.leftContainer {
   font-family: 'Montserrat', sans-serif;
   flex-direction: column;
   font-size: 14px;
-  align-items: flex-start;
+  align-items: flexbox;
   justify-content: space-between; 
   height: 100%;
-  display: flex; 
+  display: flex;
+  color:#ff4d4d;
 }
+
+.rightContainer {
+    font-family: 'Montserrat', sans-serif;
+    flex-direction: column;
+    font-size: 14px;
+    align-items: flexbox;
+    height: 100%;
+    display: flex;
+  }
+
+  .whiteContainer {
+    background-color:white;
+    align-items: inline;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px;
+  }
+
+  .infoAcheteur {
+    margin-left:50px;
+    margin-bottom:20px;
+  }
 
 .middleContainer {
     flex: 1;
@@ -49,12 +70,11 @@
 
   .rightContainer {
     flex: 1;
+    margin-left:100px;
   }
 
   .leftContainer {
     flex: 1;
-
-
   }
 
   .radioContainer {
@@ -85,6 +105,8 @@
     font-size: 20px;
     font-weight: 900;
     color: #ff4d4d;
+    margin-top:100px;
+    display:inline;
 }
 .h3 {
     font-family: 'Montserrat', sans-serif;
@@ -112,7 +134,7 @@
     width: 80%;
     border-radius: 5px;
     border: none;
-
+    align-items: center;
   }
 
 
@@ -162,6 +184,7 @@
   font-weight: 600;
   cursor: pointer;
   border: none;
+  margin-left: 165px;
   }
 
 .infoButton {
@@ -170,6 +193,8 @@
     height:25px;
     width:25px;
     cursor:pointer;
+    display:inline;
+    margin-left:10px;
   }
 
   .buttonAdd {
@@ -187,6 +212,7 @@
       border: none;
       display: block; 
       margin: 20px auto 0; 
+      margin-right:200px;
     }
   
 
