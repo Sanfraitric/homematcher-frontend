@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from '../styles/MyCriterias.module.css'
 import HeaderConnected from './HeaderConnected';
+import click from "../public/click.wav";
 
 function AddRealty() {
   const router = useRouter();
@@ -17,7 +18,7 @@ function AddRealty() {
 
 // Naviguer vers la page time to match
   const goToMatch = () => {
-  let audio = new Audio('/click.wav');
+  let audio = new Audio(click);
   audio.play();
   router.push('/timeToMatch')
 }

@@ -127,6 +127,7 @@ const handleAddRealty = () => {
             <input className={styles.inputText} type="text" placeholder="Ville ou département:" />
             </Autocomplete>
             </LoadScript>
+            <input type="text" className={styles.inputDesc} placeholder='Description : ...' onChange={(e) => setDescription(e.target.value)} value={description}/>
             <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
             <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
             <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
@@ -139,6 +140,7 @@ const handleAddRealty = () => {
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
+          <label for="file-upload" classname={styles.button}>Ajouter une image</label>
           <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
           {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
@@ -164,6 +166,8 @@ const handleAddRealty = () => {
                 {filesSelected && <FontAwesomeIcon className={styles.downloadIcon} icon={faCheck} color="green" />}
               </div>
           </div>
+          <div className={styles.whiteContainer}>
+            <div className={styles.infoAcheteur}>
            <h3 classname={styles.h3}> Profil acheteur souhaité:</h3>
               <div classname={styles.inputRangeContainer}>
                 <p classename={styles.p}>Délai :</p>
@@ -182,15 +186,15 @@ const handleAddRealty = () => {
                   <label htmlFor="financed-yes">Oui</label>
                   <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
                   <label htmlFor="financed-no">Non</label>
+                  </div>
+                  </div>
+              </div>
               </div>
               </div>
           </div>
         </div>
-        <Link href='/RealtysPage'>
-            <button className={styles.buttonAdd} onClick={handleAddRealty}> Ajouter un bien </button>
-        </Link>
       </div>
-    </div>
+
   );
 }
 

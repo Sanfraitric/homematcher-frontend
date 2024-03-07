@@ -10,6 +10,7 @@ import { faHeart, faThumbsUp, faComments, faUser } from '@fortawesome/free-solid
 //Liens
 import Link from 'next/link';
 import { logout } from '../reducers/user';
+import click from "../public/click.wav";
 
 function Header() {
     const router = useRouter();
@@ -30,14 +31,14 @@ function Header() {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
         dispatch(logout());
         router.push('/')
       };
 
       const returnHome = () => {
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
         router.push('/')
       }
