@@ -43,9 +43,10 @@ function SignUp() {
         }).then(response => response.json())
             .then(data => {
                if (data.result) {
-                dispatch(login({ token: data.token, email : data.email }));
+                dispatch(login({ token: data.user.token,  email: data.user.email  }));
                 setSignUpEmail('');
                 setSignUpPassword('');
+                dispatch(hideSignUpModal());
                } else {
                 console.log(data.error)
                 setErrorMessage(data.error);
