@@ -20,11 +20,6 @@ function SignUp() {
     const handleShowModalSignIn = () => {
         dispatch(showSignInModal());
         dispatch(hideSignUpModal());
-    const handleShowModalSignIn = () => {
-        dispatch(showSignInModal());
-        dispatch(hideSignUpModal());
-
-    };
     };
 
 
@@ -51,9 +46,6 @@ function SignUp() {
             });
     };
 
-    const responseGoogle = (response) => {
-        console.log(response);
-    }
     const responseGoogle = (response) => {
         console.log(response);
     }
