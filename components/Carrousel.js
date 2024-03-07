@@ -24,7 +24,7 @@ const ImageCarousel = ({ images }) => {
   // Rendu du carrousel
   return (
     <div className={styles.body}>
-        <img className={styles.height} src={images[currentIndex]} alt="image du carrousel" />
+        <img className={styles.height} src={images[currentIndex]}  />
         <div className={styles.parentArrow}>
           <FontAwesomeIcon icon={faArrowLeft} onClick={goToPrevious} className={styles.arrow}/>
           <FontAwesomeIcon icon={faArrowRight} onClick={goToNext} className={styles.arrow}/>

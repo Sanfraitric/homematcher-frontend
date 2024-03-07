@@ -11,18 +11,11 @@ import ImageCarrousel from './Carrousel';
 
 
 function AddRealty() {
-  const images = [
-    'appart1.jpg',
-    'appart2.jpg',
-    'appart3.jpg'
-  ]
+
   const dispatch = useDispatch();
   const router = useRouter();
   const token = useSelector((state) => state.user.value.token);
   //console.log(token)
-  const addRealty = (newRealty) => {
-    dispatch(addRealtyToStore(newRealty))
-  }
 
   // Hooks d'états pour les inputs:
   const [description, setDescription] = useState('');
@@ -32,7 +25,7 @@ function AddRealty() {
   const [delay, setDelay] = useState(0);
   const [budget, setBudget] = useState(10000);
   const [financed, setFinanced] = useState('yes');
-  const [imageUrl, setImageUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState([])
 
   const minBudget = 0;
   const maxBudget = 1000000
@@ -56,7 +49,7 @@ function AddRealty() {
   setDelay(newDelay);
 };
 
-
+console.log(imageUrl)
   
 const handlePhotoChange = (e) => {
   const file = e.target.files[0];
@@ -69,8 +62,19 @@ const handlePhotoChange = (e) => {
   method: "POST",
   body: formData
  }).then(response => response.json())
-   .then(data => setImageUrl(data.url))
+   .then(data => imageUrl.push(data.url))
 }
+
+console.log(imageUrl)
+
+//patate
+// for (let i = 0; i < files.length; i++) {
+//   const file = files[i];
+//   console.log("Nom du fichier:", file.name);
+//   console.log("Taille du fichier:", file.size, "octets");
+//   console.log("Type MIME du fichier:", file.type);
+//   console.log("Date de dernière modification du fichier:", file.lastModifiedDate);
+//   setImageUrl(imageUrl)
 
 
 
@@ -82,42 +86,12 @@ const handleAddRealty = () => {
       'Authorization': `${token}`
     },
     body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl})
-  }).then(response => response.json())
-}
-
-// for (let i = 0; i < files.length; i++) {
-//   const file = files[i];
-//   console.log("Nom du fichier:", file.name);
-//   console.log("Taille du fichier:", file.size, "octets");
-//   console.log("Type MIME du fichier:", file.type);
-//   console.log("Date de dernière modification du fichier:", file.lastModifiedDate);
-//   setImageUrl(imageUrl)
-
-const handleSubmit = () => {
-  fetch('http://localhost:3000/realtys/addRealtys', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `${token}` // Incluez le token dans l'en-tête Authorization
-    },
-    body: JSON.stringify({
-      description: "Ceci est une description test",
-      location: "Votre location",
-      numberOfRooms: 3,
-      price: 340000,
-      landArea: 100,
-      livingArea: 80,
-      propertyType: "Maison",
-      terrace: true
-    })
-  })
-  .then(response => response.json())
-  .then(data => {
+  }).then(response => response.json())  .then(data => {
     console.log(data)
     router.push('/RealtysPage')
-  })
-  .catch(error => console.error('Erreur:', error));
+  }).catch(error => console.error('Erreur:', error));
 }
+
 
   return (
     <div>
@@ -151,7 +125,7 @@ const handleSubmit = () => {
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
-          <ImageCarrousel images={images} className={styles.carrousel}/>
+          <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
           {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
           <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
