@@ -1,12 +1,19 @@
 import styles from '../styles/Profil.module.css';
 import HeaderConnected from './HeaderConnected'
 import React, { useState, useEffect } from 'react';
+import AvatarCarrousel from './AvatarCarrousel';
+import '../styles/CarrouselAvatar.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateProfil } from '../reducers/user';
 
 function Profil(props) {
     const user = useSelector((state) => state.user.value);
-    const dispatch = useDispatch();
+    const dispatch = useDispatch();    const [selectedAvatar, setSelectedAvatar] = useState('');
+
+    const handleSelectAvatar = (avatar) => {
+    setSelectedAvatar(avatar);
+    }
+
     const [image, setImage] = useState(null);
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -68,9 +75,10 @@ const handleSubmit = () => {
         <div className={styles.container}>
             <div className={styles.leftContainer}>
                 <div className={styles.profilPic}>
-                    <input id="fileInput" className={styles.buttonFile} type="file" onChange={handleImageChange} />
+                    {/* <input id="fileInput" className={styles.buttonFile} type="file" onChange={handleImageChange} />
                     <label htmlFor="fileInput" className={styles.fileLabel}>Choisir un fichier</label>
-                    {image && <img src={image} alt="Profil" />}
+                    {image && <img src={image} alt="Profil" />} */}
+                    <AvatarCarrousel/>
                 </div>
             </div>
             <div className={styles.rightContainer}>
@@ -93,5 +101,6 @@ const handleSubmit = () => {
         </div>
     )
 }
+
 
 export default Profil

@@ -1,0 +1,42 @@
+.avatar-carousel {
+  text-align: center;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.avatar.selected {
+  transform: scale(1.1);
+}
+
+.arrow-container {
+  margin-top: 20px;
+}
+
+.arrow {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.left-arrow {
+  margin-right: 20px;
+}
+
+.right-arrow {
+  margin-left: 20px;
+}

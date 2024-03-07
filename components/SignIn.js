@@ -8,6 +8,7 @@ import SignUp from './SignUp';
 import ForgotPasswordModal from './ForgotPasswordModal.js';
 import { Modal } from 'antd';
 import { showSignUpModal, hideSignUpModal, hideSignInModal, handleForgotPassword , closeForgotPassword} from '../reducers/modal.js';
+import click from "../public/click.wav";
 
 function SignIn() {
     const user = useSelector((state) => state.user.value);
@@ -23,7 +24,7 @@ function SignIn() {
     
 
     const handleShowModalSignUp = () => {
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
         dispatch(showSignUpModal());
         dispatch(hideSignInModal());
@@ -32,7 +33,7 @@ function SignIn() {
 
 
     const handleCancelSignUp = () => {
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
         dispatch(hideSignUpModal());
 
@@ -46,7 +47,7 @@ function SignIn() {
 
 
     const handleSubmit = () => {
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
         fetch('http://localhost:3000/users/signin', {
             method: 'POST',
