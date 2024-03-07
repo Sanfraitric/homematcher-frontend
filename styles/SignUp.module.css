@@ -1,133 +1,135 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px;
+}
+
+/*Texte*/
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 35px;
+  text-align: left;
+}
+
+.p{
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+}
+
+.toConnect{
+  display: flex;
+  font-family: "Montserrat", sans-serif;
   }
 
-  /*Texte*/
+.h4{
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-size: 14px;
+  position: relative;
+}
 
-  .title {
-    font-family: "Montserrat", sans-serif;
-    font-style: bold;
-    font-size: 35px;
-    margin: 20px;
-    text-align: left;
-  }
+.h5 {
+  font-family: "Montserrat", sans-serif;
+  font-style: bold;
+  font-size: 12px;
+  text-decoration: underline; 
+  cursor: pointer;
+}
 
-  .p{
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-  }
+.h6 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 120;
+  position: relative;
+  text-align: center;
 
-  .toConnect{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-left: 20px;
+}
 
-  }
+/*Création de ligne à droite et gauche */
 
-  .h4{
-    font-family: "Montserrat", sans-serif;
-    font-style: normal;
-    font-size: 14px;
-    margin-left: 20px;
-    position: relative;
-  }
+.h6::before,
+.h6::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 130px; 
+    height: 0.1px; 
+    background: black;
+}
 
-  .h5 {
-    font-family: "Montserrat", sans-serif;
-    font-style: bold;
-    font-size: 14px;
-    text-decoration: underline; 
-    cursor: pointer;
-  }
+.h6::before {
+  left: 0px;
+}
 
-  .h6 {
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-    font-weight: 120;
-    position: relative;
-    text-align: center;
-  }  
-  
-  /*Création de ligne à droite et gauche */
-  
-  .h6::before,
-  .h6::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      width: 150px; 
-      height: 0.1px; 
-      background: black;
-  }
-  
-  .h6::before {
-      left: 0px;
-  }
-  
-  .h6::after {
-      right: 0px;
-  }
-  
+.h6::after {
+  right: 0px;
+}
+
 
 /*Boutons*/
 
-  .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    width: 90%;
-    margin-left: 20px;
-    background-color: #D32F2F;
-    border-color: white;
-    color: white;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    border-radius: 40px;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
+.forgotPassword{
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  justify-content: center;
+  text-decoration: underline;
+  position: relative;
+  align-items: center;
+  border: none;
+  background-color: white;
+  font-weight: 700;
+  color: #D32F2F;
+  margin-top: 16px;
+  cursor: pointer;
+}
+
+.connect{
+  align-items: center;
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  background-color: #D32F2F;
+  border-color: white;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.connectButton{
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-decoration: underline; 
+  font-weight: 700;
+  font-size: 14px;
   }
 
-  .connect{
-    align-items: center;
-    text-align: center;
-    display: grid;
-  }
-  
-  .connectButton{
-    font-family: 'Montserrat', sans-serif;
-    border: none;
-    background-color: white;
-    cursor: pointer;
-    text-decoration: underline; 
-    font-weight: 700;
-    font-size: 14px;
-    }
+/*Input*/
 
-  .googleButton {
-    font-family: 'Montserrat', sans-serif;
-  }
+.input {
+  height: 40px;
+  margin-bottom: 30px;
+  border: 1px rgb(114, 131, 148) solid;
+  border-radius: 3px;
+  background-color: transparent;
+}
 
-  /*Inputs*/
-  
-  .input {
-    height: 40px;
-    width: 90%;
-    margin-bottom: 30px;
-    margin-left: 20px;
-    border: 1px rgb(114, 131, 148) solid;
-    border-radius: 3px;
-    background-color: transparent;
-  }
-  
-  .input:focus {
-    outline: none;
-    background-color: transparent;
-  }
-
+.input:focus {
+  outline: none;
+  background-color: transparent;
+}

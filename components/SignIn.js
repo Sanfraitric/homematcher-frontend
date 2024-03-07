@@ -23,6 +23,8 @@ function SignIn() {
     
 
     const handleShowModalSignUp = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(showSignUpModal());
         dispatch(hideSignInModal());
 
@@ -30,6 +32,8 @@ function SignIn() {
 
 
     const handleCancelSignUp = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(hideSignUpModal());
 
     };
@@ -42,6 +46,8 @@ function SignIn() {
 
 
     const handleSubmit = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         fetch('http://localhost:3000/users/signin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -76,23 +82,18 @@ function SignIn() {
                 <h4 className={styles.h4}>Votre e-mail:</h4>
                 <input type="text" className={styles.input} onChange={(e) => setSignInEmail(e.target.value)} value={signInEmail} />
                 <h4 className={styles.h4}>Votre mot de passe:</h4>
-                <div className={styles.connect}>
-                    <input type="password" className={styles.input} onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword} />
-                    {errorMessage && <p>{errorMessage}</p>}
-                    <button className={styles.button} onClick={() => handleSubmit()}>Se connecter</button>
-
-                    <button onClick={clickForgotPassword} className={styles.forgotPassword}>Mot de passe oublié ?</button>
-
-                    <h6 className={styles.h6}>ou</h6>
-                    <GoogleLogin
-                        className={styles.googleButton}
+                <input type="password" className={styles.input} onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword} />
+                {errorMessage && <p>{errorMessage}</p>}
+                <button className={styles.button} onClick={() => handleSubmit()}>Se connecter</button>
+                <button onClick={clickForgotPassword} className={styles.forgotPassword}>Mot de passe oublié ?</button>
+                <h6 className={styles.h6}>ou</h6>
+                <GoogleLogin
                         clientId="313442107107-r67n8849np3ndu8sqllj4qblsbd0eh7c.apps.googleusercontent.com"
                         buttonText="Sign In with Google"
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
                         cookiePolicy={'single_host_origin'}
                     />
-                </div>
                 <Modal onCancel={handleCancelSignUp} open={SignUpModal} footer={null}>
                     <SignUp />
                 </Modal> </div>) : (

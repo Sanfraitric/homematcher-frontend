@@ -18,17 +18,23 @@ function SignUp() {
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleShowModalSignIn = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(showSignInModal());
         dispatch(hideSignUpModal());
     };
 
 
     const handleCancelSignIn = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         dispatch(hideSignInModal());
 
         };
 
     const handleSubmit = () => {
+        let audio = new Audio('/click.wav');
+        audio.play();
         fetch('http://localhost:3000/users/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -53,10 +59,9 @@ function SignUp() {
 
     return (
         <div className={styles.container}>
-
             <h2 className={styles.title}>Créer un compte</h2>
             <div className={styles.toConnect}>
-                <h4 className={styles.h4}>Vous avez déjà un compte ?</h4>
+                <p className={styles.p}>Vous avez déjà un compte ?</p>
                 <button className={styles.connectButton} onClick={handleShowModalSignIn}>Se connecter</button>
             </div>
             <h4 className={styles.h4}>Votre e-mail:</h4>
@@ -66,8 +71,7 @@ function SignUp() {
             {errorMessage && <p>{errorMessage}</p>}
             <div className={styles.connect}>
                 <button className={styles.button} onClick={() => handleSubmit()}>Créer un compte</button>
-
-                <h4 className={styles.h4}>ou</h4>
+                <h6 className={styles.h6}>ou</h6>
                 <GoogleLogin
                     clientId="313442107107-r67n8849np3ndu8sqllj4qblsbd0eh7c.apps.googleusercontent.com"
                     buttonText="Sign Up with Google"

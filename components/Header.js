@@ -77,11 +77,11 @@ const toggleMenu  = () => {
         userSection = (
             <div className={styles.buttonsContainer}>
                 <div className={styles.button} onClick={handleShowModalSignIn}>
-                    <FontAwesomeIcon icon={faRightToBracket} className={styles.btn} />
+                    <FontAwesomeIcon icon={faRightToBracket} className={styles.icon} />
                     <h2 className={styles.h2} >Se connecter</h2>
                 </div>
                 <div className={styles.button} onClick={handleShowModalSignUp}>
-                    <FontAwesomeIcon icon={faPen} className={styles.btn} />
+                    <FontAwesomeIcon icon={faPen} className={styles.icon} />
                     <h2 className={styles.h2} >S'inscrire</h2>
                 </div>
             </div>
