@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 
 function Profil() {
 
-    const [image, setImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
 
-    const handleImageChange = (e) => {
-      setImage(URL.createObjectURL(e.target.files[0]));
+    const handleImageChange = (event) => {
+        setSelectedImage(event.target.value);
     };
 
     return (
@@ -15,14 +15,21 @@ function Profil() {
             <div className={styles.header}>
                 <HeaderConnected/>
             </div>
-        <div className={styles.container}>
-            <div className={styles.leftContainer}>
-                <div className={styles.profilPic}>
-                    <input id="fileInput" className={styles.buttonFile} type="file" onChange={handleImageChange} />
-                    <label htmlFor="fileInput" className={styles.fileLabel}>Choisir un fichier</label>
-                    {image && <img src={image} alt="Profil" />}
+            <div className={styles.container}>
+                <div className={styles.leftContainer}>
+                    <div className={styles.profilPic}>
+                    {selectedImage && <img src={selectedImage} alt="Profil" className={styles.selectedImage} />}                        <select className={styles.avatarbutton} onChange={handleImageChange}>
+                            <option value="">Choisis ton avatar</option>
+                            <option value="./avatar1.jpg">Avatar 1</option>
+                            <option  value="./avatar2.jpg">Avatar 2</option>
+                            <option  value="./avatar3.jpg">Avatar 3</option>
+                            <option value="./avatar4.jpg">Avatar 4</option>
+                            <option  value="./avatar5.jpg">Avatar 5</option>
+                            <option value="./avatar6.jpg">Avatar 6</option>
+                            <input type="hidden" classname={styles.input} />
+                        </select>
+                    </div>
                 </div>
-            </div>
             <div className={styles.rightContainer}>
                 <h3 className={styles.h3}>Prénom:</h3>
                 <input className={styles.input}/>

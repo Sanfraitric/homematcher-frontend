@@ -134,8 +134,8 @@ const handleAddRealty = () => {
           <div className={styles.middleContainer}>
           <input
            type="file"
-           accept="image/*" // Accepte uniquement les fichiers images
-           multiple // Permet à l'utilisateur de sélectionner plusieurs fichiers
+           accept="image/*" 
+           multiple 
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
