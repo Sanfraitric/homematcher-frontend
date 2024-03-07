@@ -5,6 +5,7 @@ import { showSignInModal } from '../reducers/modal.js';
 import styles from '../styles/Home.module.css';
 import Header from './Header';
 import ImageCarrousel from './Carrousel';
+import click from "../public/click.wav";
 
 function Home() {
   const user = useSelector((state) => state.user.value);
@@ -12,7 +13,7 @@ function Home() {
   const router = useRouter();
 
   const handleAcheterClick = () => {
-    let audio = new Audio('/click.wav');
+    let audio = new Audio(click);
     audio.play();
     if(!user.token) {
       dispatch(showSignInModal());
@@ -22,7 +23,7 @@ function Home() {
   };
 
   const handleVendreClick = () => {
-    let audio = new Audio('/click.wav');
+    let audio = new Audio(click);
     audio.play();
     if(!user.token) {
       dispatch(showSignInModal());

@@ -14,7 +14,7 @@ import { showSignInModal, showSignUpModal, hideSignUpModal, hideSignInModal } fr
 //Liens
 import Link from 'next/link';
 import { logout } from '../reducers/user'; 
-
+import click from "../public/click.wav";
 
 function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,19 +24,19 @@ function Header() {
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
         dispatch(logout());
         };
 
     const handleShowModalSignIn = () => {
         dispatch(showSignInModal());
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
     };
 
     const handleShowModalSignUp = () => {
-        let audio = new Audio('/click.wav');
+        let audio = new Audio(click);
         audio.play();
         dispatch(showSignUpModal());
     };
@@ -50,7 +50,7 @@ function Header() {
     };
 
 const toggleMenu  = () => {
-    let audio = new Audio('/click.wav');
+    let audio = new Audio(click);
     audio.play();
     setIsOpen(!isOpen);
     //console.log(user);

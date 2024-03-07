@@ -1,8 +1,15 @@
 import styles from '../styles/Profil.module.css';
 import HeaderConnected from './HeaderConnected'
 import React, { useState } from 'react';
+import AvatarCarrousel from './AvatarCarrousel';
+import '../styles/CarrouselAvatar.module.css'
 
 function Profil() {
+    const [selectedAvatar, setSelectedAvatar] = useState('');
+
+    const handleSelectAvatar = (avatar) => {
+    setSelectedAvatar(avatar);
+    }
 
     const [image, setImage] = useState(null);
 
@@ -18,9 +25,10 @@ function Profil() {
         <div className={styles.container}>
             <div className={styles.leftContainer}>
                 <div className={styles.profilPic}>
-                    <input id="fileInput" className={styles.buttonFile} type="file" onChange={handleImageChange} />
+                    {/* <input id="fileInput" className={styles.buttonFile} type="file" onChange={handleImageChange} />
                     <label htmlFor="fileInput" className={styles.fileLabel}>Choisir un fichier</label>
-                    {image && <img src={image} alt="Profil" />}
+                    {image && <img src={image} alt="Profil" />} */}
+                    <AvatarCarrousel/>
                 </div>
             </div>
             <div className={styles.rightContainer}>
@@ -43,5 +51,6 @@ function Profil() {
         </div>
     )
 }
+
 
 export default Profil
