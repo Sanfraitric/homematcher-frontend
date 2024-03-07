@@ -6,16 +6,15 @@ import { useRouter } from 'next/router';
 import HeaderConnected from './HeaderConnected';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faQuestion, faCheck } from '@fortawesome/free-solid-svg-icons';
 import ImageCarrousel from './Carrousel';
-
+import { LoadScript, Autocomplete } from '@react-google-maps/api';
 
 function AddRealty() {
 
   const dispatch = useDispatch();
   const router = useRouter();
   const token = useSelector((state) => state.user.value.token);
-  //console.log(token)
 
   // Hooks d'états pour les inputs:
   const [description, setDescription] = useState('');
@@ -26,37 +25,58 @@ function AddRealty() {
   const [budget, setBudget] = useState(10000);
   const [financed, setFinanced] = useState('yes');
   const [imageUrl, setImageUrl] = useState([])
+  const [showDocs, setShowDocs] = useState(false);
+  const [filesSelected, setFilesSelected] = useState(false);
+  const docs = ['Le dossier de diagnostics techniques.', 'La superficie loi Carrez de la maison', 'Un justificatif d’identité, d’adresse et de situation familiale', 'Les règlements de copropriété', 'Les 3 derniers procès-verbaux des assemblées générales de copropriétaires', 'Le carnet d’entretien de la maison', 'Le dernier appel de charges', 'Les données financières et techniques de la maison '];
 
   const minBudget = 0;
   const maxBudget = 1000000
 
   const handleBudgetChange = (e) => {
     let newBudget = parseInt(e.target.value);
-    // Ajuster le budget pour qu'il progresse par incréments de 10 000
     newBudget = Math.round(newBudget / 10000) * 10000;
-    // S'assurer que le budget reste dans la fourchette définie
     newBudget = Math.min(Math.max(minBudget, newBudget), maxBudget);
     setBudget(newBudget);
   };
 
   const minDelay = 0;
-  const maxDelay = 52; // Par exemple, définissez la valeur maximale pour le délai en semaines
+  const maxDelay = 52; 
 
   const handleDelayChange = (e) => {
   let newDelay = parseInt(e.target.value);
-  // S'assurer que le délai reste dans la fourchette définie
   newDelay = Math.min(Math.max(minDelay, newDelay), maxDelay);
   setDelay(newDelay);
 };
 
 console.log(imageUrl)
+
+
+
+const handleInfoClick = () => {
+  setShowDocs(!showDocs);
+};
   
+
+const handleButtonClick = () => {
+  const fileInput = document.getElementById('fileInput');
+  if (fileInput) {
+    fileInput.click();
+  }
+};
+
+//Documents de droite
+const handleFileSelect = (event) => {
+  const files = event.target.files;
+  if (files.length > 0) {
+    setFilesSelected(true);
+  }
+};
+
+
 const handlePhotoChange = (e) => {
   const file = e.target.files[0];
   console.log(e.target.files)
-
   const formData = new FormData()
-
   formData.append('photoFromFront', file)
  fetch('http://localhost:3000/realtys/upload', {
   method: "POST",
@@ -67,14 +87,8 @@ const handlePhotoChange = (e) => {
 
 console.log(imageUrl)
 
-//patate
-// for (let i = 0; i < files.length; i++) {
-//   const file = files[i];
-//   console.log("Nom du fichier:", file.name);
-//   console.log("Taille du fichier:", file.size, "octets");
-//   console.log("Type MIME du fichier:", file.type);
-//   console.log("Date de dernière modification du fichier:", file.lastModifiedDate);
-//   setImageUrl(imageUrl)
+
+
 
 
 
@@ -93,30 +107,30 @@ const handleAddRealty = () => {
 }
 
 
+
   return (
     <div>
-    <HeaderConnected/>
-      <main className={styles.main}>
-        <div className={styles.container}>
-          {/* Container avec le titre centré en haut */}
-
-
-          {/* Inputs dans la partie gauche */}
-          
-         <div className={styles.leftContainer}>
-          
-          <input type="text" className={styles.desc} placeholder='Description:...'  onChange={(e) => setDescription(e.target.value)} value={description}/>
-          
-          <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
-           
-          <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
-          
-          <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
+      <div className={styles.header}>
+        <HeaderConnected/>
+      </div>
+      <div className={styles.main}>
+        <div className={styles.container}>   
+          <div className={styles.leftContainer}>
+          <h3 classname={styles.h3}> Informations:</h3>
+            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >  
+            <Autocomplete onLoad={(autocomplete) => {
+              autocomplete.setFields(['address_component']);
+              autocomplete.setTypes(['(regions)']); 
+              }}
+            onPlaceChanged={() => {}}
+            >
+            <input className={styles.inputText} type="text" placeholder="Ville ou département:" />
+            </Autocomplete>
+            </LoadScript>
+            <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
+            <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
+            <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
          </div>
-        
-        
-
-          {/* Titre "Image" dans la partie du milieu */}
           <div className={styles.middleContainer}>
           <input
            type="file"
@@ -131,48 +145,51 @@ const handleAddRealty = () => {
           <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
           </Link>
           </div>
-
-          {/* Titre "Documents" dans la partie droite */}
           <div className={styles.rightContainer}>
-            <button className={styles.button}> Ajouter Document(s)</button>
-          
-            <h2>Documents Obligatoires</h2> 
-            <FontAwesomeIcon icon={faQuestion} className={styles.info} title='les documents obligatoires sont...'/>
-          
+            <div className={styles.mandatoryDocuments}>
+            <h2 className={styles.h2}>Documents Obligatoires</h2> 
+            <FontAwesomeIcon onClick={handleInfoClick} className={styles.infoButton} icon={faQuestion} />
+            {showDocs && 
             <div>
-              <h2> Profil acheteur souhaité</h2>
-              Délai :
-              <input
-                type="range"
-                min={minDelay}
-                max={maxDelay}
-                value={delay}
-                onChange={handleDelayChange}
-                className={styles.inputRange}
-              />
-              <span>{delay} semaine(s)</span>
-              <div>
-                Budget :
-                <input
-                  type="range"
-                  min={minBudget}
-                  max={maxBudget}
-                  step={10000} // Incréments de 10 000
-                  value={budget}
-                  onChange={handleBudgetChange}
-                  className={styles.inputRange}
-                />
+            <ul>
+              {docs.map((doc, index) => (
+              <li key={index}>{doc}</li>
+              ))}
+            </ul>
+            </div>
+            }
+              <div className={styles.downloadDocuments}>
+                <input type="file" id="fileInput" multiple onChange={handleFileSelect} style={{ display: 'none' }} />
+                 <button className={styles.button} onClick={handleButtonClick}>Documents à fournir</button>
+                {filesSelected && <FontAwesomeIcon className={styles.downloadIcon} icon={faCheck} color="green" />}
+              </div>
+          </div>
+           <h3 classname={styles.h3}> Profil acheteur souhaité:</h3>
+              <div classname={styles.inputRangeContainer}>
+                <p classename={styles.p}>Délai :</p>
+                <input type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange} className={styles.inputRange}/>
+                <span>{delay} semaine(s)</span>
+              </div>
+              <div classname={styles.inputRangeContainer}>
+                <p classename={styles.p}> Budget : </p>
+                <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
                 <span>{budget} €</span>
               </div>
-              Financement :
-              <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
-              <label htmlFor="financed-yes">Oui</label>
-              <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
-              <label htmlFor="financed-no">Non</label>
-            </div>
+              <div classname={styles.inputRangeContainer}>
+                <p classename={styles.p}>Financement :</p>
+                <div classname={styles.radioContainer}>
+                  <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
+                  <label htmlFor="financed-yes">Oui</label>
+                  <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
+                  <label htmlFor="financed-no">Non</label>
+              </div>
+              </div>
           </div>
         </div>
-      </main>
+        <Link href='/RealtysPage'>
+            <button className={styles.buttonAdd} onClick={handleAddRealty}> Ajouter un bien </button>
+        </Link>
+      </div>
     </div>
   );
 }
