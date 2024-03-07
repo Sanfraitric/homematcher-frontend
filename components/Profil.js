@@ -21,7 +21,7 @@ function Profil(props) {
     const [prosituation, setProsituation] = useState('');
     const [financialCapacity, setFinancialCapacity] = useState('');
     const [desciption, setDesciption] = useState('');
-
+console.log(firstname)
 console.log(user)
     const handleImageChange = (e) => {
       setImage(URL.createObjectURL(e.target.files[0]));
@@ -45,9 +45,16 @@ console.log(user)
             prosituation: data.user.prosituation,
             financialCapacity: data.user.financialCapacity,
             desciption: data.user.desciption,
-        }));
+        })
+        );
+        setFirstname(data.user.firstname);
+        setLastname(data.user.lastname);
+        setAge(data.user.age);
+        setProsituation(data.user.prosituation);
+        setFinancialCapacity(data.user.financialCapacity);
+        setDesciption(data.user.desciption);
           });
-      }, [user]);
+      }, []);
 
 const handleSubmit = () => {
     fetch('http://localhost:3000/users/update', {
@@ -64,7 +71,11 @@ const handleSubmit = () => {
             financialCapacity,
             desciption,
         }),
-    }).then(response => response.json())
+    }).then(response => response.json()).then(data => {
+        console.log(data)
+       // data.result && dispatch(UpdateProfil(
+    
+    })
 }
 
     return (
@@ -83,9 +94,9 @@ const handleSubmit = () => {
             </div>
             <div className={styles.rightContainer}>
                 <h3 className={styles.h3}>Prénom:</h3>
-                <input className={styles.input} onChange={(e) => setFirstname(e.target.value)} value={firstname}/>
+                <input className={styles.input} onChange={(e) => setFirstname(e.target.value)}  value={firstname}/>
                 <h3 className={styles.h3}>Nom:</h3>
-                <input className={styles.input} onChange={(e) => setLastname(e.target.value)} value={lastname}/>
+                <input className={styles.input} onChange={(e) => setLastname(e.target.value)}  value={lastname}/>
                 <h3 className={styles.h3}>Age:</h3>
                 <input className={styles.input} onChange={(e) => setAge(e.target.value)} value={age}/>
                 <h3 className={styles.h3}>Situation professionnelle:</h3>

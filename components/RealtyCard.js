@@ -26,7 +26,7 @@ function RealtyCard(props) {
 
   return (
     <div className={styles.card}>
-      <img src='appart1.jpg' className={styles.image}/>
+      <img src={props.imageUrl} className={styles.image}/>
       <p>{props.description}</p>
       <p>{props.area}</p>
       <p>{props.rooms}</p>
