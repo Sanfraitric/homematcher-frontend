@@ -12,10 +12,21 @@ import Link from 'next/link';
 import { logout } from '../reducers/user';
 import click from "../public/click.wav";
 
-
 function Header() {
     const router = useRouter();
-    const pageTitle = router.route.split('/').pop();
+    const pageTitles = {
+      MyCriteriasPage: 'Mes critères',
+      ProfilPage: 'Mon profil',
+      timeToMatch: 'Time to Match !',
+      AddRealtyPage: 'Ajouter un bien',
+      MatchPage: 'Mes matchs',
+      LikesPage: 'Mes likes',
+      RealtysPage: 'Mes biens',
+    };
+  
+    const lastRouteSegment = router.pathname.split('/').pop();
+    const pageTitle = pageTitles[lastRouteSegment] || '';
+  
     const [isOpen, setIsOpen] = useState(false);
     const dispatch = useDispatch();
 
@@ -48,7 +59,7 @@ function Header() {
                 <h2 className={styles.h2} >Match</h2>
         </div>
     </Link>
-    <Link href="/NotificationsPage">
+    <Link href="/LikesPage">
         <div className={styles.button}>
                 <FontAwesomeIcon icon={faThumbsUp} className={styles.icon} /> 
                 <h2 className={styles.h2} >Likes</h2>

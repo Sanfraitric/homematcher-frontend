@@ -14,17 +14,17 @@ function Profil(props) {
     setSelectedAvatar(avatar);
     }
 
-    const [image, setImage] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [age, setAge] = useState('');
     const [prosituation, setProsituation] = useState('');
     const [financialCapacity, setFinancialCapacity] = useState('');
     const [desciption, setDesciption] = useState('');
-
+console.log(firstname)
 console.log(user)
-    const handleImageChange = (e) => {
-      setImage(URL.createObjectURL(e.target.files[0]));
+    const handleImageChange = (event) => {
+        setSelectedImage(event.target.value);
     };
 
     useEffect(() => {
@@ -45,9 +45,16 @@ console.log(user)
             prosituation: data.user.prosituation,
             financialCapacity: data.user.financialCapacity,
             desciption: data.user.desciption,
-        }));
+        })
+        );
+        setFirstname(data.user.firstname);
+        setLastname(data.user.lastname);
+        setAge(data.user.age);
+        setProsituation(data.user.prosituation);
+        setFinancialCapacity(data.user.financialCapacity);
+        setDesciption(data.user.desciption);
           });
-      }, [user]);
+      }, []);
 
 const handleSubmit = () => {
     fetch('http://localhost:3000/users/update', {
@@ -64,7 +71,11 @@ const handleSubmit = () => {
             financialCapacity,
             desciption,
         }),
-    }).then(response => response.json())
+    }).then(response => response.json()).then(data => {
+        console.log(data)
+       // data.result && dispatch(UpdateProfil(
+    
+    })
 }
 
     return (
@@ -72,20 +83,26 @@ const handleSubmit = () => {
             <div className={styles.header}>
                 <HeaderConnected/>
             </div>
-        <div className={styles.container}>
-            <div className={styles.leftContainer}>
-                <div className={styles.profilPic}>
-                    {/* <input id="fileInput" className={styles.buttonFile} type="file" onChange={handleImageChange} />
-                    <label htmlFor="fileInput" className={styles.fileLabel}>Choisir un fichier</label>
-                    {image && <img src={image} alt="Profil" />} */}
-                    <AvatarCarrousel/>
+            <div className={styles.container}>
+                <div className={styles.leftContainer}>
+                    <div className={styles.profilPic}>
+                    {selectedImage && <img src={selectedImage} alt="Profil" className={styles.selectedImage} />}                        <select className={styles.avatarbutton} onChange={handleImageChange}>
+                            <option value="">Choisis ton avatar</option>
+                            <option value="./avatar1.jpg">Avatar 1</option>
+                            <option  value="./avatar2.jpg">Avatar 2</option>
+                            <option  value="./avatar3.jpg">Avatar 3</option>
+                            <option value="./avatar4.jpg">Avatar 4</option>
+                            <option  value="./avatar5.jpg">Avatar 5</option>
+                            <option value="./avatar6.jpg">Avatar 6</option>
+                            <input type="hidden" classname={styles.input} />
+                        </select>
+                    </div>
                 </div>
-            </div>
             <div className={styles.rightContainer}>
                 <h3 className={styles.h3}>Prénom:</h3>
-                <input className={styles.input} onChange={(e) => setFirstname(e.target.value)} value={firstname}/>
+                <input className={styles.input} onChange={(e) => setFirstname(e.target.value)}  value={firstname}/>
                 <h3 className={styles.h3}>Nom:</h3>
-                <input className={styles.input} onChange={(e) => setLastname(e.target.value)} value={lastname}/>
+                <input className={styles.input} onChange={(e) => setLastname(e.target.value)}  value={lastname}/>
                 <h3 className={styles.h3}>Age:</h3>
                 <input className={styles.input} onChange={(e) => setAge(e.target.value)} value={age}/>
                 <h3 className={styles.h3}>Situation professionnelle:</h3>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import styles from '../styles/Notifications.module.css';
+import styles from '../styles/Likes.module.css';
 import HeaderConnected from './HeaderConnected'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faThumbsUp, faComments, faUser, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-function Notification({ type }) {
+function Like({ type }) {
 
     const [isVisible, setVisible] = useState(true);
 
@@ -60,19 +60,19 @@ function Notification({ type }) {
     ) : null;
 }
 
-function Notifications() {
+function Likes() {
     return (
         <div className={styles.main}>
             <div className={styles.header}>
                 <HeaderConnected/>
             </div>
             <div className={styles.container}>
-                <Notification type="message" />
-                <Notification type="like" />
-                <Notification type="matches" />
+                <Like type="message" />
+                <Like type="like" />
+                <Like type="matches" />
             </div>
         </div>
     )
 }
 
-export default Notifications;
+export default Likes;

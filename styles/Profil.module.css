@@ -37,7 +37,6 @@
   .leftContainer, .rightContainer {
     font-family: 'Montserrat', sans-serif;
     padding: 10px;
-    flex-direction: column;
     font-size: 16px;
     flex-grow: 2;
 } 
@@ -52,28 +51,23 @@
     margin-right: 10px;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     display: flex;
   }
 
   /*Image*/
 
-.profilpic {
-    font-family: 'Montserrat', sans-serif;
-    height: 90px;
+  .profilPic {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.profilpic img {
-    border-radius: 50%;
-    max-width: 30px;
-    max-height: 10px;
-    object-fit: cover;
-    border-radius: 100px;
   }
+
+.selectedImage {
+  max-height: 200px;
+  max-width: 200px;
+}
 
   /*Texte*/
 
@@ -81,7 +75,7 @@
     font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin-top: 50px;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 /*Input*/
@@ -105,11 +99,21 @@
   }
 
 /*Bouton*/
-
+.avatarbutton {
+  padding: 10px 20px;
+  background-color: #FF4D4D;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
 
 .button {
     position: absolute;
-    right: 5%;
+    right: 7%;
     top: 50%; 
     padding: 10px 20px;
     background-color: #FF4D4D;
