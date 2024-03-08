@@ -69,7 +69,7 @@ function AddRealty() {
     // Traitez les fichiers sélectionnés comme vous le souhaitez
     console.log(files);
   }
-};
+
 
 
 const handlePhotoChange = (e) => {
@@ -198,6 +198,7 @@ const handleAddRealty = () => {
 }
 
 export default AddRealty;
+
 // const handlePhotoChange = async (e) => {
 //   const files = e.target.files;
 
