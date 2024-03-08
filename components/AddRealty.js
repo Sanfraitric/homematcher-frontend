@@ -23,6 +23,7 @@ function AddRealty() {
   const [delay, setDelay] = useState(0);
   const [budget, setBudget] = useState(10000);
   const [financed, setFinanced] = useState('yes');
+  const [terrassed, setTerrassed] = useState('yes');
   const [imageUrl, setImageUrl] = useState([])
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
@@ -41,36 +42,34 @@ function AddRealty() {
   };
 
   const minDelay = 0;
-  const maxDelay = 52; 
+  const maxDelay = 52;
 
   const handleDelayChange = (e) => {
-  let newDelay = parseInt(e.target.value);
-  newDelay = Math.min(Math.max(minDelay, newDelay), maxDelay);
-  setDelay(newDelay);
-};
+    let newDelay = parseInt(e.target.value);
+    newDelay = Math.min(Math.max(minDelay, newDelay), maxDelay);
+    setDelay(newDelay);
+  };
 
 
-console.log(realtyId)
+  const handleInfoClick = () => {
+    setShowDocs(!showDocs);
+  };
 
-const handleInfoClick = () => {
-  setShowDocs(!showDocs);
-};
-  
 
-const handleButtonClick = () => {
-  const fileInput = document.getElementById('fileInput');
-  if (fileInput) {
-    fileInput.click();
+  const handleButtonClick = () => {
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+      fileInput.click();
+    }
+  };
+
+  //Documents de droite
+  const handleFileSelect = (e) => {
+    const files = e.target.files;
+    // Traitez les fichiers sélectionnés comme vous le souhaitez
+    console.log(files);
   }
-};
 
-//Documents de droite
-const handleFileSelect = (event) => {
-  const files = event.target.files;
-  if (files.length > 0) {
-    setFilesSelected(true);
-  }
-};
 
 
 const handlePhotoChange = (e) => {
@@ -85,7 +84,7 @@ const handlePhotoChange = (e) => {
    .then(data => imageUrl.push(data.url))
 }
 
-console.log(imageUrl)
+  console.log(imageUrl)
 
 
 
@@ -108,10 +107,10 @@ const handleAddRealty = () => {
   return (
     <div>
       <div className={styles.header}>
-        <HeaderConnected/>
+        <HeaderConnected />
       </div>
       <div className={styles.main}>
-        <div className={styles.container}>   
+        <div className={styles.container}>
           <div className={styles.leftContainer}>
           <h3 classname={styles.h3}> Informations:</h3>
             <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >  
@@ -132,8 +131,8 @@ const handleAddRealty = () => {
           <div className={styles.middleContainer}>
           <input
            type="file"
-           accept="image/*" 
-           multiple 
+           accept="image/*" // Accepte uniquement les fichiers images
+           multiple // Permet à l'utilisateur de sélectionner plusieurs fichiers
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
@@ -184,13 +183,13 @@ const handleAddRealty = () => {
                   <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
                   <label htmlFor="financed-no">Non</label>
                   </div>
-                  </div>
+                </div>
               </div>
-              </div>
-              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
   );
 }
