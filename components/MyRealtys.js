@@ -9,9 +9,9 @@ import RealtyCard from './RealtyCard';
 function MyRealtys() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.value.token);
-  const realty = useSelector((state) => state.realtys.value);
-  
+  const myRealty= useSelector((state) => state.realtys.value);
 
+   // Récupération des biens immobiliers
   useEffect(() => {
     fetch('http://localhost:3000/realtys', {
       method: 'GET',
@@ -26,10 +26,10 @@ function MyRealtys() {
       });
   }, []);
 
-  const realtys = realty.map((data, i) => {
+  const realtys = myRealty.map((data, i) => {
     return <RealtyCard key={i} {...data} />;
   })
-  
+  console.log(realtys)
   return (
     <div className={styles.container}>
       <div className={styles.header}>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
 import { useDispatch, useSelector } from 'react-redux';
@@ -73,6 +73,7 @@ const handleFileSelect = (event) => {
 };
 
 
+//Changement Photo
 const handlePhotoChange = (e) => {
   const file = e.target.files[0];
   console.log(e.target.files)
@@ -91,7 +92,7 @@ console.log(imageUrl)
 
 
 
-
+//Relier lien BDD
 const handleAddRealty = () => {
   fetch('http://localhost:3000/realtys/addRealtys', {
     method: "POST",
@@ -142,7 +143,6 @@ const handleAddRealty = () => {
           />
           <label for="file-upload" classname={styles.button}>Ajouter une image</label>
           <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
-          {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
           <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
           </Link>
@@ -174,14 +174,14 @@ const handleAddRealty = () => {
                 <input type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange} className={styles.inputRange}/>
                 <span>{delay} semaine(s)</span>
               </div>
-              <div classname={styles.inputRangeContainer}>
-                <p classename={styles.p}> Budget : </p>
+              <div className={styles.inputRangeContainer}>
+                <p className={styles.p}> Budget : </p>
                 <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
                 <span>{budget} €</span>
               </div>
-              <div classname={styles.inputRangeContainer}>
-                <p classename={styles.p}>Financement :</p>
-                <div classname={styles.radioContainer}>
+              <div className={styles.inputRangeContainer}>
+                <p className={styles.p}>Financement :</p>
+                <div className={styles.radioContainer}>
                   <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
                   <label htmlFor="financed-yes">Oui</label>
                   <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
