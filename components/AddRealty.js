@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '../styles/AddRealty.module.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import HeaderConnected from './HeaderConnected';
 import React from 'react';
@@ -9,10 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faQuestion, faCheck } from '@fortawesome/free-solid-svg-icons';
 import ImageCarrousel from './Carrousel';
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
+const uniqid = require('uniqid')
 
 function AddRealty() {
-
-  const dispatch = useDispatch();
   const router = useRouter();
   const token = useSelector((state) => state.user.value.token);
 
@@ -27,6 +26,7 @@ function AddRealty() {
   const [imageUrl, setImageUrl] = useState([])
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
+  const [realtyId, setRealtyId] = useState()
   const docs = ['Le dossier de diagnostics techniques.', 'La superficie loi Carrez de la maison', 'Un justificatif d’identité, d’adresse et de situation familiale', 'Les règlements de copropriété', 'Les 3 derniers procès-verbaux des assemblées générales de copropriétaires', 'Le carnet d’entretien de la maison', 'Le dernier appel de charges', 'Les données financières et techniques de la maison '];
 
   const minBudget = 0;
@@ -37,6 +37,7 @@ function AddRealty() {
     newBudget = Math.round(newBudget / 10000) * 10000;
     newBudget = Math.min(Math.max(minBudget, newBudget), maxBudget);
     setBudget(newBudget);
+    setRealtyId(uniqid())
   };
 
   const minDelay = 0;
@@ -48,9 +49,8 @@ function AddRealty() {
   setDelay(newDelay);
 };
 
-console.log(imageUrl)
 
-
+console.log(realtyId)
 
 const handleInfoClick = () => {
   setShowDocs(!showDocs);
@@ -89,9 +89,6 @@ console.log(imageUrl)
 
 
 
-
-
-
 const handleAddRealty = () => {
   fetch('http://localhost:3000/realtys/addRealtys', {
     method: "POST",
@@ -99,7 +96,7 @@ const handleAddRealty = () => {
       'Content-Type': 'application/json',
       'Authorization': `${token}`
     },
-    body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl})
+    body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl, realtyId})
   }).then(response => response.json())  .then(data => {
     console.log(data)
     router.push('/RealtysPage')
@@ -140,7 +137,7 @@ const handleAddRealty = () => {
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
-          <label for="file-upload" classname={styles.button}>Ajouter une image</label>
+          <label for="file-upload" className={styles.button}>Ajouter une image</label>
           <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
           {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
