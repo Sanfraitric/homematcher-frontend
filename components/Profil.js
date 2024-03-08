@@ -7,11 +7,6 @@ import { UpdateProfil } from '../reducers/user';
 
 function Profil(props) {
     const user = useSelector((state) => state.user.value);
-    const dispatch = useDispatch();    const [selectedAvatar, setSelectedAvatar] = useState('');
-
-    const handleSelectAvatar = (avatar) => {
-    setSelectedAvatar(avatar);
-    }
 
     const [selectedImage, setSelectedImage] = useState(null);
     const [firstname, setFirstname] = useState('');
@@ -31,6 +26,7 @@ function Profil(props) {
         setSelectedImage(event.target.value);
     };
 
+/*Modifier les données pour le fetch
     useEffect(() => {
         fetch('http://localhost:3000/users', {
           method: 'GET',
@@ -81,6 +77,8 @@ const handleSubmit = () => {
     
     })
 }
+*/
+
     //Budget
     const minBudget = 0;
     const maxBudget = 1000000
