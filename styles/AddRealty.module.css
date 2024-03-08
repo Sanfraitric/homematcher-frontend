@@ -1,102 +1,77 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
-/*Header*/
-.header {
-  grid-column-start:1;
-  grid-column-end:4;
-  grid-row-start:0;
-  grid-row-end:1;
-  background-color: white;
-}
 
-/*Container*/
 .main {
-  min-height: 100vh;
-  width: 100vw;
-  padding: 0;
   background-color: #F4E6E6;
-  position: absolute;
 }
 
 .container {
   font-family: 'Montserrat', sans-serif;
-  display: flex;
-  width: 90%; 
-  height: 90%; 
-  border-radius: 10px;
-  align-items: center;
-  justify-content: center;
-  margin: auto; 
-  position: absolute; 
-  top: 0; right: 0; bottom: 0; left: 0; 
+  display: flex; 
+  max-height: 86vh;
 }
+
 .leftContainer {
-  font-family: 'Montserrat', sans-serif;
-  flex-direction: column;
-  font-size: 14px;
-  align-items: flexbox;
-  justify-content: space-between; 
-  height: 100%;
+  border-radius: 10px;
+  margin-top: 5%;
+  margin-left: 30px;
+  margin-bottom:150px;
+  flex: 1;
   display: flex;
-  color:#ff4d4d;
+  flex-direction: column;
+}
+
+.middleContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .rightContainer {
-    font-family: 'Montserrat', sans-serif;
-    flex-direction: column;
-    font-size: 14px;
-    align-items: flexbox;
-    height: 100%;
-    display: flex;
-  }
+  margin-top: 5%;
+  margin-right: 30px;
+  flex: 1; 
+  padding: 10px; 
+}
 
   .whiteContainer {
-    background-color:white;
-    align-items: inline;
-    flex-direction: row;
-    justify-content: space-between;
+    display: flex;
+    padding: 20px;
+    background-color: white;
     border-radius: 10px;
   }
 
+  .information {
+    display: flex;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+  } 
+
   .infoAcheteur {
+    flex-direction: flex-start;
     margin-left:50px;
     margin-bottom:20px;
   }
 
-.middleContainer {
-    flex: 1;
-
-  }
-
-  .rightContainer {
-    flex: 1;
-    margin-left:100px;
-  }
-
-  .leftContainer {
-    flex: 1;
+  .inputRange {
+    width: 100%;
   }
 
   .radioContainer {
-    display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 20px; 
   }
 
-.downloadDocuments {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0px
-;}
-
-/*Texte*/
 
 .p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: #ff4d4d;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  color: black;
 }
 
 .h2 {
@@ -108,6 +83,7 @@
     margin-top:100px;
     display:inline;
 }
+
 .h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
@@ -118,25 +94,48 @@
   .title {
     margin-top: 0;
   }
+
   
-  /*Input*/
 
 .inputText {
     height: 50px;
+    width: 100%;
+    border: none;
+  }
+
+  .inputRange {
+    width: 100%;
+    display: flex;
+  }
+
+  .inputFile {
+display: none;
+cursor: pointer;
+  }
+
+  .information {
+    display: flex-start;
+    flex-direction: column;
+    margin-left: 20px;
+  }
+
+  .informationInput {
+    height: 50px;
     width: 80%;
+    display: flex;
+    flex-direction: column;
     border-radius: 5px;
     border: none;
+    margin-bottom: 20px;
+    margin-top: 30px;
 
   }
-  
+
 .inputDesc {
-    height: 200px;
-    width: 80%;
-    border-radius: 5px;
-    border: none;
-    align-items: center;
+  height: 100px;
+  width: 100%;
+  border: none;
   }
-
 
 .fileLabel{
     position: absolute;
@@ -160,12 +159,11 @@
     color: white;
     cursor: pointer;
   }
-  
+
 .downloadIcon {
     width: 30px;
     height: 30px;
   }
-
 
 /*Boutons*/
 
@@ -174,7 +172,7 @@
   justify-content: center;
   align-items: center;
   padding: 1vh 4vw;
-  margin: 20%;
+  margin: 14%;
   background-color: #FF4D4D;
   border-color: white;
   color: white;
@@ -185,6 +183,7 @@
   cursor: pointer;
   border: none;
   margin-left: 165px;
+  
   }
 
 .infoButton {
@@ -198,28 +197,30 @@
   }
 
   .buttonAdd {
-      justify-content: center;
-      align-items: center;
-      padding: 1vh 4vw;
-      background-color: #FF4D4D;
-      border-color: white;
-      color: white;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      border-radius: 40px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      display: block; 
-      margin: 20px auto 0; 
-      margin-right:200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 4vw;
+    margin: 20%;
+    background-color: #FF4D4D;
+    border-color: white;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    margin-left: 165px;
     }
-  
 
+
+  
   /*Image*/
 
   .carrousel{
-      max-width: 100%; 
-      max-height: 30px; 
-      object-fit: cover; 
+    display: flex;
+    max-height: 30px;
+    object-fit: cover; 
     }
+
