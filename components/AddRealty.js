@@ -24,6 +24,7 @@ function AddRealty() {
   const [delay, setDelay] = useState(0);
   const [budget, setBudget] = useState(10000);
   const [financed, setFinanced] = useState('yes');
+  const [terrassed, setTerrassed] = useState('yes');
   const [imageUrl, setImageUrl] = useState([])
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
@@ -117,23 +118,50 @@ const handleAddRealty = () => {
       <div className={styles.main}>
         <div className={styles.container}>   
           <div className={styles.leftContainer}>
-          <h3 classname={styles.h3}> Informations:</h3>
-            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >  
-            <Autocomplete onLoad={(autocomplete) => {
-              autocomplete.setFields(['address_component']);
-              autocomplete.setTypes(['(regions)']); 
-              }}
-            onPlaceChanged={() => {}}
-            >
-            <input className={styles.inputText} type="text" placeholder="Ville ou département:" />
-            </Autocomplete>
-            </LoadScript>
-            <input type="text" className={styles.inputDesc} placeholder='Description : ...' onChange={(e) => setDescription(e.target.value)} value={description}/>
-            <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
-            <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
-            <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
+            <div className={styles.information}>
+              <h3 className={styles.h3}> Informations:</h3>
+                <p className={styles.p}>Ville ou département</p>
+                <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >  
+                <Autocomplete onLoad={(autocomplete) => {
+                autocomplete.setFields(['address_component']);
+                autocomplete.setTypes(['(regions)']); 
+                }}
+                onPlaceChanged={() => {}}
+                >
+                <input className={styles.inputText} type="text"/>
+                </Autocomplete>
+                </LoadScript>
+              <div className={styles.informationInput}>
+              <label htmlFor='text' className={styles.p}>Description :</label>
+              <input type="text" className={styles.inputDesc} onChange={(e) => setDescription(e.target.value)} value={description}/>
+              </div>
+              <div className={styles.informationInput}>
+              <label htmlFor='text' className={styles.p}>Superficie (en m²) :</label>
+              <input type="text" className={styles.inputText} onChange={(e) => setArea(e.target.value)} value={area} />
+              </div>
+              <div className={styles.informationInput}>
+              <label htmlFor='range' className={styles.p}>Nombre de pièces :</label>
+              <input type="range" className={styles.inputRange} min={0} max={10} value={rooms} onChange={(e) => setRooms(e.target.value)}/>
+              <span className={styles.label}>  {rooms} pièces</span>
+              </div>
+              <div className={styles.informationInput}>
+              <label htmlFor='text' className={styles.p}>Prix de vente souhaité (en €) :</label>
+              <input type="range" className={styles.inputRange} min={10000} max={1000000} step={10000} onChange={(e) =>  setPrice(e.target.value)} value={price}/>
+              <span className={styles.label}> {price}€</span>
+              </div>
+              <div className={styles.informationInput}>
+              <label type="radio" className={styles.p}>Terrasse extérieure</label>
+              <div >
+                <input type="radio" id="terrassed-yes" name="terrassed" value="yes" checked={terrassed === "yes"} onChange={() => setTerrassed("yes")} />
+                <label htmlFor="terrassed-yes" className={styles.p} >Oui</label>
+                <input type="radio" id="terrassed-no" name="terrassed" value="no" checked={terrassed === "no"} onChange={() => setTerrassed("no")} />
+                <label htmlFor="financed-no" className={styles.p} >Non</label>
+              </div>
+            </div>
+          </div>
          </div>
           <div className={styles.middleContainer}>
+            <div className={styles.button}>
           <input
            type="file"
            accept="image/*" 
@@ -141,10 +169,11 @@ const handleAddRealty = () => {
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
-          <label for="file-upload" classname={styles.button}>Ajouter une image</label>
+          <label for="file-upload">Ajouter une image</label>
+          </div>
           <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
           <Link href='/RealtysPage'>
-          <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
+          <button className={styles.button} onClick={handleAddRealty}>Ajouter un bien</button>
           </Link>
           </div>
           <div className={styles.rightContainer}>
@@ -160,26 +189,26 @@ const handleAddRealty = () => {
             </ul>
             </div>
             }
-              <div className={styles.downloadDocuments}>
-                <input type="file" id="fileInput" multiple onChange={handleFileSelect} style={{ display: 'none' }} />
-                 <button className={styles.button} onClick={handleButtonClick}>Documents à fournir</button>
-                {filesSelected && <FontAwesomeIcon className={styles.downloadIcon} icon={faCheck} color="green" />}
-              </div>
+                <div className={styles.buttonAdd}>
+                  <input type="file" id="fileInput" multiple onChange={handleFileSelect} className={styles.inputFile} />
+                  <label onClick={handleButtonClick}>Ajouter vos documents</label>
+                  {filesSelected && <FontAwesomeIcon className={styles.downloadIcon} icon={faCheck} color="green" />}
+                </div>
           </div>
           <div className={styles.whiteContainer}>
             <div className={styles.infoAcheteur}>
-           <h3 classname={styles.h3}> Profil acheteur souhaité:</h3>
-              <div classname={styles.inputRangeContainer}>
-                <p classename={styles.p}>Délai :</p>
+           <h3 className={styles.h3}> Profil acheteur souhaité:</h3>
+              <div className={styles.inputConfiguration}>
+                <p className={styles.p}>Délai :</p>
                 <input type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange} className={styles.inputRange}/>
                 <span>{delay} semaine(s)</span>
               </div>
-              <div className={styles.inputRangeContainer}>
+              <div className={styles.inputConfiguration}>
                 <p className={styles.p}> Budget : </p>
                 <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
                 <span>{budget} €</span>
               </div>
-              <div className={styles.inputRangeContainer}>
+              <div className={styles.inputConfiguration}>
                 <p className={styles.p}>Financement :</p>
                 <div className={styles.radioContainer}>
                   <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />

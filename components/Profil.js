@@ -7,17 +7,16 @@ import { UpdateProfil } from '../reducers/user';
 
 function Profil(props) {
     const user = useSelector((state) => state.user.value);
-
+    
+    // Hooks d'états pour les inputs:
     const [selectedImage, setSelectedImage] = useState(null);
-/*    const [firstname, setFirstname] = useState('');
+/*  const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [age, setAge] = useState('');
     const [prosituation, setProsituation] = useState('');
     const [financialCapacity, setFinancialCapacity] = useState('');
     const [desciption, setDesciption] = useState('');
 */
-
-    // Hooks d'états pour les inputs:
     const [delay, setDelay] = useState(0);
     const [budget, setBudget] = useState(10000);
     const [financed, setFinanced] = useState('yes');
@@ -139,7 +138,6 @@ const handleSubmit = () => {
                 <span>{budget} €</span>
               </div>
               <div>
-
                 <p className={styles.p}>Financement :</p>
                         <div >
                         <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
