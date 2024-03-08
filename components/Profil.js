@@ -9,13 +9,14 @@ function Profil(props) {
     const user = useSelector((state) => state.user.value);
 
     const [selectedImage, setSelectedImage] = useState(null);
-    const [firstname, setFirstname] = useState('');
+/*    const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [age, setAge] = useState('');
     const [prosituation, setProsituation] = useState('');
     const [financialCapacity, setFinancialCapacity] = useState('');
     const [desciption, setDesciption] = useState('');
-    
+*/
+
     // Hooks d'états pour les inputs:
     const [delay, setDelay] = useState(0);
     const [budget, setBudget] = useState(10000);
