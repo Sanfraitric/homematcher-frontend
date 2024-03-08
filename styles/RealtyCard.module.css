@@ -1,13 +1,30 @@
-.card{
-    display: flexbox;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
+.container{
+    display: column;
+    border: solid 6px #FF4D4D;
+    padding: 5px;
+  }
+
+/*Image*/
 .image {
     height: 450px;
     width: 400px;
     border-radius: 10px;
   }
-  
+
+  /*Texte*/
+
+  .p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    color: black;
+  }
+
+
+/*Icone Delete*/
+
   .delete {
     display:flex;
    justify-content: center;

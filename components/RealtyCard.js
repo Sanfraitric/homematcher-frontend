@@ -23,9 +23,9 @@ function RealtyCard(props) {
 
     }
     return(
-        <div className={styles.card}>
+        <div className={styles.container}>
          <img src='appart1.jpg' className={styles.image}/>
-         <p>{props.description}</p>
+         <p className={styles.p}>{props.description}</p>
          <FontAwesomeIcon icon={faXmark} className={styles.delete} onClick={deleteCard}/>
         </div>
     );

@@ -11,6 +11,7 @@ function MyRealtys() {
   const token = useSelector((state) => state.user.value.token);
   const myRealty= useSelector((state) => state.realtys.value);
 
+   // Récupération des biens immobiliers
   useEffect(() => {
     fetch('http://localhost:3000/realtys', {
       method: 'GET',
@@ -26,10 +27,12 @@ function MyRealtys() {
       });
   }, []);
 
+  // Affichage des biens immobiliers
   const realtys = myRealty.map((data, i) => {
     return <RealtyCard key={i} {...data} />;
   })
   console.log(realtys)
+  
   return (
     <div className={styles.container}>
       <div className={styles.header}>
