@@ -25,7 +25,7 @@ function AddRealty() {
   const [budget, setBudget] = useState(10000);
   const [financed, setFinanced] = useState('yes');
   const [terrassed, setTerrassed] = useState('yes');
-  const [imageUrl, setImageUrl] = useState([])
+  const [imageUrl, setImageUrl] = useState([]);
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
   const docs = ['Le dossier de diagnostics techniques.', 'La superficie loi Carrez de la maison', 'Un justificatif d’identité, d’adresse et de situation familiale', 'Les règlements de copropriété', 'Les 3 derniers procès-verbaux des assemblées générales de copropriétaires', 'Le carnet d’entretien de la maison', 'Le dernier appel de charges', 'Les données financières et techniques de la maison '];
@@ -73,16 +73,30 @@ function AddRealty() {
 
 
 const handlePhotoChange = (e) => {
-  const file = e.target.files[0];
-  console.log(e.target.files)
-  const formData = new FormData()
-  formData.append('photoFromFront', file)
- fetch('http://localhost:3000/realtys/upload', {
-  method: "POST",
-  body: formData
- }).then(response => response.json())
-   .then(data => imageUrl.push(data.url))
-}
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('photoFromFront', file);
+
+    fetch('http://localhost:3000/realtys/upload', {
+      method: "POST",
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erreur lors du téléchargement de l\'image.');
+      }
+      return response.json();
+    })
+    .then(data => {
+      setImageUrl(prevState => [...prevState, data.url]);
+      console.log("URL de l'image téléchargée:", data.url);
+    })
+    .catch(error => {
+      console.error("Erreur lors du téléchargement de l'image:", error);
+      alert('Une erreur est survenue lors du téléchargement de l\'image.');
+    });
+  };
+
 
   console.log(imageUrl)
 
@@ -133,13 +147,14 @@ const handleAddRealty = () => {
          </div>
           <div className={styles.middleContainer}>
           <input
-           type="file"
-           accept="image/*" // Accepte uniquement les fichiers images
-           multiple // Permet à l'utilisateur de sélectionner plusieurs fichiers
-           onChange={handlePhotoChange}
-           className={styles.inputFile}
-          />
-          <label for="file-upload" classname={styles.button}>Ajouter une image</label>
+  id="file-upload"
+  type="file"
+  accept="image/*"
+  multiple
+  onChange={handlePhotoChange}
+  className={styles.inputFile}
+/>
+<label htmlFor="file-upload" className={styles.button}>Ajouter une image</label>
           <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
           {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
