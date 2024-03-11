@@ -8,7 +8,7 @@ import RealtyCard from './RealtyCard';
 
 function MyRealtys() {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.value.token);
+  const user = useSelector((state) => state.user.value);
   const myRealty= useSelector((state) => state.realtys.value);
 
    // Récupération des biens immobiliers
@@ -17,7 +17,7 @@ function MyRealtys() {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `${token}` // Incluez le token dans l'en-tête Authorization
+        'Authorization': `${user.token}` // Incluez le token dans l'en-tête Authorization
       },
     })
       .then(response => response.json())
@@ -31,19 +31,17 @@ function MyRealtys() {
   })
 
   return (
-    <div className={styles.container}>
+    <div className={styles.main}>
       <div className={styles.header}>
-        <HeaderConnected />
+        <HeaderConnected/>
       </div>
-      <div className={styles.background}>
-        <div className={styles.addRealty}>
-          <Link href='/AddRealtyPage'>
+      <div className={styles.container}>
+            <Link href='/AddRealtyPage'>
             <button className={styles.btn}> + Ajouter un bien </button>
           </Link>
-        </div>
-        <div className={styles.realtyCard}>
+    <div className={styles.realtyCard}>
           {realtys}
-        </div>
+      </div>
       </div>
     </div>
   );
