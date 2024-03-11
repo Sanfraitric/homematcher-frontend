@@ -113,3 +113,16 @@
     cursor: pointer;
     border: none;
 }
+
+.image{
+    width: 10%;
+    height: 95%;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+.encardDePhoto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

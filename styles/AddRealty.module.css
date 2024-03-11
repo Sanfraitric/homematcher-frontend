@@ -258,15 +258,11 @@ cursor: pointer;
       margin: 20%;
     }
 
-
-  
-
-
-  
   /*Image*/
 
   .carrousel{
-    display: flex;
-    max-height: 30px;
-    object-fit: cover; 
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 10px;
     }
