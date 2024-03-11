@@ -72,7 +72,7 @@ function AddRealty() {
 
 
 
-const handlePhotoChange = (e) => {
+  const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('photoFromFront', file);
@@ -81,20 +81,20 @@ const handlePhotoChange = (e) => {
       method: "POST",
       body: formData
     })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Erreur lors du téléchargement de l\'image.');
-      }
-      return response.json();
-    })
-    .then(data => {
-      setImageUrl(prevState => [...prevState, data.url]);
-      console.log("URL de l'image téléchargée:", data.url);
-    })
-    .catch(error => {
-      console.error("Erreur lors du téléchargement de l'image:", error);
-      alert('Une erreur est survenue lors du téléchargement de l\'image.');
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erreur lors du téléchargement de l\'image.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setImageUrl(prevState => [...prevState, data.url]);
+        console.log("URL de l'image téléchargée:", data.url);
+      })
+      .catch(error => {
+        console.error("Erreur lors du téléchargement de l'image:", error);
+        alert('Une erreur est survenue lors du téléchargement de l\'image.');
+      });
   };
 
 
@@ -105,19 +105,19 @@ const handlePhotoChange = (e) => {
 
 
 
-const handleAddRealty = () => {
-  fetch('http://localhost:3000/realtys/addRealtys', {
-    method: "POST",
-    headers: { 
-      'Content-Type': 'application/json',
-      'Authorization': `${token}`
-    },
-    body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl})
-  }).then(response => response.json())  .then(data => {
-    console.log(data)
-    router.push('/RealtysPage')
-  }).catch(error => console.error('Erreur:', error));
-}
+  const handleAddRealty = () => {
+    fetch('http://localhost:3000/realtys/addRealtys', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${token}`
+      },
+      body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl })
+    }).then(response => response.json()).then(data => {
+      console.log(data)
+      router.push('/RealtysPage')
+    }).catch(error => console.error('Erreur:', error));
+  }
 
 
 
@@ -129,77 +129,77 @@ const handleAddRealty = () => {
       <div className={styles.main}>
         <div className={styles.container}>
           <div className={styles.leftContainer}>
-          <h3 classname={styles.h3}> Informations:</h3>
-            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >  
-            <Autocomplete onLoad={(autocomplete) => {
-              autocomplete.setFields(['address_component']);
-              autocomplete.setTypes(['(regions)']); 
+            <h3 classname={styles.h3}> Informations:</h3>
+            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >
+              <Autocomplete onLoad={(autocomplete) => {
+                autocomplete.setFields(['address_component']);
+                autocomplete.setTypes(['(regions)']);
               }}
-            onPlaceChanged={() => {}}
-            >
-            <input className={styles.inputText} type="text" placeholder="Ville ou département:" />
-            </Autocomplete>
+                onPlaceChanged={() => { }}
+              >
+                <input className={styles.inputText} type="text" placeholder="Ville ou département:" />
+              </Autocomplete>
             </LoadScript>
-            <input type="text" className={styles.inputDesc} placeholder='Description : ...' onChange={(e) => setDescription(e.target.value)} value={description}/>
-            <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
-            <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
-            <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
-         </div>
+            <input type="text" className={styles.inputDesc} placeholder='Description : ...' onChange={(e) => setDescription(e.target.value)} value={description} />
+            <input type="text" className={styles.inputText} placeholder='Superficie: ...m²' onChange={(e) => setArea(e.target.value)} value={area} />
+            <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms} />
+            <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €' onChange={(e) => setPrice(e.target.value)} value={price} />
+          </div>
           <div className={styles.middleContainer}>
-          <input
-  id="file-upload"
-  type="file"
-  accept="image/*"
-  multiple
-  onChange={handlePhotoChange}
-  className={styles.inputFile}
-/>
-<label htmlFor="file-upload" className={styles.button}>Ajouter une image</label>
-          <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
-          {/* Bouton pour ajouter le bien */}
-          <Link href='/RealtysPage'>
-          <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
-          </Link>
+            <input
+              id="file-upload"
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handlePhotoChange}
+              className={styles.inputFile}
+            />
+            <label htmlFor="file-upload" className={styles.button}>Ajouter une image</label>
+            <ImageCarrousel images={imageUrl} className={styles.carrousel} />
+            {/* Bouton pour ajouter le bien */}
+            <Link href='/RealtysPage'>
+              <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
+            </Link>
           </div>
           <div className={styles.rightContainer}>
             <div className={styles.mandatoryDocuments}>
-            <h2 className={styles.h2}>Documents Obligatoires</h2> 
-            <FontAwesomeIcon onClick={handleInfoClick} className={styles.infoButton} icon={faQuestion} />
-            {showDocs && 
-            <div>
-            <ul>
-              {docs.map((doc, index) => (
-              <li key={index}>{doc}</li>
-              ))}
-            </ul>
-            </div>
-            }
+              <h2 className={styles.h2}>Documents Obligatoires</h2>
+              <FontAwesomeIcon onClick={handleInfoClick} className={styles.infoButton} icon={faQuestion} />
+              {showDocs &&
+                <div>
+                  <ul>
+                    {docs.map((doc, index) => (
+                      <li key={index}>{doc}</li>
+                    ))}
+                  </ul>
+                </div>
+              }
               <div className={styles.downloadDocuments}>
                 <input type="file" id="fileInput" multiple onChange={handleFileSelect} style={{ display: 'none' }} />
-                 <button className={styles.button} onClick={handleButtonClick}>Documents à fournir</button>
+                <button className={styles.button} onClick={handleButtonClick}>Documents à fournir</button>
                 {filesSelected && <FontAwesomeIcon className={styles.downloadIcon} icon={faCheck} color="green" />}
               </div>
-          </div>
-          <div className={styles.whiteContainer}>
-            <div className={styles.infoAcheteur}>
-           <h3 classname={styles.h3}> Profil acheteur souhaité:</h3>
-              <div classname={styles.inputRangeContainer}>
-                <p classename={styles.p}>Délai :</p>
-                <input type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange} className={styles.inputRange}/>
-                <span>{delay} semaine(s)</span>
-              </div>
-              <div classname={styles.inputRangeContainer}>
-                <p classename={styles.p}> Budget : </p>
-                <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
-                <span>{budget} €</span>
-              </div>
-              <div classname={styles.inputRangeContainer}>
-                <p classename={styles.p}>Financement :</p>
-                <div classname={styles.radioContainer}>
-                  <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
-                  <label htmlFor="financed-yes">Oui</label>
-                  <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
-                  <label htmlFor="financed-no">Non</label>
+            </div>
+            <div className={styles.whiteContainer}>
+              <div className={styles.infoAcheteur}>
+                <h3 classname={styles.h3}> Profil acheteur souhaité:</h3>
+                <div classname={styles.inputRangeContainer}>
+                  <p classename={styles.p}>Délai :</p>
+                  <input type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange} className={styles.inputRange} />
+                  <span>{delay} semaine(s)</span>
+                </div>
+                <div classname={styles.inputRangeContainer}>
+                  <p classename={styles.p}> Budget : </p>
+                  <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
+                  <span>{budget} €</span>
+                </div>
+                <div classname={styles.inputRangeContainer}>
+                  <p classename={styles.p}>Financement :</p>
+                  <div classname={styles.radioContainer}>
+                    <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
+                    <label htmlFor="financed-yes">Oui</label>
+                    <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
+                    <label htmlFor="financed-no">Non</label>
                   </div>
                 </div>
               </div>
