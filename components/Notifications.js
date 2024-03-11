@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styles from '../styles/Likes.module.css';
+import styles from '../styles/Notifications.module.css';
 import HeaderConnected from './HeaderConnected'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faThumbsUp, faComments, faUser, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faComments, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function Like({ type }) {
 
@@ -17,29 +17,19 @@ function Like({ type }) {
         case 'message':
             message = (
             <>
-                <div className={styles.notification}>
-            <FontAwesomeIcon icon={faComments} className={styles.icon} />
-            <h3>Vous avez un message à consulter !</h3>
+            <div className={styles.notification}>
+                <FontAwesomeIcon icon={faComments} className={styles.icon} />
+                <h3 className={styles.text}>Vous avez un message à consulter !</h3>
             </div>
             </>
             );
             break;
-            case 'like':
-                message = (
-                    <>
-                        <div className={styles.notification}>
-                        <FontAwesomeIcon icon={faThumbsUp} className={styles.icon} />
-                        <h3>Vous avez un nouveau like !</h3>
-                        </div>
-                    </>
-                );
-                break;
         case 'matches':
             message = (
                 <>
                 <div className={styles.notification}>
-                <FontAwesomeIcon icon={faHeart} className={styles.icon} />
-                <h3>Vous avez des matchs à consulter !</h3>
+                    <FontAwesomeIcon icon={faHeart} className={styles.icon} />
+                    <h3 className={styles.text} >Vous avez des matchs à consulter !</h3>
                 </div>
             </>
                 );
@@ -68,7 +58,8 @@ function Likes() {
             </div>
             <div className={styles.container}>
                 <Like type="message" />
-                <Like type="like" />
+            </div>
+            <div className={styles.container}>
                 <Like type="matches" />
             </div>
         </div>

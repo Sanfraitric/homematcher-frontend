@@ -25,7 +25,7 @@ function AddRealty() {
   const [budget, setBudget] = useState(10000);
   const [financed, setFinanced] = useState('yes');
   const [terrassed, setTerrassed] = useState('yes');
-  const [imageUrl, setImageUrl] = useState([])
+  const [imageUrl, setImageUrl] = useState([]);
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
   const docs = ['Le dossier de diagnostics techniques.', 'La superficie loi Carrez de la maison', 'Un justificatif d’identité, d’adresse et de situation familiale', 'Les règlements de copropriété', 'Les 3 derniers procès-verbaux des assemblées générales de copropriétaires', 'Le carnet d’entretien de la maison', 'Le dernier appel de charges', 'Les données financières et techniques de la maison '];
@@ -41,185 +41,173 @@ function AddRealty() {
   };
 
   const minDelay = 0;
-  const maxDelay = 52; 
+  const maxDelay = 52;
 
   const handleDelayChange = (e) => {
-  let newDelay = parseInt(e.target.value);
-  newDelay = Math.min(Math.max(minDelay, newDelay), maxDelay);
-  setDelay(newDelay);
-};
+    let newDelay = parseInt(e.target.value);
+    newDelay = Math.min(Math.max(minDelay, newDelay), maxDelay);
+    setDelay(newDelay);
+  };
 
-console.log(imageUrl)
+  console.log(imageUrl)
+
+  const handleInfoClick = () => {
+    setShowDocs(!showDocs);
+  };
 
 
+  const handleButtonClick = () => {
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+      fileInput.click();
+    }
+  };
 
-const handleInfoClick = () => {
-  setShowDocs(!showDocs);
-};
-  
-
-const handleButtonClick = () => {
-  const fileInput = document.getElementById('fileInput');
-  if (fileInput) {
-    fileInput.click();
+  //Documents de droite
+  const handleFileSelect = (e) => {
+    const files = e.target.files;
+    // Traitez les fichiers sélectionnés comme vous le souhaitez
+    console.log(files);
   }
-};
 
-//Documents de droite
-const handleFileSelect = (event) => {
-  const files = event.target.files;
-  if (files.length > 0) {
-    setFilesSelected(true);
+
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('photoFromFront', file);
+
+    fetch('http://localhost:3000/realtys/upload', {
+      method: "POST",
+      body: formData
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erreur lors du téléchargement de l\'image.');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setImageUrl(prevState => [...prevState, data.url]);
+        console.log("URL de l'image téléchargée:", data.url);
+      })
+      .catch(error => {
+        console.error("Erreur lors du téléchargement de l'image:", error);
+        alert('Une erreur est survenue lors du téléchargement de l\'image.');
+      });
+  };
+
+
+  console.log(imageUrl)
+
+
+
+
+
+
+  const handleAddRealty = () => {
+    fetch('http://localhost:3000/realtys/addRealtys', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${token}`
+      },
+      body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl })
+    }).then(response => response.json()).then(data => {
+      console.log(data)
+      router.push('/RealtysPage')
+    }).catch(error => console.error('Erreur:', error));
   }
-};
-
-
-const handlePhotoChange = (e) => {
-  const file = e.target.files[0];
-  console.log(e.target.files)
-  const formData = new FormData()
-  formData.append('photoFromFront', file)
- fetch('http://localhost:3000/realtys/upload', {
-  method: "POST",
-  body: formData
- }).then(response => response.json())
-   .then(data => imageUrl.push(data.url))
-}
-
-console.log(imageUrl)
-
-
-
-
-
-
-const handleAddRealty = () => {
-  fetch('http://localhost:3000/realtys/addRealtys', {
-    method: "POST",
-    headers: { 
-      'Content-Type': 'application/json',
-      'Authorization': `${token}`
-    },
-    body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl})
-  }).then(response => response.json())  .then(data => {
-    console.log(data)
-    router.push('/RealtysPage')
-  }).catch(error => console.error('Erreur:', error));
-}
 
 
 
   return (
     <div>
       <div className={styles.header}>
-        <HeaderConnected/>
+        <HeaderConnected />
       </div>
       <div className={styles.main}>
-        <div className={styles.container}>   
+        <div className={styles.container}>
           <div className={styles.leftContainer}>
-          <div className={styles.information}>
-          <h3 className={styles.h3}> Informations:</h3>
-            <h3 className={styles.VouD}>Ville ou département</h3>
-            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >  
-            <Autocomplete onLoad={(autocomplete) => {
-              autocomplete.setFields(['address_component']);
-              autocomplete.setTypes(['(regions)']); 
+            <h3 classname={styles.h3}> Informations:</h3>
+            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >
+              <Autocomplete onLoad={(autocomplete) => {
+                autocomplete.setFields(['address_component']);
+                autocomplete.setTypes(['(regions)']);
               }}
-            onPlaceChanged={() => {}}
-            >
-            <input className={styles.inputText} type="text"/>
-            </Autocomplete>
+                onPlaceChanged={() => { }}
+              >
+                <input className={styles.inputText} type="text" placeholder="Ville ou département:" />
+              </Autocomplete>
             </LoadScript>
-            <label htmlFor='text' className={styles.label}>Description :</label>
-            <br/>
-            <input type="text" className={styles.inputDesc} onChange={(e) => setDescription(e.target.value)} value={description}/>
-            <br/>
-            <label htmlFor='text' className={styles.label}>Superficie (en m²) :</label>
-            <br/>
-            <input type="text" className={styles.inputText} onChange={(e) => setArea(e.target.value)} value={area} />
-            <br/>
-            <label htmlFor='range' className={styles.label}>Nombre de pièces :</label>
-            <br/>
-            <input type="range" className={styles.inputRange} min={0} max={10} value={rooms} onChange={(e) => setRooms(e.target.value)}/>
-            <span className={styles.label}>  {rooms} pièces</span>
-            <br/>
-            <br/>
-            <label htmlFor='text' className={styles.label}>Prix de vente souhaité (en €) :</label>
-            <br/>
-            <input type="range" className={styles.inputRange} min={10000} max={1000000} step={10000} onChange={(e) =>  setPrice(e.target.value)} value={price}/>
-            <span className={styles.label}> {price}€</span>
-            <br/>
-            <br/>
-            <label type="radio" className={styles.label}>Terrasse extérieure</label>
-            <br/>
-            <input type="radio" id="terrassed-yes" name="terrassed" value="yes" checked={terrassed === "yes"} onChange={() => setTerrassed("yes")} />
-            <label htmlFor="terrassed-yes" className={styles.label} >Oui</label>
-            <input type="radio" id="terrassed-no" name="terrassed" value="no" checked={terrassed === "no"} onChange={() => setTerrassed("no")} />
-            <label htmlFor="financed-no" className={styles.label} >Non</label>
-         </div>
-         </div>
+            <input type="text" className={styles.inputDesc} placeholder='Description : ...' onChange={(e) => setDescription(e.target.value)} value={description} />
+            <input type="text" className={styles.inputText} placeholder='Superficie: ...m²' onChange={(e) => setArea(e.target.value)} value={area} />
+            <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms} />
+            <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €' onChange={(e) => setPrice(e.target.value)} value={price} />
+          </div>
           <div className={styles.middleContainer}>
-          <input
-           type="file"
-           accept="image/*" // Accepte uniquement les fichiers images
-           multiple // Permet à l'utilisateur de sélectionner plusieurs fichiers
-           onChange={handlePhotoChange}
-           className={styles.inputFile}
-          />
-          <label for="file-upload" className={styles.button}>Ajouter une image</label>
-          <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
-          {/* Bouton pour ajouter le bien */}
-          <Link href='/RealtysPage'>
-          <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
-          </Link>
+            <input
+              id="file-upload"
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handlePhotoChange}
+              className={styles.inputFile}
+            />
+            <label htmlFor="file-upload" className={styles.button}>Ajouter une image</label>
+            <ImageCarrousel images={imageUrl} className={styles.carrousel} />
+            {/* Bouton pour ajouter le bien */}
+            <Link href='/RealtysPage'>
+              <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
+            </Link>
           </div>
           <div className={styles.rightContainer}>
             <div className={styles.mandatoryDocuments}>
-            <h2 className={styles.h2}>Documents Obligatoires</h2> 
-            <FontAwesomeIcon onClick={handleInfoClick} className={styles.infoButton} icon={faQuestion} />
-            {showDocs && 
-            <div>
-            <ul>
-              {docs.map((doc, index) => (
-              <li key={index}>{doc}</li>
-              ))}
-            </ul>
-            </div>
-            }
+              <h2 className={styles.h2}>Documents Obligatoires</h2>
+              <FontAwesomeIcon onClick={handleInfoClick} className={styles.infoButton} icon={faQuestion} />
+              {showDocs &&
+                <div>
+                  <ul>
+                    {docs.map((doc, index) => (
+                      <li key={index}>{doc}</li>
+                    ))}
+                  </ul>
+                </div>
+              }
               <div className={styles.downloadDocuments}>
                 <input type="file" id="fileInput" multiple onChange={handleFileSelect} style={{ display: 'none' }} />
-                 <button className={styles.button} onClick={handleButtonClick}>Documents à fournir</button>
+                <button className={styles.button} onClick={handleButtonClick}>Documents à fournir</button>
                 {filesSelected && <FontAwesomeIcon className={styles.downloadIcon} icon={faCheck} color="green" />}
               </div>
-          </div>
-          <div className={styles.whiteContainer}>
-            <div className={styles.infoAcheteur}>
-           <h3 className={styles.h3}> Profil acheteur souhaité:</h3>
-              <div className={styles.inputRangeContainer}>
-                <p classename={styles.p}>Délai :</p>
-                <input type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange} className={styles.inputRange}/>
-                <span>{delay} semaine(s)</span>
-              </div>
-              <div className={styles.inputRangeContainer}>
-                <p classename={styles.p}> Budget : </p>
-                <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
-                <span>{budget} €</span>
-              </div>
-              <div className={styles.inputRangeContainer}>
-                <p classename={styles.p}>Financement :</p>
-                <div className={styles.radioContainer}>
-                  <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
-                  <label htmlFor="financed-yes">Oui</label>
-                  <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
-                  <label htmlFor="financed-no">Non</label>
+            </div>
+            <div className={styles.whiteContainer}>
+              <div className={styles.infoAcheteur}>
+                <h3 classname={styles.h3}> Profil acheteur souhaité:</h3>
+                <div classname={styles.inputRangeContainer}>
+                  <p classename={styles.p}>Délai :</p>
+                  <input type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange} className={styles.inputRange} />
+                  <span>{delay} semaine(s)</span>
+                </div>
+                <div classname={styles.inputRangeContainer}>
+                  <p classename={styles.p}> Budget : </p>
+                  <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
+                  <span>{budget} €</span>
+                </div>
+                <div classname={styles.inputRangeContainer}>
+                  <p classename={styles.p}>Financement :</p>
+                  <div classname={styles.radioContainer}>
+                    <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
+                    <label htmlFor="financed-yes">Oui</label>
+                    <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
+                    <label htmlFor="financed-no">Non</label>
                   </div>
-                  </div>
+                </div>
               </div>
-              </div>
-              </div>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
   );
 }
