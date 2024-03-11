@@ -28,12 +28,11 @@ export const userSlice = createSlice({
       state.value.isConnect = false
     },
     UpdateProfil: (state, action) => {
-      state.value.firstname = action.payload.firstname;
-      state.value.lastname = action.payload.lastname;
-      state.value.age = action.payload.age;
-      state.value.prosituation = action.payload.prosituation;
+      state.value.username = action.payload.username;
+      state.value.delay = action.payload.delay;
+      state.value.financed = action.payload.financed;
       state.value.financialCapacity = action.payload.financialCapacity;
-      state.value.desciption = action.payload.desciption;
+      state.value.description = action.payload.description;
     }
   },
 });
