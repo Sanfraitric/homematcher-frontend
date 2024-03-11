@@ -7,13 +7,14 @@ import { UpdateProfil } from '../reducers/user';
 
 function Profil(props) {
     const user = useSelector((state) => state.user.value);
+    const dispatch = useDispatch();
     
     // Hooks d'états pour les inputs:
     const [selectedImage, setSelectedImage] = useState(null);
-/*  const [username, setUsername] = useState('');
+    const [username, setUsername] = useState('');
     const [financialCapacity, setFinancialCapacity] = useState('');
     const [desciption, setDesciption] = useState('');
-*/
+
     const [delay, setDelay] = useState(0);
     const [budget, setBudget] = useState(10000);
     const [financed, setFinanced] = useState('yes');
@@ -23,7 +24,7 @@ function Profil(props) {
         setSelectedImage(event.target.value);
     };
 
-/*Modifier les données pour le fetch
+//Modifier les données pour le fetch
     useEffect(() => {
         fetch('http://localhost:3000/users', {
           method: 'GET',
@@ -71,7 +72,7 @@ const handleSubmit = () => {
     
     })
 }
-*/
+
 
     //Budget
     const minBudget = 0;

@@ -4,7 +4,7 @@ import {  useSelector } from 'react-redux';
 
 function Seller() {
     
-    const [financed, setFinanced] = useState('yes');
+    const [financed, setFinanced] = useState(false);
     const [budget, setBudget] = useState();
     const [delay, setDelay] = useState(0);
     const myRealty= useSelector((state) => state.realtys.value);
