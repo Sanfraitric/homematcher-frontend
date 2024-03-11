@@ -26,7 +26,7 @@ function AddRealty() {
   const [typeOfRealty, setTypeOfRealty] = useState('Maison')
   const [delay, setDelay] = useState(0);
   const [budget, setBudget] = useState(10000);
-  const [financed, setFinanced] = useState('Non');
+  const [financed, setFinanced] = useState(false);
   const [imageUrl, setImageUrl] = useState([])
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
@@ -203,9 +203,9 @@ const handleTerraceChange = (e) => {
               <div classname={styles.inputRangeContainer}>
                 <p classename={styles.p}>Financement :</p>
                 <div classname={styles.radioContainer}>
-                  <input type="radio" id="financed-yes" name="financed" value="Oui" checked={financed === "Oui"} onChange={() => setFinanced("Oui")} />
+                  <input type="radio" id="financed-yes" name="financed" value={true} checked={financed === true} onChange={() => setFinanced(true)} />
                   <label htmlFor="financed-yes">Oui</label>
-                  <input type="radio" id="financed-no" name="financed" value="Non" checked={financed === "Non"} onChange={() => setFinanced("Non")} />
+                  <input type="radio" id="financed-no" name="financed" value={false} checked={financed === false} onChange={() => setFinanced(false)} />
                   <label htmlFor="financed-no">Non</label>
                   </div>
                 </div>
