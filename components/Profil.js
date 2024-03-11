@@ -10,10 +10,7 @@ function Profil(props) {
     
     // Hooks d'états pour les inputs:
     const [selectedImage, setSelectedImage] = useState(null);
-/*  const [firstname, setFirstname] = useState('');
-    const [lastname, setLastname] = useState('');
-    const [age, setAge] = useState('');
-    const [prosituation, setProsituation] = useState('');
+/*  const [username, setUsername] = useState('');
     const [financialCapacity, setFinancialCapacity] = useState('');
     const [desciption, setDesciption] = useState('');
 */
@@ -39,18 +36,16 @@ function Profil(props) {
           .then(data => {
         //console.log(data)
         data.result && dispatch(UpdateProfil({
-            firstname: data.user.firstname,
-            lastname: data.user.lastname,
-            age: data.user.age,
-            prosituation: data.user.prosituation,
+            username: data.user.username,
+            delay: data.user.delay,
+            financed: data.user.financed,
             financialCapacity: data.user.financialCapacity,
             desciption: data.user.desciption,
         })
         );
-        setFirstname(data.user.firstname);
-        setLastname(data.user.lastname);
-        setAge(data.user.age);
-        setProsituation(data.user.prosituation);
+        setUsername(data.user.username);
+        setDelay(data.user.delay);
+        setFinanced(data.user.financed);
         setFinancialCapacity(data.user.financialCapacity);
         setDesciption(data.user.desciption);
           });
@@ -64,10 +59,9 @@ const handleSubmit = () => {
             'Authorization': `${user.token}` // Incluez le token dans l'en-tête Authorization
           },
           body: JSON.stringify({ 
-            firstname,
-            lastname,
-            age,
-            prosituation,
+            username,
+            delay,
+            financed,
             financialCapacity,
             desciption,
         }),

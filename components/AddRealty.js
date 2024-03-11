@@ -170,20 +170,20 @@ const handleTerraceChange = (e) => {
           </div>
           <div className={styles.rightContainer}>
             <div className={styles.mandatoryDocuments}>
-            <h2 className={styles.h2}>Documents Obligatoires</h2> 
-            <FontAwesomeIcon onClick={handleInfoClick} className={styles.infoButton} icon={faQuestion} />
-            {showDocs && 
-            <div>
-            <ul>
-              {docs.map((doc, index) => (
-              <li key={index}>{doc}</li>
-              ))}
-            </ul>
-            </div>
-            }
+              <h2 className={styles.h2}>Documents Obligatoires</h2>
+              <FontAwesomeIcon onClick={handleInfoClick} className={styles.infoButton} icon={faQuestion} />
+              {showDocs &&
+                <div>
+                  <ul>
+                    {docs.map((doc, index) => (
+                      <li key={index}>{doc}</li>
+                    ))}
+                  </ul>
+                </div>
+              }
               <div className={styles.downloadDocuments}>
                 <input type="file" id="fileInput" multiple onChange={handleFileSelect} style={{ display: 'none' }} />
-                 <button className={styles.button} onClick={handleButtonClick}>Documents à fournir</button>
+                <button className={styles.button} onClick={handleButtonClick}>Documents à fournir</button>
                 {filesSelected && <FontAwesomeIcon className={styles.downloadIcon} icon={faCheck} color="green" />}
               </div>
           </div>
