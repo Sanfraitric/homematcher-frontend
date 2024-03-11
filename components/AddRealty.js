@@ -136,7 +136,6 @@ const handleAddRealty = () => {
            onChange={handlePhotoChange}
            className={styles.inputFile}
           />
-          <label for="file-upload" className={styles.button}>Ajouter une image</label>
           <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
           {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
