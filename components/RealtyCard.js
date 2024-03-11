@@ -9,7 +9,6 @@ import ImageCarrousel from './Carrousel';
 
 function RealtyCard(props) {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.value.token);
 
   const deleteCard = (id) => {
     fetch(`http://localhost:3000/realtys/delete/${id}`, { // Utilisez l'ID de la propriété immobilière dans l'URL de l'API
