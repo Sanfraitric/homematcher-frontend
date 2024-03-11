@@ -138,7 +138,7 @@ const handleTerraceChange = (e) => {
           
             <h4 className={styles.inputTitle}> Extérieur : </h4>
             <input type="text" className={styles.inputText} placeholder='Surface du terrain : ...m²'  onChange={(e) => setOutdoorArea(e.target.value)} value={outdoorArea} />
-            <div classname={styles.radioContainer}>
+            <div className={styles.radioContainer}>
             <input type="radio" id="terrace-yes" name="terrace" value="true" checked={terrace} onChange={handleTerraceChange}/>
               <label htmlFor="terrace-yes">Avec terrasse</label>
             <input type="radio" id="terrace-no" name="terrace" value="false" checked={!terrace} onChange={handleTerraceChange}/>
@@ -189,20 +189,20 @@ const handleTerraceChange = (e) => {
           </div>
           <div className={styles.whiteContainer}>
             <div className={styles.infoAcheteur}>
-           <h3 classname={styles.h3}> Profil acheteur souhaité:</h3>
-              <div classname={styles.inputRangeContainer}>
-                <p classename={styles.p}>Délai :</p>
+           <h3 className={styles.h3}> Profil acheteur souhaité:</h3>
+              <div className={styles.inputRangeContainer}>
+                <p className={styles.p}>Délai :</p>
                 <input type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange} className={styles.inputRange}/>
                 <span>{delay} semaine(s)</span>
               </div>
-              <div classname={styles.inputRangeContainer}>
-                <p classename={styles.p}> Budget : </p>
+              <div className={styles.inputRangeContainer}>
+                <p className={styles.p}> Budget : </p>
                 <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
                 <span>{budget} €</span>
               </div>
-              <div classname={styles.inputRangeContainer}>
-                <p classename={styles.p}>Financement :</p>
-                <div classname={styles.radioContainer}>
+              <div className={styles.inputRangeContainer}>
+                <p className={styles.p}>Financement :</p>
+                <div className={styles.radioContainer}>
                   <input type="radio" id="financed-yes" name="financed" value="Oui" checked={financed === "Oui"} onChange={() => setFinanced("Oui")} />
                   <label htmlFor="financed-yes">Oui</label>
                   <input type="radio" id="financed-no" name="financed" value="Non" checked={financed === "Non"} onChange={() => setFinanced("Non")} />
