@@ -3,7 +3,31 @@
 /*Container*/
 .main {
   background-color: #F4E6E6;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Pour empêcher la barre de défilement horizontale */
 }
+
+
+/* Ajouter ces styles pour encadrer les inputs dans leftContainer */
+.inputContainer {
+  margin-bottom: 20px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Ajouter ces styles pour les titres au-dessus des inputs */
+.inputTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+
 
 .container {
   font-family: 'Montserrat', sans-serif;

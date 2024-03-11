@@ -17,13 +17,16 @@ function AddRealty() {
 
   // Hooks d'états pour les inputs:
   const [description, setDescription] = useState('');
-  const [area, setArea] = useState();
-  const [rooms, setRooms] = useState();
   const [price, setPrice] = useState();
+  const [livingArea, setLivingArea] = useState();
+  const [outdoorArea, setOutdoorArea] = useState();
+  const [rooms, setRooms] = useState();
+  const [location, setLocation] = useState()
+  const [terrace, setTerrace] = useState(false);
+  const [typeOfRealty, setTypeOfRealty] = useState('Maison')
   const [delay, setDelay] = useState(0);
   const [budget, setBudget] = useState(10000);
-  const [financed, setFinanced] = useState('yes');
-  const [terrassed, setTerrassed] = useState('yes');
+  const [financed, setFinanced] = useState('Non');
   const [imageUrl, setImageUrl] = useState([])
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
@@ -66,25 +69,22 @@ function AddRealty() {
   //Documents de droite
   const handleFileSelect = (e) => {
     const files = e.target.files;
-    // Traitez les fichiers sélectionnés comme vous le souhaitez
-    console.log(files);
+    // Traitez les fichiers sélectionnés comme vous le souhaitez;
   }
 
 
 
 const handlePhotoChange = (e) => {
   const file = e.target.files[0];
-  console.log(e.target.files)
   const formData = new FormData()
   formData.append('photoFromFront', file)
  fetch('http://localhost:3000/realtys/upload', {
   method: "POST",
   body: formData
  }).then(response => response.json())
-   .then(data => imageUrl.push(data.url))
+   .then(data => setImageUrl([...imageUrl, data.url]))
 }
 
-  console.log(imageUrl)
 
 
 
@@ -95,14 +95,16 @@ const handleAddRealty = () => {
       'Content-Type': 'application/json',
       'Authorization': `${token}`
     },
-    body: JSON.stringify({ description, area, rooms, price, delay, budget, financed, imageUrl, realtyId})
+    body: JSON.stringify({ description, price, livingArea, outdoorArea, rooms, location, terrace, typeOfRealty, delay, budget, financed, imageUrl, realtyId})
   }).then(response => response.json())  .then(data => {
     console.log(data)
     router.push('/RealtysPage')
   }).catch(error => console.error('Erreur:', error));
 }
 
-
+const handleTerraceChange = (e) => {
+  setTerrace(e.target.value === "true");
+};
 
   return (
     <div>
@@ -112,7 +114,10 @@ const handleAddRealty = () => {
       <div className={styles.main}>
         <div className={styles.container}>
           <div className={styles.leftContainer}>
-          <h3 classname={styles.h3}> Informations:</h3>
+            <div className={styles.inputContainer}>
+          <h2 className={styles.h2}> Informations:</h2>
+          <h4 className={styles.inputTitle}>Localisation : </h4>
+
             <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >  
             <Autocomplete onLoad={(autocomplete) => {
               autocomplete.setFields(['address_component']);
@@ -120,22 +125,43 @@ const handleAddRealty = () => {
               }}
             onPlaceChanged={() => {}}
             >
-            <input className={styles.inputText} type="text" placeholder="Ville ou département:" />
+            <input className={styles.inputText} type="text" placeholder="Selectionnez la ville, le département, la région ou le pays" onChange={(e) => set} />
             </Autocomplete>
             </LoadScript>
-            <input type="text" className={styles.inputDesc} placeholder='Description : ...' onChange={(e) => setDescription(e.target.value)} value={description}/>
-            <input type="text" className={styles.inputText} placeholder='Superficie: ...m²'  onChange={(e) => setArea(e.target.value)} value={area} />
+            <h4 className={styles.inputTitle}>Description : </h4>
+            <input type="text" className={styles.inputDesc} placeholder='Ecrivez une brève description du bien' onChange={(e) => setDescription(e.target.value)} value={description}/>
+            <h4 className={styles.inputTitle}>Prix de vente souhaité : </h4>
+            <input type="text" className={styles.inputText} placeholder='Inquiquez ici le prix en €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
+            <h4 className={styles.inputTitle}> Intérieur : </h4>
+            <input type="text" className={styles.inputText} placeholder='Surface habitable : ...m²'  onChange={(e) => setLivingArea(e.target.value)} value={livingArea} />
             <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
-            <input type="text" className={styles.inputText} placeholder='Prix de vente souhaité: ... €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
+          
+            <h4 className={styles.inputTitle}> Extérieur : </h4>
+            <input type="text" className={styles.inputText} placeholder='Surface du terrain : ...m²'  onChange={(e) => setOutdoorArea(e.target.value)} value={outdoorArea} />
+            <div classname={styles.radioContainer}>
+            <input type="radio" id="terrace-yes" name="terrace" value="true" checked={terrace} onChange={handleTerraceChange}/>
+              <label htmlFor="terrace-yes">Avec terrasse</label>
+            <input type="radio" id="terrace-no" name="terrace" value="false" checked={!terrace} onChange={handleTerraceChange}/>
+              <label htmlFor="terrace-no">Sans terrasse</label>
+            <br/>
+            <h4 className={styles.inputTitle}>Type de bien : </h4>
+            <input type="radio" id="typeofRealty-Maison" name="typeOfRealty" value="Maison" checked={typeOfRealty === "Maison"} onChange={() => setTypeOfRealty("Maison")} />
+              <label htmlFor="typeofRealty-Maison">Maison</label>
+            <input type="radio" id="typeOfRealty-Appartement" name="typeOfRealty" value="Appartement" checked={typeOfRealty === "Appartement"} onChange={() => setTypeOfRealty("Appartement")} />
+              <label htmlFor="typeOfRealty-Appartement">Appartement</label>
+                    </div>
+              </div>
          </div>
           <div className={styles.middleContainer}>
-          <input
+          {/* <input
            type="file"
            accept="image/*" // Accepte uniquement les fichiers images
            multiple // Permet à l'utilisateur de sélectionner plusieurs fichiers
            onChange={handlePhotoChange}
            className={styles.inputFile}
-          />
+          /> */}
+           <input type="file" id="fileInput" multiple onChange={handlePhotoChange} style={{ display: 'none' }} />
+                 <button className={styles.button} onClick={handleButtonClick}>Ajouter une image</button>
           <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
           {/* Bouton pour ajouter le bien */}
           <Link href='/RealtysPage'>
@@ -177,9 +203,9 @@ const handleAddRealty = () => {
               <div classname={styles.inputRangeContainer}>
                 <p classename={styles.p}>Financement :</p>
                 <div classname={styles.radioContainer}>
-                  <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
+                  <input type="radio" id="financed-yes" name="financed" value="Oui" checked={financed === "Oui"} onChange={() => setFinanced("Oui")} />
                   <label htmlFor="financed-yes">Oui</label>
-                  <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
+                  <input type="radio" id="financed-no" name="financed" value="Non" checked={financed === "Non"} onChange={() => setFinanced("Non")} />
                   <label htmlFor="financed-no">Non</label>
                   </div>
                 </div>
@@ -195,74 +221,3 @@ const handleAddRealty = () => {
 
 export default AddRealty;
 
-// const handlePhotoChange = async (e) => {
-//   const files = e.target.files;
-
-//   // Vérifier si des fichiers ont été sélectionnés
-//   if (files.length > 0) {
-//     const file = files[0]; // Nous supposons qu'un seul fichier est sélectionné
-
-//     // Créer un objet FormData pour envoyer le fichier
-//     const formData = new FormData();
-//     formData.append('file', file);
-
-//     try {
-//       // Envoyer le fichier vers votre route de téléchargement d'image sur le serveur
-//       const response = await fetch('http://localhost:3000/realtys/upload', {
-//         method: 'POST',
-//         body: formData,
-//       });
-
-//       // Analyser la réponse JSON pour obtenir l'URL de l'image
-//       const data = await response.json();
-//       const imageUrl = data.imageUrl;
-
-//       // Mettre à jour l'URL de l'image dans l'état local du composant
-//       setImageUrl(imageUrl);
-//     } catch (error) {
-//       console.error('Error uploading image:', error);
-//     }
-//   }
-// };
-
-
-// const handleSubmit = async () => {
-//   try {
-//     const newRealty = {
-//       description,
-//       area,
-//       rooms,
-//       price,
-//       delay,
-//       budget,
-//       financed,
-//       imageUrl, // Ajouter l'URL de l'image à l'objet
-//       // Autres champs du formulaire...
-//     };
-
-//     // Envoyer les données au backend
-//     const response = await fetch('http://localhost:3000/realtys/addRealtys', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(newRealty),
-//     });
-
-//     const data = await response.json();
-//     addRealty(data); // Ajouter la nouvelle propriété au store Redux
-//   } catch (error) {
-//     console.error('Error adding realty:', error);
-//   }
-// };
-
-
-// //   const handleSubmit = () => {
-// //     fetch('http://.../upload', {
-// //  method: 'POST',
-// //  body: formData,
-// // }).then((response) => response.json())
-// //  .then((data) => {
-// //    ...
-// // });
-//   }
