@@ -13,7 +13,7 @@ export const realtysSlice = createSlice({
             state.value.unshift(action.payload)
         },
         gitRealtys : (state, action) => {
-            state.value =action.payload
+            state.value = action.payload
         },
         deleteRealty: (state, action) => {
             state.value = state.value.filter(realty => realty._id !== action.payload);

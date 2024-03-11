@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteRealty } from '../reducers/realtys';
+import ImageCarrousel from './Carrousel';
+
+
 
 function RealtyCard(props) {
   const dispatch = useDispatch();
@@ -26,14 +29,18 @@ function RealtyCard(props) {
 
   return (
     <div className={styles.card}>
-      <img src={props.imageUrl} className={styles.image}/>
-      <p>{props.description}</p>
-      <p>{props.area}</p>
-      <p>{props.rooms}</p>
-      <p>{props.price}</p>
-      <p>{props.delay}</p>
-      <p>{props.budget}</p>
-      <p>{props.financed}</p>
+       <ImageCarrousel images={props.imageUrl} className={styles.carrousel}/>
+      <p>Description du bien :{props.description}</p>
+      <p>Prix du bien : {props.price}</p>
+      <p>Surface habitable :{props.livingArea}</p>
+      <p>Surface du terrain :{props.outdoorArea}</p>
+      <p>Nombre de pièces :{props.rooms}</p>
+      <p>Localisation : {props.location}</p>
+      <p>Profil acheteur souhaité pour le bien : <br/>
+        Délai (semaines) : {props.delay} <br/>
+        Budget : {props.budget} <br/>
+        Financement : {props.financed} <br/>
+        </p>
       <FontAwesomeIcon icon={faTimes} className={styles.delete} onClick={()=>deleteCard(props._id)} />
     </div>
   );

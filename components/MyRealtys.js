@@ -2,8 +2,8 @@ import styles from '../styles/MyRealtys.module.css';
 import Link from 'next/link'
 import HeaderConnected from './HeaderConnected';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { addRealtyToStore , gitRealtys} from '../reducers/realtys';
+import { useEffect } from 'react';
+import { gitRealtys } from '../reducers/realtys';
 import RealtyCard from './RealtyCard';
 
 function MyRealtys() {

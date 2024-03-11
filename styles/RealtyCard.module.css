@@ -7,10 +7,16 @@
   }
 
 /*Image*/
-.image {
-    height: 450px;
-    width: 400px;
-    border-radius: 10px;
+.carrousel {
+    display: flex;
+    justify-content: center;
+    padding-left: 50px;
+    align-items: center;
+    object-fit: cover;
+    height: 30vh;
+    width: 20vb;
+    align-content: center;
+    width: auto;
   }
 
   /*Texte*/
