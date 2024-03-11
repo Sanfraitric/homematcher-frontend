@@ -128,9 +128,9 @@ const handleTerraceChange = (e) => {
             <input className={styles.inputText} type="text" placeholder="Selectionnez la ville, le département, la région ou le pays" onChange={(e) => set} />
             </Autocomplete>
             </LoadScript>
-            <h4 className={styles.inputTitle}>Description : </h4>
+            <h4 className={styles.inputTitle}> Description : </h4>
             <input type="text" className={styles.inputDesc} placeholder='Ecrivez une brève description du bien' onChange={(e) => setDescription(e.target.value)} value={description}/>
-            <h4 className={styles.inputTitle}>Prix de vente souhaité : </h4>
+            <h4 className={styles.inputTitle}> Prix de vente souhaité : </h4>
             <input type="text" className={styles.inputText} placeholder='Inquiquez ici le prix en €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
             <h4 className={styles.inputTitle}> Intérieur : </h4>
             <input type="text" className={styles.inputText} placeholder='Surface habitable : ...m²'  onChange={(e) => setLivingArea(e.target.value)} value={livingArea} />
