@@ -1,47 +1,49 @@
-.container{
+.main{
   display:grid;
-  grid-template-columns: repeat(3, 33.33vw);
-  grid-template-rows: repeat(9, 10vh);
-  height: 100vh;
   width: 100vw;
+  min-height: 100vh;
+  background-color: #F4E6E6;
 }
 
 .header{
   grid-column-start:1;
-  grid-column-end:4;
+  grid-column-end:3;
   grid-row-start:0;
   grid-row-end:1;
   background-color: white;
+  max-height: 14vh;
 }
 
-.background{
-  grid-column-start:1;
-  grid-column-end:4;
-  grid-row-start: 1;
-  grid-row-end:10;
-  background-color: #F4E6E6;
-  
-}
-
-.addRealty{
+.realtyCard {
+  display: flex;
+  justify-items: center;
+  align-items: center;
   justify-content: center;
-  text-align: center;
+  flex-wrap: wrap;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.p{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  color: black;
 }
 
 .btn{
   background-color:#ff4d4d;
   color:white;
-  height:50px;
-  width:200px;
+  height : 5vh;
+  width: 10vw;
   font-size: larger;
   border: solid 0px white;
   border-radius: 20px;
   cursor:pointer;
-  margin-top:30px;
+  margin-top:15px;
 }
 
-.realtyCard{
-  display: flex;
-  align-items: center;
-  margin-top: 5%;
-}

@@ -29,17 +29,19 @@ function RealtyCard(props) {
   return (
     <div className={styles.card}>
        <ImageCarrousel images={props.imageUrl} className={styles.carrousel}/>
-      <p>Description du bien :{props.description}</p>
-      <p>Prix du bien : {props.price}</p>
-      <p>Surface habitable :{props.livingArea}</p>
-      <p>Surface du terrain :{props.outdoorArea}</p>
-      <p>Nombre de pièces :{props.rooms}</p>
-      <p>Localisation : {props.location}</p>
-      <p>Profil acheteur souhaité pour le bien : <br/>
-        Délai (semaines) : {props.delay} <br/>
-        Budget : {props.budget} <br/>
-        Financement : {props.financed} <br/>
-        </p>
+       <div className={styles.description}>
+      <p className={styles.p}><strong>Description du bien:</strong> &nbsp;&nbsp;{props.description}</p>
+      <p className={styles.p}><strong>Prix du bien:</strong> &nbsp;&nbsp;{props.price}€</p>
+      <p className={styles.p}><strong>Surface habitable:</strong> &nbsp;&nbsp;{props.livingArea}m²</p>
+      <p className={styles.p}><strong>Surface du terrain:</strong> &nbsp;&nbsp;{props.outdoorArea}</p>
+      <p className={styles.p}><strong>Nombre de pièces:</strong> &nbsp;&nbsp;{props.rooms}</p>
+      <p className={styles.p}><strong>Localisation:</strong> &nbsp;&nbsp;{props.location}</p>
+      <p className={styles.p}><strong>Profil acheteur souhaité pour le bien:</strong> <br/>
+        <ul><li>Délai: &nbsp;&nbsp;{props.delay} semaine(s)<br/></li>
+        <li>Budget: &nbsp;&nbsp;{props.budget}€ <br/></li>
+        <li>Financement: &nbsp;&nbsp;{props.financed} <br/></li>
+        </ul></p>
+      </div>
       <FontAwesomeIcon icon={faTimes} className={styles.delete} onClick={()=>deleteCard(props._id)} />
     </div>
   );
