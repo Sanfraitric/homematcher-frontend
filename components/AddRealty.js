@@ -30,7 +30,7 @@ function AddRealty() {
   const [imageUrl, setImageUrl] = useState([])
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
-  const [realtyId, setRealtyId] = useState()
+  const [realtyId, setRealtyId] = useState();
   const docs = ['Le dossier de diagnostics techniques.', 'La superficie loi Carrez de la maison', 'Un justificatif d’identité, d’adresse et de situation familiale', 'Les règlements de copropriété', 'Les 3 derniers procès-verbaux des assemblées générales de copropriétaires', 'Le carnet d’entretien de la maison', 'Le dernier appel de charges', 'Les données financières et techniques de la maison '];
 
   const minBudget = 0;

@@ -8,13 +8,15 @@ function Seller() {
     const [budget, setBudget] = useState();
     const [delay, setDelay] = useState(0);
     const myRealty= useSelector((state) => state.realtys.value);
-const handleFiltre = () => {
-    setBudget(myRealty[0].budget)
-    setDelay(myRealty[0].delay)
-    setFinanced(myRealty[0].financed)
-}
 
 
+    const handleFiltre = (imageUrl) => {
+        const realtyClicked = myRealty.find(realty => realty.imageUrl[0] === imageUrl);
+        setBudget(realtyClicked.budget);
+        setDelay(realtyClicked.delay);
+        setFinanced(realtyClicked.financed);
+        console.log(realtyClicked)
+    }
 
  
    //Délai
@@ -42,8 +44,9 @@ const handleFiltre = () => {
 
     const realtys = myRealty.map((data, i) => {
         console.log(data)
-        return <img className={styles.image} onClick={handleFiltre} src={data.imageUrl[0]}/>;
-      });
+        return <img className={styles.image} onClick={() => handleFiltre(data.imageUrl[0])} src={data.imageUrl[0]}/>;
+    });
+    
 
     return (
         <>
@@ -64,9 +67,9 @@ const handleFiltre = () => {
               </div> 
             <p className={styles.p}>Financement :</p>
                 <div >
-                        <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
+                        <input type="radio" id="financed-yes" name="financed" value={true} checked={financed === true} onChange={() => setFinanced(true)} />
                         <label htmlFor="financed-yes">Oui</label>
-                        <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
+                        <input type="radio" id="financed-no" name="financed" value={false} checked={financed === false} onChange={() => setFinanced(false)} />
                         <label htmlFor="financed-no">Non</label>
                         </div>
                 <div className={styles.btnSell}>
