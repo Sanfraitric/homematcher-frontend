@@ -31,19 +31,17 @@ function MyRealtys() {
   })
 
   return (
-    <div className={styles.container}>
+    <div className={styles.main}>
       <div className={styles.header}>
-        <HeaderConnected />
+        <HeaderConnected/>
       </div>
-      <div className={styles.background}>
-        <div className={styles.addRealty}>
-          <Link href='/AddRealtyPage'>
+      <div className={styles.container}>
+            <Link href='/AddRealtyPage'>
             <button className={styles.btn}> + Ajouter un bien </button>
           </Link>
-        </div>
-        <div className={styles.realtyCard}>
+    <div className={styles.realtyCard}>
           {realtys}
-        </div>
+      </div>
       </div>
     </div>
   );
