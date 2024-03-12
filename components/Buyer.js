@@ -75,6 +75,7 @@ function Buyer() {
     }).then(response => response.json())
       .then(data => {
         setCard(data.realty)
+        console.log(data)
       })
   }
 
@@ -145,14 +146,15 @@ function Buyer() {
         </div>
       </div>
       <div className={styles.card}>
-      {card.length > 0 && (
-        <div>
-          <img src={card[index].imageUrl[index]} />
-          <p>{card[index].description}</p>
-          <button onClick={handlenone}>Suivant</button>
-        </div>
-      )}
-      {card.length === 0 && <p>Aucune donnée à afficher pour le moment.</p>}
+        {card && card.length > 0 ? (
+          <div>
+            <img src={card[index].imageUrl[index]} />
+            <p>{card[index].description}</p>
+            <button onClick={handlenone}>Suivant</button>
+          </div>
+        ) : (
+          <p>Aucune donnée à afficher pour le moment.</p>
+        )}
       </div>
     </>
   );

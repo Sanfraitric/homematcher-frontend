@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UpdateProfil } from '../reducers/user';
 import { Descriptions } from 'antd';
 
-function Profil(props) {
+function Profil() {
     const user = useSelector((state) => state.user.value);
     const dispatch = useDispatch();
     
@@ -17,11 +17,8 @@ function Profil(props) {
     const [delay, setDelay] = useState(0);
     const [budget, setBudget] = useState(10000);
     const [financed, setFinanced] = useState(false);
-console.log(username)
-console.log(delay)
-console.log(budget)
-console.log(financed)
-console.log(description)
+    console.log(selectedImage)
+
     // Changer d'Avatar
     const handleImageChange = (event) => {
         setSelectedImage(event.target.value);
@@ -67,6 +64,7 @@ const handleSubmit = () => {
             financed,
             budget,
             description,
+            selectedImage,
         }),
     }).then(response => response.json()).then(data => {
         console.log(data)
@@ -108,12 +106,12 @@ const handleSubmit = () => {
             {selectedImage && <img src={selectedImage} alt="Profil" className={styles.selectedImage} />}                        
             <select className={styles.avatarbutton} onChange={handleImageChange}>
                 <option value="">Choisis ton avatar</option>
-                <option value="./avatar1.jpg">Avatar 1</option>
+                <option  value="./avatar1.jpg">Avatar 1</option>
                 <option  value="./avatar2.jpg">Avatar 2</option>
                 <option  value="./avatar3.jpg">Avatar 3</option>
-                <option value="./avatar4.jpg">Avatar 4</option>
+                <option  value="./avatar4.jpg">Avatar 4</option>
                 <option  value="./avatar5.jpg">Avatar 5</option>
-                <option value="./avatar6.jpg">Avatar 6</option>
+                <option  value="./avatar6.jpg">Avatar 6</option>
                 <input type="hidden" classname={styles.input} />
             </select>
             </div>
