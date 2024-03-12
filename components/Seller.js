@@ -2,6 +2,7 @@ import styles from '../styles/MyCriterias.module.css'
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
+
 function Seller() {
 
     const [financed, setFinanced] = useState(false);
@@ -78,22 +79,21 @@ function Seller() {
                 {realtys}
             </div>
             <div className={styles.mycriteres}>
-
-                <div className={styles.inputConfiguration}>
-                    <p className={styles.p}>Délai maximum:</p>
-                    <input type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange} className={styles.inputRange} />
+                <div className={styles.input}>
+                <label className={styles.text}>Délai Maximum:</label>
+                    <input className={styles.cursor} type="range" min={minDelay} max={maxDelay} value={delay} onChange={handleDelayChange}  />
                     <span>{delay} semaine(s)</span>
                 </div>
-                <div className={styles.inputConfiguration}>
-                    <p className={styles.p}> Budget minimum: </p>
-                    <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
+                <div className={styles.input}>
+                <label className={styles.text}>Budget Minimum:</label>
+                    <input className={styles.cursor} type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange}  />
                     <span>{budget} €</span>
                 </div>
-                <p className={styles.p}>Financement :</p>
-                <div >
-                    <input type="radio" id="financed-yes" name="financed" value={true} checked={financed === true} onChange={() => setFinanced(true)} />
+                <label className={styles.text}>Financement:</label>
+                <div>
+                    <input className={styles.cursor} type="radio" id="financed-yes" name="financed" value={true} checked={financed === true} onChange={() => setFinanced(true)} />
                     <label htmlFor="financed-yes">Oui</label>
-                    <input type="radio" id="financed-no" name="financed" value={false} checked={financed === false} onChange={() => setFinanced(false)} />
+                    <input className={styles.cursor} type="radio" id="financed-no" name="financed" value={false} checked={financed === false} onChange={() => setFinanced(false)} />
                     <label htmlFor="financed-no">Non</label>
                 </div>
                 <div className={styles.btnSell}>
@@ -107,7 +107,9 @@ function Seller() {
                         <button onClick={handlenone}>Suivant</button>
                     </div>
                 ) : (
-                    <p>Aucune donnée à afficher pour le moment.</p>
+                    <div>
+                    <p className={styles.NotFound}>Aucun potentiel acheteur n'a été trouvé.</p>
+                    </div>
                 )}
             </div>
         </>

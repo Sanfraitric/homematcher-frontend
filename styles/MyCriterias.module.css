@@ -4,12 +4,95 @@
     display: grid;
     grid-template-columns: repeat(12, 8.30vw);
     grid-template-rows: repeat(12, 7.33vh);
+    max-height: 86vh;
+    max-width: 100vw;
     padding: 0;
     background-color: #F4E6E6;
-    position: absolute;
 }
 
 /*Blocs*/
+
+.encardDePhoto{
+    grid-column-start:6;
+    grid-column-end:11;
+    grid-row-start:3;
+    grid-row-end:4;
+    border-radius: 10px;
+    background-color: white;
+    border: solid 3px #FF4D4D;
+}
+
+.card{
+    grid-column-start:6;
+    grid-column-end:11;
+    grid-row-start:5;
+    grid-row-end:11;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    border-radius: 10px;
+    background-color: white;
+    border: solid 3px #FF4D4D;
+}
+
+.mycriteres {
+    grid-column-start:2;
+    grid-column-end:5;
+    grid-row-start:3;
+    grid-row-end:11;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    min-height: 100%; 
+    border: solid 3px #FF4D4D;
+  }
+
+.container{
+    display: flex;
+    border: 2px solid black;
+}
+
+.encardDePhoto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Texte*/
+
+.text{
+    font-weight: 600;
+}
+
+.notFound{
+    color: #FF4D4D;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+/*Input*/
+
+.input {
+    margin: 10px 0 10px 0;
+    display: flex;
+    flex-direction: column;
+    
+}
+.inputText{
+height: 5vh;
+width: 100%;
+border: none;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.inputRange {
+    cursor: pointer;
+}
+
+/*Boutons*/
 
 .btnSell{
     grid-column-start:5;
@@ -19,82 +102,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.encardDePhoto{
-    grid-column-start:6;
-    grid-column-end:11;
-    grid-row-start:3;
-    grid-row-end:4;
-    border-radius: 10px;
-    background-color: white;
-    
-}
-
-.card{
-    grid-column-start:6;
-    grid-column-end:11;
-    grid-row-start:5;
-    grid-row-end:12;
-    border-radius: 10px;
-    background-color: white;
-  
-}
-
-.mycriteres {
-    grid-column-start:2;
-    grid-column-end:5;
-    grid-row-start:3;
-    grid-row-end:12;
-   border-radius: 10px;
-    background-color: white;
-}
-
-.container{
-    display: flex;
-    border: 2px solid black;
-}
-
-
-
-/*Texte*/
-
-.text{
-    font-weight: 600;
-}
-
-/*Input*/
-
-.input {
-    margin: 10px 0 10px 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.inputElement{
-    margin-right: 8px;
-    border: none;
-    background: #FF4D4D;
-    padding: 8px 20px;
-    color: #fff;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    border-radius: 10px;
-}
-
-/*Boutons*/
-
-.range{
-    align-content: center;
-    color: black;
-    cursor: pointer;
-
-}
-
-.choice{
-    color: black;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-    padding: 5px 5px 0px 0px;
 }
 
 .button {
@@ -114,6 +121,8 @@
     border: none;
 }
 
+/*Image*/
+
 .image{
     width: 10%;
     height: 95%;
@@ -121,8 +130,3 @@
     cursor: pointer;
 }
 
-.encardDePhoto{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
