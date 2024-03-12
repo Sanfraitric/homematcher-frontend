@@ -1,43 +1,47 @@
 .main {
     display:grid;
-    grid-template-columns: repeat(3, 33.33vw);
-    grid-template-rows: repeat(9, 10vh);
+    grid-template-columns: repeat(5, 20vw);
+    grid-template-rows: repeat(8, 10vh);
 }
 
 .header {
     grid-row-start: 0;
     grid-row-end:1;
     grid-column-start:1;
-    grid-column-end:4;
+    grid-column-end:6;
 }
 
 .body{
     background-color: #f5e6e7;
+    grid-row-start: 1;
+    grid-row-end:9;
+    grid-column-start:1;
+    grid-column-end:6;
 }
 
-.match {
-    align-items:center;
-    border:solid black 2px;
-    grid-row-start: 2;
-    grid-row-end:3;
-    grid-column-start:2;
-    grid-column-end:3;
-   
-
+.match{
+    border:solid 2px #FF4D4D;
+    background-color: #ffffff;
+    gap:10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 5px;
 }
 
-.profilpic{
-    display:flex;
-    width: 100px;
-    height: 100px;
+.profilpic {
+    height:100px;
+    width:100px;
+    margin: 5px 5px 5px 5px;
+    border:solid 2px #eea4a4;
+    border-radius: 100px;
 }
 
 .username {
-    display:flex;
-    margin-left:50px;
+    text-decoration: underline;
+    margin-right: 25px;
 }
 
 .icon {
-    display:flex;
-    margin-left:150px;
+    margin-left:25px;
 }
