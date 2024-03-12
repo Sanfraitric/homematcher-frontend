@@ -17,7 +17,7 @@ function Profil() {
     const [delay, setDelay] = useState(0);
     const [budget, setBudget] = useState(10000);
     const [financed, setFinanced] = useState(false);
-    console.log(selectedImage)
+    //console.log(selectedImage)
 
     // Changer d'Avatar
     const handleImageChange = (event) => {
@@ -112,7 +112,7 @@ const handleSubmit = () => {
                 <option  value="./avatar4.jpg">Avatar 4</option>
                 <option  value="./avatar5.jpg">Avatar 5</option>
                 <option  value="./avatar6.jpg">Avatar 6</option>
-                <input type="hidden" classname={styles.input} />
+                <input type="hidden" className={styles.input} />
             </select>
             </div>
         </div>

@@ -14,7 +14,8 @@ const uniqid = require('uniqid')
 function AddRealty() {
   const router = useRouter();
   const token = useSelector((state) => state.user.value.token);
-
+  const libraries = ["places"];
+  
   // Hooks d'états pour les inputs:
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState();
@@ -118,7 +119,7 @@ const handleTerraceChange = (e) => {
           <h2 className={styles.h2}> Informations:</h2>
           <h4 className={styles.inputTitle}>Localisation : </h4>
 
-            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >  
+            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={libraries} loading="async">  
             <Autocomplete onLoad={(autocomplete) => {
               autocomplete.setFields(['address_component']);
               autocomplete.setTypes(['(regions)']); 
@@ -200,9 +201,9 @@ const handleTerraceChange = (e) => {
                 <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
                 <span>{budget} €</span>
               </div>
-              <div classname={styles.inputRangeContainer}>
+              <div className={styles.inputRangeContainer}>
                 <p classename={styles.p}>Financement :</p>
-                <div classname={styles.radioContainer}>
+                <div className={styles.radioContainer}>
                   <input type="radio" id="financed-yes" name="financed" value={true} checked={financed === true} onChange={() => setFinanced(true)} />
                   <label htmlFor="financed-yes">Oui</label>
                   <input type="radio" id="financed-no" name="financed" value={false} checked={financed === false} onChange={() => setFinanced(false)} />
