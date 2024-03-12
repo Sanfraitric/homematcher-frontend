@@ -36,11 +36,11 @@ function RealtyCard(props) {
       <p className={styles.p}><strong>Surface du terrain:</strong> &nbsp;&nbsp;{props.outdoorArea}</p>
       <p className={styles.p}><strong>Nombre de pièces:</strong> &nbsp;&nbsp;{props.rooms}</p>
       <p className={styles.p}><strong>Localisation:</strong> &nbsp;&nbsp;{props.location}</p>
-      <p className={styles.p}><strong>Profil acheteur souhaité pour le bien:</strong> <br/>
+      <h1 className={styles.p}><strong>Profil acheteur souhaité pour le bien:</strong> <br/>
         <ul><li>Délai: &nbsp;&nbsp;{props.delay} semaine(s)<br/></li>
         <li>Budget: &nbsp;&nbsp;{props.budget}€ <br/></li>
         <li>Financement: &nbsp;&nbsp;{props.financed} <br/></li>
-        </ul></p>
+        </ul></h1>
       </div>
       <FontAwesomeIcon icon={faTimes} className={styles.delete} onClick={()=>deleteCard(props._id)} />
     </div>

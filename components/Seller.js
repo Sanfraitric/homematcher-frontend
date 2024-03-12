@@ -46,7 +46,7 @@ function Seller() {
     };
 
     const realtys = myRealty.map((data, i) => {
-        return <img className={styles.image} onClick={() => handleFiltre(data.imageUrl[0])} src={data.imageUrl[0]} />;
+        return <img className={styles.image} onClick={() => handleFiltre(data.imageUrl[0])} src={data.imageUrl[0]} key={i}/>;
     });
 
     const handleSubmit = () => {
@@ -59,7 +59,7 @@ function Seller() {
         }).then(response => response.json())
             .then(data => {
                 setCard(data.users)
-                console.log(data)
+                //console.log(data)
                 
             })
     }
@@ -72,6 +72,22 @@ function Seller() {
             setIndex(0);
         }
     };
+
+    const handleLick = () => {
+        const email = card[index].email;
+        const action = 'profileLike';
+        fetch('http://localhost:3000/users/notifications', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${user.token}`
+        },
+        body: JSON.stringify({ email, action })
+        }).then(response => response.json())
+        .then(data => {
+        console.log(data)
+        })
+        }
 
     return (
         <>
@@ -103,8 +119,12 @@ function Seller() {
             <div className={styles.card}>
             {card && card.length > 0 ? (
                     <div>
+                        <img src={card[index].selectedImage} height={100} width={100}/>
                         <p>{card[index].description}</p>
+                        <div>
                         <button onClick={handlenone}>Suivant</button>
+                        <button onClick={handleLick}>Like</button>
+                        </div>
                     </div>
                 ) : (
                     <div>

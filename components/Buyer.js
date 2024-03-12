@@ -90,6 +90,23 @@ function Buyer() {
     }
   };
 
+  const handleLick = () => {
+    const realtyId = card[index]._id;
+    console.log(realtyId)
+    const action = 'realtyLike';
+    fetch('http://localhost:3000/users/notifications', {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `${user.token}`
+    },
+    body: JSON.stringify({ realtyId, action })
+    }).then(response => response.json())
+    .then(data => {
+    console.log(data)
+    })
+    }
+
   return (
     <>
       <div className={styles.mycriteres}>
@@ -149,7 +166,10 @@ function Buyer() {
           <div>
             <img src={card[index].imageUrl[index]} />
             <p>{card[index].description}</p>
+<div>
             <button onClick={handlenone}>Suivant</button>
+            <button onClick={handleLick}>Like</button>
+</div>
           </div>
         ) : (
           <p className={styles.notFound}>Aucun bien n'a été trouvé.</p>
