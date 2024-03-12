@@ -2,6 +2,9 @@ import styles from '../styles/MyCriterias.module.css'
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
+//FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 function Buyer() {
   //Mes constantes d'effet
@@ -163,12 +166,12 @@ function Buyer() {
       </div>
       <div className={styles.card}>
         {card && card.length > 0 ? (
-          <div>
-            <img src={card[index].imageUrl[index]} />
-            <p>{card[index].description}</p>
-<div>
-            <button onClick={handlenone}>Suivant</button>
-            <button onClick={handleLick}>Like</button>
+          <div className={styles.cardContent}>
+            <img className={styles.imgRealty} src={card[index].imageUrl[index]} />
+            <p className={styles.text}>{card[index].description}</p>
+<div className={styles.buttonRow}>
+            <FontAwesomeIcon icon={faXmark} className={styles.icon} onClick={handlenone}/>
+            <FontAwesomeIcon icon={faHeart} className={styles.icon} onClick={handleLick}/>
 </div>
           </div>
         ) : (

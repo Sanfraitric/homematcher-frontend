@@ -58,6 +58,19 @@
     align-items: center;
 }
 
+.cardContent {
+ align-items: center;
+ display: flex;
+ flex-direction: column;
+}
+
+.buttonRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
 /*Texte*/
 
 .text{
@@ -121,6 +134,24 @@ border: none;
     border: none;
 }
 
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    margin-left: 20px;
+    height: 2vh;
+    background-color: #FF4D4D;
+    border-color: white;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
 /*Image*/
 
 .image{
@@ -129,4 +160,12 @@ border: none;
     border-radius: 10%;
     cursor: pointer;
 }
+
+.imgRealty {
+    width: 20vw;
+    height: 25vh;
+    object-fit: cover;
+    margin: 10px;
+  }
+
 

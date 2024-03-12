@@ -1,7 +1,9 @@
 import styles from '../styles/MyCriterias.module.css'
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
+//FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 function Seller() {
 
@@ -118,17 +120,18 @@ function Seller() {
             </div>
             <div className={styles.card}>
             {card && card.length > 0 ? (
-                    <div>
+                    <div className={styles.cardContent}>
                         <img src={card[index].selectedImage} height={100} width={100}/>
+                        <p className={styles.text}>{card[index].username}</p>
                         <p>{card[index].description}</p>
-                        <div>
-                        <button onClick={handlenone}>Suivant</button>
-                        <button onClick={handleLick}>Like</button>
+                        <div className={styles.buttonRow}>
+                        <FontAwesomeIcon className={styles.icon} icon={faXmark} onClick={handlenone}/>
+                        <FontAwesomeIcon className={styles.icon} icon={faHeart} onClick={handleLick}/>
                         </div>
                     </div>
                 ) : (
                     <div>
-                    <p className={styles.NotFound}>Aucun potentiel acheteur n'a été trouvé.</p>
+                    <p className={styles.notFound}>Aucun potentiel acheteur n'a été trouvé.</p>
                     </div>
                 )}
             </div>

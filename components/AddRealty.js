@@ -132,7 +132,7 @@ const handleTerraceChange = (e) => {
             <h4 className={styles.inputTitle}>Description : </h4>
             <input type="text" className={styles.inputDesc} placeholder='Ecrivez une brève description du bien' onChange={(e) => setDescription(e.target.value)} value={description}/>
             <h4 className={styles.inputTitle}>Prix de vente souhaité : </h4>
-            <input type="text" className={styles.inputText} placeholder='Inquiquez ici le prix en €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
+            <input type="text" className={styles.inputText} placeholder='Indiquez ici le prix en €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
             <h4 className={styles.inputTitle}> Intérieur : </h4>
             <input type="text" className={styles.inputText} placeholder='Surface habitable : ...m²'  onChange={(e) => setLivingArea(e.target.value)} value={livingArea} />
             <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
