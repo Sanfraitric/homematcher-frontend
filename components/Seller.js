@@ -7,8 +7,10 @@ function Seller() {
     const [financed, setFinanced] = useState(false);
     const [budget, setBudget] = useState();
     const [delay, setDelay] = useState(0);
+    const [card, setCard] = useState([]);
+    const [index, setIndex] = useState(0);
     const myRealty= useSelector((state) => state.realtys.value);
-
+    const user = useSelector((state) => state.user.value);
 
     const handleFiltre = (imageUrl) => {
         const realtyClicked = myRealty.find(realty => realty.imageUrl[0] === imageUrl);
@@ -47,6 +49,27 @@ function Seller() {
         return <img className={styles.image} onClick={() => handleFiltre(data.imageUrl[0])} src={data.imageUrl[0]}/>;
     });
     
+    const handleSubmit = () => {
+        fetch(`http://localhost:3000/users/filteredUsers?budget[$gt]=${budget}&delay[$lt]=${delay}&financed=${financed}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${user.token}` // Incluez le token dans l'en-tête Authorization
+          },
+        }).then(response => response.json())
+          .then(data => {
+            setCard(data.users)
+          })
+      }
+
+      const handlenone = () => {
+        if (index < card.length - 1) {
+          setIndex(index + 1);
+        } else {
+          // Quand on est arrivés à la fin du tableau, on reviens au debut 
+          setIndex(0);
+        }
+      };
 
     return (
         <>
@@ -61,7 +84,7 @@ function Seller() {
                 <span>{delay} semaine(s)</span>
                 </div>
             <div className={styles.inputConfiguration}>
-                <p className={styles.p}> Budget maximum: </p>
+                <p className={styles.p}> Budget minimum: </p>
                 <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
                 <span>{budget} €</span>
               </div> 
@@ -73,11 +96,17 @@ function Seller() {
                         <label htmlFor="financed-no">Non</label>
                         </div>
                 <div className={styles.btnSell}>
-                    <button className={styles.button}>Recherche</button>
+                    <button onClick={handleSubmit} className={styles.button}>Recherche</button>
                 </div>
             </div>
             <div className={styles.card}>
-                Présentation des profils acheteurs
+            {card.length > 0 && (
+        <div>
+          <p>{card[index].description}</p>
+          <button onClick={handlenone}>Suivant</button>
+        </div>
+      )}
+      {card.length === 0 && <p>Aucune donnée à afficher pour le moment.</p>}
             </div>
         </>
     );

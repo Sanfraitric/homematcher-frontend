@@ -9,9 +9,10 @@ function Buyer() {
   const [outdoorArea, setOutdoorArea] = useState('');
   const [rooms, setRooms] = useState('');
   const [terrace, setTerrace] = useState('');
-  const [card, setCard] = useState({})
+  const [card, setCard] = useState([]);
   const user = useSelector((state) => state.user.value);
-
+  const [index, setIndex] = useState(0);
+  console.log(card)
   //Création Jauge Budget
   const minBudget = 0;
   const maxBudget = 1000000;
@@ -72,10 +73,19 @@ function Buyer() {
         'Authorization': `${user.token}` // Incluez le token dans l'en-tête Authorization
       },
     }).then(response => response.json())
-    .then(data => {
-      setCard(data.realty)
-    })
+      .then(data => {
+        setCard(data.realty)
+      })
   }
+
+  const handlenone = () => {
+    if (index < card.length - 1) {
+      setIndex(index + 1);
+    } else {
+      // Quand on est arrivés à la fin du tableau, on reviens au debut 
+      setIndex(0);
+    }
+  };
 
   return (
     <>
@@ -126,8 +136,8 @@ function Buyer() {
         <div className={styles.input}>
           <label className={styles.text}>Terrasse Exterieure:</label>
           <div className={styles.choice}>
-            <input type="checkbox" name="outdoor" value={true} checked={terrace} onChange={(e) => setTerrace(!terrace)} /> Oui
-            <input type="checkbox" name="outdoor" value={false} checked={!terrace} onChange={(e) => setTerrace(!terrace)} /> Non
+            <input type="checkbox" name="outdoor" value={true} checked={terrace} onChange={(e) => setTerrace(true)} /> Oui
+            <input type="checkbox" name="outdoor" value={false} checked={!terrace} onChange={(e) => setTerrace(false)} /> Non
           </div>
         </div >
         <div className={styles.btnSell}>
@@ -135,7 +145,14 @@ function Buyer() {
         </div>
       </div>
       <div className={styles.card}>
-        <img src={card[0].imageUrl[0]} />
+      {card.length > 0 && (
+        <div>
+          <img src={card[index].imageUrl[index]} />
+          <p>{card[index].description}</p>
+          <button onClick={handlenone}>Suivant</button>
+        </div>
+      )}
+      {card.length === 0 && <p>Aucune donnée à afficher pour le moment.</p>}
       </div>
     </>
   );

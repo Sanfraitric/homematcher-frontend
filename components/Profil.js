@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/CarrouselAvatar.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { UpdateProfil } from '../reducers/user';
+import { Descriptions } from 'antd';
 
 function Profil(props) {
     const user = useSelector((state) => state.user.value);
@@ -12,13 +13,15 @@ function Profil(props) {
     // Hooks d'états pour les inputs:
     const [selectedImage, setSelectedImage] = useState(null);
     const [username, setUsername] = useState('');
-    const [financialCapacity, setFinancialCapacity] = useState('');
-    const [desciption, setDesciption] = useState('');
-
+    const [description, setDescription] = useState('');
     const [delay, setDelay] = useState(0);
     const [budget, setBudget] = useState(10000);
-    const [financed, setFinanced] = useState('yes');
-
+    const [financed, setFinanced] = useState(false);
+console.log(username)
+console.log(delay)
+console.log(budget)
+console.log(financed)
+console.log(description)
     // Changer d'Avatar
     const handleImageChange = (event) => {
         setSelectedImage(event.target.value);
@@ -47,8 +50,7 @@ function Profil(props) {
         setUsername(data.user.username);
         setDelay(data.user.delay);
         setFinanced(data.user.financed);
-        setFinancialCapacity(data.user.financialCapacity);
-        setDesciption(data.user.desciption);
+        setDescription(data.user.description);
           });
       }, []);
 
@@ -63,8 +65,8 @@ const handleSubmit = () => {
             username,
             delay,
             financed,
-            financialCapacity,
-            desciption,
+            budget,
+            description,
         }),
     }).then(response => response.json()).then(data => {
         console.log(data)
@@ -120,7 +122,7 @@ const handleSubmit = () => {
            <h3 className={styles.h3}> Mes informations:</h3>
            <div className={styles.inputConfiguration}>
                 <p className={styles.p}>Username :</p>
-                <input className={styles.input}/>
+                <input className={styles.input} onChange={e => setUsername(e.target.value)} value={username} />
                 </div>
                 <div className={styles.inputConfiguration}>
                 <p className={styles.p}>Délai maximum:</p>
@@ -135,19 +137,19 @@ const handleSubmit = () => {
               <div>
                 <p className={styles.p}>Financement :</p>
                         <div >
-                        <input type="radio" id="financed-yes" name="financed" value="yes" checked={financed === "yes"} onChange={() => setFinanced("yes")} />
+                        <input type="radio" id="financed-yes" name="financed" value={true} checked={financed === true} onChange={() => setFinanced(true)} />
                         <label htmlFor="financed-yes">Oui</label>
-                        <input type="radio" id="financed-no" name="financed" value="no" checked={financed === "no"} onChange={() => setFinanced("no")} />
+                        <input type="radio" id="financed-no" name="financed" value={false} checked={financed === false} onChange={() => setFinanced(false)} />
                         <label htmlFor="financed-no">Non</label>
                         </div>
                 <div className={styles.inputConfiguration}>
                 <p className={styles.p}>Quelques mots pour te décrire...</p>
-                <input className={styles.inputDesc}/>
+                <input className={styles.inputDesc} onChange={e => setDescription(e.target.value)} value={description}/>
                 </div>
             </div>
         </div>
     </div> 
-    <button className={styles.button}>Mettre à jour mon profil ✓</button>
+    <button onClick={handleSubmit} className={styles.button}>Mettre à jour mon profil ✓</button>
 </div>
 )
 }

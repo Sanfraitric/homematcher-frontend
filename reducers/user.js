@@ -6,7 +6,7 @@ const initialState = {
     username: null,
     delay: null,
     financed: null,
-    financialCapacity: null,
+    budget: null,
     description: null,
     token: null,
     isConnect: false,
@@ -30,8 +30,8 @@ export const userSlice = createSlice({
     UpdateProfil: (state, action) => {
       state.value.username = action.payload.username;
       state.value.delay = action.payload.delay;
+      state.value.budget = action.payload.budget;
       state.value.financed = action.payload.financed;
-      state.value.financialCapacity = action.payload.financialCapacity;
       state.value.description = action.payload.description;
     }
   },
