@@ -10,10 +10,10 @@ function Buyer() {
   //Mes constantes d'effet
   const [budget, setBudget] = useState(10000);
   const [typeOfRealty, setTypeOfRealty] = useState('');
-  const [livingArea, setLivingArea] = useState('');
-  const [outdoorArea, setOutdoorArea] = useState('');
-  const [rooms, setRooms] = useState('');
-  const [terrace, setTerrace] = useState('');
+  const [livingArea, setLivingArea] = useState();
+  const [outdoorArea, setOutdoorArea] = useState();
+  const [rooms, setRooms] = useState();
+  const [terrace, setTerrace] = useState(false);
   const [card, setCard] = useState([]);
   const user = useSelector((state) => state.user.value);
   const [index, setIndex] = useState(0);

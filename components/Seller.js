@@ -8,7 +8,7 @@ import { faXmark, faHeart } from '@fortawesome/free-solid-svg-icons';
 function Seller() {
 
     const [financed, setFinanced] = useState(false);
-    const [budget, setBudget] = useState();
+    const [budget, setBudget] = useState(0);
     const [delay, setDelay] = useState(0);
     const [card, setCard] = useState([]);
     const [index, setIndex] = useState(0);
