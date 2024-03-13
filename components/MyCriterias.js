@@ -8,8 +8,7 @@ function MyCriterias() {
  
 
   return (
-    <div>
-      <main className={styles.main}>
+      <div className={styles.main}>
         <div className={styles.btnSell}>
           <button className={styles.button} style={{ backgroundColor: mode === 'buyer' ? '#D32F2F' : '#FF4D4D' }} onClick={() => setMode('buyer')}>Acheteur</button>
           <button className={styles.button} style={{ backgroundColor: mode === 'seller' ? '#D32F2F' : '#FF4D4D' }} onClick={() => setMode('seller')}>Vendeur</button>
@@ -20,8 +19,7 @@ function MyCriterias() {
         ) : (
         <Buyer />
         )}
-      </main>
-    </div>
+      </div>
   );
 
 }

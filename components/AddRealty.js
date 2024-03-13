@@ -14,7 +14,8 @@ const uniqid = require('uniqid')
 function AddRealty() {
   const router = useRouter();
   const token = useSelector((state) => state.user.value.token);
-
+  const libraries = ["places"];
+  
   // Hooks d'états pour les inputs:
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState();
@@ -118,7 +119,7 @@ const handleTerraceChange = (e) => {
           <h2 className={styles.h2}> Informations:</h2>
           <h4 className={styles.inputTitle}>Localisation : </h4>
 
-            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={["places"]} >  
+            <LoadScript googleMapsApiKey="AIzaSyCT2rUBJUBCi8pssdiVhICE4ZriXamrsjw" libraries={libraries} loading="async">  
             <Autocomplete onLoad={(autocomplete) => {
               autocomplete.setFields(['address_component']);
               autocomplete.setTypes(['(regions)']); 
@@ -130,8 +131,8 @@ const handleTerraceChange = (e) => {
             </LoadScript>
             <h4 className={styles.inputTitle}> Description : </h4>
             <input type="text" className={styles.inputDesc} placeholder='Ecrivez une brève description du bien' onChange={(e) => setDescription(e.target.value)} value={description}/>
-            <h4 className={styles.inputTitle}> Prix de vente souhaité : </h4>
-            <input type="text" className={styles.inputText} placeholder='Inquiquez ici le prix en €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
+            <h4 className={styles.inputTitle}>Prix de vente souhaité : </h4>
+            <input type="text" className={styles.inputText} placeholder='Indiquez ici le prix en €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
             <h4 className={styles.inputTitle}> Intérieur : </h4>
             <input type="text" className={styles.inputText} placeholder='Surface habitable : ...m²'  onChange={(e) => setLivingArea(e.target.value)} value={livingArea} />
             <input type="text" className={styles.inputText} placeholder='Nombre de pièces: ...' onChange={(e) => setRooms(e.target.value)} value={rooms}/>
@@ -200,9 +201,9 @@ const handleTerraceChange = (e) => {
                 <input type="range" min={minBudget} max={maxBudget} step={10000} value={budget} onChange={handleBudgetChange} className={styles.inputRange} />
                 <span>{budget} €</span>
               </div>
-              <div classname={styles.inputRangeContainer}>
+              <div className={styles.inputRangeContainer}>
                 <p classename={styles.p}>Financement :</p>
-                <div classname={styles.radioContainer}>
+                <div className={styles.radioContainer}>
                   <input type="radio" id="financed-yes" name="financed" value={true} checked={financed === true} onChange={() => setFinanced(true)} />
                   <label htmlFor="financed-yes">Oui</label>
                   <input type="radio" id="financed-no" name="financed" value={false} checked={financed === false} onChange={() => setFinanced(false)} />

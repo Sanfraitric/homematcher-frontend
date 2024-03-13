@@ -1,7 +1,7 @@
 import styles from '../styles/Match.module.css';
 import HeaderConnected from './HeaderConnected'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faMessage, faCertificate } from '@fortawesome/free-solid-svg-icons';
 
 function Match() {
 
@@ -11,10 +11,11 @@ function Match() {
                 <HeaderConnected/>
             </div>
             <div className={styles.body}>
-                <div className={Match}>
+                <div className={styles.match}>
                     <img src='helmuthd.jpg' className={styles.profilpic}/>
                     <h3 className={styles.username}>Helmut</h3>
-                    <FontAwesomeIcon icon={faUser} className={styles.icon}/>
+                    <p> Vous avez un nouveau message !</p>
+                    <FontAwesomeIcon icon={faMessage} className={styles.icon}/>
                 </div>
             </div>
         </div>

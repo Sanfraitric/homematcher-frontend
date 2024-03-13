@@ -15,6 +15,7 @@
   background-color: white;
   padding: 20px;
   border-radius: 10px;
+  border: solid 3px #FF4D4D;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -65,6 +66,7 @@
     padding: 20px;
     background-color: white;
     border-radius: 10px;
+    border: solid 3px #FF4D4D;
   }
 
   .information {
