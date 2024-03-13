@@ -31,7 +31,7 @@ function AddRealty() {
   const [imageUrl, setImageUrl] = useState([])
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
-  const [realtyId, setRealtyId] = useState()
+  const [realtyId, setRealtyId] = useState();
   const docs = ['Le dossier de diagnostics techniques.', 'La superficie loi Carrez de la maison', 'Un justificatif d’identité, d’adresse et de situation familiale', 'Les règlements de copropriété', 'Les 3 derniers procès-verbaux des assemblées générales de copropriétaires', 'Le carnet d’entretien de la maison', 'Le dernier appel de charges', 'Les données financières et techniques de la maison '];
 
   const minBudget = 0;
@@ -129,7 +129,7 @@ const handleTerraceChange = (e) => {
             <input className={styles.inputText} type="text" placeholder="Selectionnez la ville, le département, la région ou le pays" onChange={(e) => set} />
             </Autocomplete>
             </LoadScript>
-            <h4 className={styles.inputTitle}>Description : </h4>
+            <h4 className={styles.inputTitle}> Description : </h4>
             <input type="text" className={styles.inputDesc} placeholder='Ecrivez une brève description du bien' onChange={(e) => setDescription(e.target.value)} value={description}/>
             <h4 className={styles.inputTitle}>Prix de vente souhaité : </h4>
             <input type="text" className={styles.inputText} placeholder='Indiquez ici le prix en €'  onChange={(e) =>  setPrice(e.target.value)} value={price}/>
