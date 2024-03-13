@@ -14,6 +14,7 @@ function Seller() {
     const [index, setIndex] = useState(0);
     const myRealty = useSelector((state) => state.realtys.value);
     const user = useSelector((state) => state.user.value);
+    //console.log(myRealty)
 
     const handleFiltre = (imageUrl) => {
         const realtyClicked = myRealty.find(realty => realty.imageUrl[0] === imageUrl);
@@ -62,10 +63,10 @@ function Seller() {
             .then(data => {
                 setCard(data.users)
                 //console.log(data)
-                
+
             })
     }
-    console.log(card)
+    //console.log(card)
     const handlenone = () => {
         if (index < card.length - 1) {
             setIndex(index + 1);
@@ -87,7 +88,7 @@ function Seller() {
         body: JSON.stringify({ email, action })
         }).then(response => response.json())
         .then(data => {
-        console.log(data)
+        //console.log(data)
         })
         }
 
