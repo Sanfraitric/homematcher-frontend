@@ -13,7 +13,7 @@ function Buyer() {
   const [livingArea, setLivingArea] = useState('');
   const [outdoorArea, setOutdoorArea] = useState('');
   const [rooms, setRooms] = useState('');
-  const [terrace, setTerrace] = useState('');
+  const [terrace, setTerrace] = useState(false);
   const [card, setCard] = useState([]);
   const user = useSelector((state) => state.user.value);
   const [index, setIndex] = useState(0);
