@@ -79,6 +79,7 @@
     width: 80%; /* Définissez une largeur pour les notifications */
     margin-left: auto; /* Centrez les notifications horizontalement */
     margin-right: auto;
+    font-family: 'Montserrat', sans-serif;
 }
 /* Ajoutez ces styles à votre fichier CSS */
 /* Modal */
