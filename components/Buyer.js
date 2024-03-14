@@ -97,7 +97,7 @@ function Buyer() {
     const realtyId = card[index]._id;
     console.log(realtyId)
     const action = 'realtyLike';
-    fetch('http://localhost:3000/users/notifications', {
+    fetch('http://localhost:3000/notification', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json',
@@ -106,6 +106,12 @@ function Buyer() {
     body: JSON.stringify({ realtyId, action })
     }).then(response => response.json())
     .then(data => {
+      if (index < card.length - 1) {
+        setIndex(index + 1);
+      } else {
+        // Quand on est arrivés à la fin du tableau, on reviens au debut 
+        setIndex(0);
+      }
     console.log(data)
     })
     }
@@ -167,7 +173,7 @@ function Buyer() {
       <div className={styles.card}>
         {card && card.length > 0 ? (
           <div className={styles.cardContent}>
-            <img className={styles.imgRealty} src={card[index].imageUrl[index]} />
+            <img className={styles.imgRealty} src={card[index].imageUrl} />
             <p className={styles.text}>{card[index].description}</p>
 <div className={styles.buttonRow}>
             <FontAwesomeIcon icon={faXmark} className={styles.icon} onClick={handlenone}/>

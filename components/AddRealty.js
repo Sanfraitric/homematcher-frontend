@@ -32,10 +32,18 @@ function AddRealty() {
   const [showDocs, setShowDocs] = useState(false);
   const [filesSelected, setFilesSelected] = useState(false);
   const [realtyId, setRealtyId] = useState();
+  const [showWarning, setShowWarning] = useState(false);
   const docs = ['Le dossier de diagnostics techniques.', 'La superficie loi Carrez de la maison', 'Un justificatif d’identité, d’adresse et de situation familiale', 'Les règlements de copropriété', 'Les 3 derniers procès-verbaux des assemblées générales de copropriétaires', 'Le carnet d’entretien de la maison', 'Le dernier appel de charges', 'Les données financières et techniques de la maison '];
 
   const minBudget = 0;
   const maxBudget = 1000000
+
+  const validateFields = () => {
+    if (!description || !price || !livingArea || !outdoorArea || !rooms || !typeOfRealty || !delay || !budget ) {
+      return false;
+    }
+    return true;
+  };
 
   const handleBudgetChange = (e) => {
     let newBudget = parseInt(e.target.value);
@@ -90,18 +98,24 @@ const handlePhotoChange = (e) => {
 
 
 const handleAddRealty = () => {
-  fetch('http://localhost:3000/realtys/addRealtys', {
-    method: "POST",
-    headers: { 
-      'Content-Type': 'application/json',
-      'Authorization': `${token}`
-    },
-    body: JSON.stringify({ description, price, livingArea, outdoorArea, rooms, location, terrace, typeOfRealty, delay, budget, financed, imageUrl, realtyId})
-  }).then(response => response.json())  .then(data => {
-    console.log(data)
-    router.push('/RealtysPage')
-  }).catch(error => console.error('Erreur:', error));
-}
+  if (validateFields()) {
+    fetch('http://localhost:3000/realtys/addRealtys', {
+      method: "POST",
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `${token}`
+      },
+      body: JSON.stringify({ description, price, livingArea, outdoorArea, rooms, location, terrace, typeOfRealty, delay, budget, financed, imageUrl, realtyId})
+    }).then(response => response.json())  
+      .then(data => {
+        console.log(data);
+        router.push('/RealtysPage');
+      })
+      .catch(error => console.error('Erreur:', error));
+  } else {
+    setShowWarning(true); // Afficher le message d'avertissement
+  }
+};
 
 const handleTerraceChange = (e) => {
   setTerrace(e.target.value === "true");
@@ -112,7 +126,7 @@ const handleTerraceChange = (e) => {
       <div className={styles.header}>
         <HeaderConnected />
       </div>
-      <div className={styles.main}>
+      <div className={styles.main}>    
         <div className={styles.container}>
           <div className={styles.leftContainer}>
             <div className={styles.inputContainer}>
@@ -153,22 +167,20 @@ const handleTerraceChange = (e) => {
                     </div>
               </div>
          </div>
-          <div className={styles.middleContainer}>
-          {/* <input
-           type="file"
-           accept="image/*" // Accepte uniquement les fichiers images
-           multiple // Permet à l'utilisateur de sélectionner plusieurs fichiers
-           onChange={handlePhotoChange}
-           className={styles.inputFile}
-          /> */}
-           <input type="file" id="fileInput" multiple onChange={handlePhotoChange} style={{ display: 'none' }} />
-                 <button className={styles.button} onClick={handleButtonClick}>Ajouter une image</button>
-          <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
-          {/* Bouton pour ajouter le bien */}
-          <Link href='/RealtysPage'>
-          <button className={styles.button} onClick={handleAddRealty}> Ajouter un bien </button>
-          </Link>
-          </div>
+         <div className={styles.middleContainer}>
+  <input type="file" id="fileInput" multiple onChange={handlePhotoChange} style={{ display: 'none' }} />
+  <button className={styles.button} onClick={handleButtonClick}>Ajouter une image</button>
+  <ImageCarrousel images={imageUrl} className={styles.carrousel}/>
+  {/* Bouton pour ajouter le bien */}
+  <button className={styles.button2} onClick={handleAddRealty}> Ajouter un bien </button>
+  {showWarning && (
+        <div className={styles.warningMessage}>
+          Veuillez renseignez tout les champs pour pouvoir ajouter votre bien<br></br>
+               (seul image et localisation ne sont pas obligatoires)
+        </div>
+      )}
+</div>
+
           <div className={styles.rightContainer}>
             <div className={styles.mandatoryDocuments}>
               <h2 className={styles.h2}>Documents Obligatoires</h2>

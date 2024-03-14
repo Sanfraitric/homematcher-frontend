@@ -137,3 +137,17 @@ display: flex;
     cursor: pointer;
     border: none;
   }
+
+  .check{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 900;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    right: 9%;
+    top: 60%; 
+    font-weight: 600;
+    background-color: #ff4d4d;
+    padding:10px 10px 10px 10px;
+    border-radius: 15px;
+  }
