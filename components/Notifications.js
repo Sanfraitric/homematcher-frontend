@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Notifications.module.css';
 import HeaderConnected from './HeaderConnected'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faComments, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-
+//FontAwesome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark, faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
 function Likes() {
     const user = useSelector((state) => state.user.value);
     const [notifications, setNotifications] = useState([])
-    const [selectedNotification, setSelectedNotification] = useState(null);
+    const [selectedNotification, setSelectedNotification] = useState({});
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -39,7 +39,7 @@ function Likes() {
 
     const handleDelete = async (index) => {
         try {
-            const response = await fetch(`http://localhost:3000/users/notifications/${index}`, {
+            const response = await fetch(`http://localhost:3000/notification/${index}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,6 +50,7 @@ function Likes() {
                 const updatedNotifications = [...notifications];
                 updatedNotifications.splice(index, 1);
                 setNotifications(updatedNotifications);
+                setShowModal(false);
             } else {
                 console.error('La suppression de la notification a échoué');
             }
@@ -69,36 +70,60 @@ function Likes() {
                 'Authorization': `${user.token}`
             }
         })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Une erreur s\'est produite lors de la récupération de l\'utilisateur');
-            }
-        })
-        .then(userData => {
-            console.log(userData);
-            setSelectedNotification(userData.result);
-            console.log(selectedNotification);
-        })
-        .catch(error => {
-            console.error('Erreur lors de la récupération de l\'utilisateur:', error);
-        });
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Une erreur s\'est produite lors de la récupération de l\'utilisateur');
+                }
+            })
+            .then(userData => {
+                console.log(userData);
+                setSelectedNotification(userData.result);
+                console.log(selectedNotification);
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération de l\'utilisateur:', error);
+            });
     };
-    
-    
+
+
 
     const closeModal = () => {
         setShowModal(false);
     };
+    const handleLick = () => {
+        const email = selectedNotification.email;
+        const action = 'profileLike';
+        fetch('http://localhost:3000/notification', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${user.token}`
+            },
+            body: JSON.stringify({ email, action })
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+                setShowModal(false);
+            })
+    }
 
     const Modal = ({ username, onClose }) => {
         return (
             <div className={styles.modal}>
                 <div className={styles.modalContent}>
-                    <h2>Notification</h2>
-                    <p>Username: {selectedNotification.username}</p>
-                    <button onClick={onClose}>Close</button>
+                    <span className={styles.close} onClick={closeModal}>&times;</span>
+                    <img src={selectedNotification.selectedImage} alt="Profile Picture" height={100} width={100} />
+                    <h2>{selectedNotification.username}</h2>
+                    <p>Description: {selectedNotification.description}</p>
+                    <p>Email: {selectedNotification.email}</p>
+                    <p>Delay: {selectedNotification.delay}</p>
+                    <p>Financed: {selectedNotification.financed ? 'Oui' : 'Non'}</p>
+                    <div className={styles.iconglobal}>
+                        <FontAwesomeIcon className={styles.icon} icon={faXmark} onClick={handleDelete} />
+                        <FontAwesomeIcon className={styles.icon} icon={faHeart} onClick={handleLick} />
+                    </div>
                 </div>
             </div>
         );
@@ -110,11 +135,14 @@ function Likes() {
             </div>
 
             <div className={styles.notificationContainer}>
-                {notification}
-
+                {notifications.length === 0 ? (
+                    <div className={styles.msg}>Vous n'avez actuellement aucune notification.</div>
+                ) : (
+                    notification
+                )}
             </div>
             {showModal && (
-                <Modal  onClose={closeModal} />
+                <Modal onClose={closeModal} />
             )}
         </div>
     )

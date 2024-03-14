@@ -75,6 +75,7 @@
     margin-right: auto;
 }
 /* Ajoutez ces styles à votre fichier CSS */
+/* Modal */
 .modal {
     position: fixed;
     top: 0;
@@ -85,34 +86,87 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.modalContent {
-    height: 50%;
-    width: 25%;
-    background-color: white;
+  }
+  
+  /* Contenu Modal */
+  .modalContent {
+    background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ombre pour le contenu modal */
-}
-
-.modal h2 {
-    margin-top: 0;
-}
-
-.modal p {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 80%;
+    text-align: center;
+    position: relative;
+  }
+  
+  /* Bouton de fermeture */
+  .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 40px;
+    color: #FF4D4D;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+  }
+  
+  /* Titre */
+  .modalContent h2 {
+    font-size: 24px;
     margin-bottom: 10px;
-}
-
-.modal button {
+  }
+  
+  /* Paragraphes */
+  .modalContent p {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  /* Bouton de fermeture */
+  .modalContent button {
     background-color: #FF4D4D;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .modalContent button:hover {
+    background-color: #FF6666;
+  }
+  .icon {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 30px;
+    margin-left: 20px;
+    height: 2vh;
+    background-color: #FF4D4D;
+    border-color: white;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
 }
 
-.modal button:hover {
-    background-color: #FF6666;
+.msg{
+  font-size: x-large;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  margin-top: 10%;
+  color: #FF4D4D;
+  border-bottom: 1px solid #b6b6b6;
+  padding: 15px;
+  background-color: white;
+  border-radius: 20px;
 }
