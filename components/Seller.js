@@ -62,7 +62,7 @@ function Seller() {
         }).then(response => response.json())
             .then(data => {
                 setCard(data.users)
-                //console.log(data)
+                console.log(data)
 
             })
     }
@@ -79,7 +79,7 @@ function Seller() {
     const handleLick = () => {
         const email = card[index].email;
         const action = 'profileLike';
-        fetch('http://localhost:3000/users/notifications', {
+        fetch('http://localhost:3000/notification', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ function Seller() {
         body: JSON.stringify({ email, action })
         }).then(response => response.json())
         .then(data => {
-        //console.log(data)
+        console.log(data)
         })
         }
 

@@ -97,7 +97,7 @@ function Buyer() {
     const realtyId = card[index]._id;
     console.log(realtyId)
     const action = 'realtyLike';
-    fetch('http://localhost:3000/users/notifications', {
+    fetch('http://localhost:3000/notification', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json',

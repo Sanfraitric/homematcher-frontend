@@ -10,7 +10,7 @@ function Likes() {
     const [notifications, setNotifications] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/users/notifications/messages', {
+        fetch('http://localhost:3000/notification/messages', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -35,7 +35,7 @@ const notification = notifications.map((data, i) => {
 
 const handleDelete = async (index) => {
     try {
-        const response = await fetch(`http://localhost:3000/users/notifications/${index}`, {
+        const response = await fetch(`http://localhost:3000/notification/${index}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
