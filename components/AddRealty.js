@@ -42,6 +42,10 @@ function AddRealty() {
   const minDelay = 0;
   const maxDelay = 52;
 
+
+  const APIKEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+  console.log('erreur apikey', APIKEY)
+  console.log(process.env)
   const validateFields = () => {
     if (!description || !price || !livingArea || !outdoorArea || !rooms || !typeOfRealty || !delay || !budget ) {
       return false;
