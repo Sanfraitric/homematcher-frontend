@@ -32,7 +32,7 @@ function RealtyCard(props) {
     <div className={styles.card}>
        <ImageCarrousel images={props.imageUrl} className={styles.carrousel}/>
        <div className={styles.description}>
-      <p className={styles.p}><strong>Localisation:</strong> &nbsp;&nbsp;Non renseigné</p>
+      <p className={styles.p}><strong>Localisation:</strong> &nbsp;&nbsp;{props.location}</p>
       <p className={styles.p}><strong>Description du bien:</strong> &nbsp;&nbsp;{props.description}</p>
       <p className={styles.p}><strong>Prix du bien:</strong> &nbsp;&nbsp;{props.price}€</p>
       <p className={styles.p}><strong>Surface habitable:</strong> &nbsp;&nbsp;{props.livingArea}m²</p>
