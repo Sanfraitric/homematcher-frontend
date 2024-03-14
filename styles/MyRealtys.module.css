@@ -1,49 +1,45 @@
-.main{
-  display:grid;
+/* MyRealtys.module.css */
+
+.main {
+  display: grid;
   width: 100vw;
   min-height: 100vh;
-  background-color: #F4E6E6;
+  background-color: #f4e6e6;
 }
 
-.header{
-  grid-column-start:1;
-  grid-column-end:3;
-  grid-row-start:0;
-  grid-row-end:1;
+.header {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 0;
+  grid-row-end: 1;
   background-color: white;
   max-height: 14vh;
 }
 
-.realtyCard {
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-top: 20px; /* Ajustez la marge supérieure selon vos besoins */
 }
 
-.p{
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  font-weight: 100;
-  color: black;
-}
-
-.btn{
-  background-color:#ff4d4d;
-  color:white;
-  height : 5vh;
+.btn {
+  background-color: #ff4d4d;
+  color: white;
+  height: 5vh;
   width: 10vw;
   font-size: larger;
   border: solid 0px white;
   border-radius: 20px;
-  cursor:pointer;
-  margin-top:15px;
+  cursor: pointer;
+  margin-bottom: 20px; /* Espace entre le bouton et les cartes de biens */
 }
 
+.realtyCard {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Assurez-vous que le reste de vos styles est correctement défini */
