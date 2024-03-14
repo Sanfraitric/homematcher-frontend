@@ -26,17 +26,21 @@ function RealtyCard(props) {
     .catch(error => console.error('Erreur:', error));
   };
 
+
+
   return (
     <div className={styles.card}>
        <ImageCarrousel images={props.imageUrl} className={styles.carrousel}/>
        <div className={styles.description}>
+      <p className={styles.p}><strong>Localisation:</strong> &nbsp;&nbsp;Non renseigné</p>
       <p className={styles.p}><strong>Description du bien:</strong> &nbsp;&nbsp;{props.description}</p>
       <p className={styles.p}><strong>Prix du bien:</strong> &nbsp;&nbsp;{props.price}€</p>
       <p className={styles.p}><strong>Surface habitable:</strong> &nbsp;&nbsp;{props.livingArea}m²</p>
-      <p className={styles.p}><strong>Surface du terrain:</strong> &nbsp;&nbsp;{props.outdoorArea}</p>
       <p className={styles.p}><strong>Nombre de pièces:</strong> &nbsp;&nbsp;{props.rooms}</p>
-      <p className={styles.p}><strong>Localisation:</strong> &nbsp;&nbsp;{props.location}</p>
-      <h1 className={styles.p}><strong>Profil acheteur souhaité pour le bien:</strong> <br/>
+      <p className={styles.p}><strong>Surface du terrain:</strong> &nbsp;&nbsp;{props.outdoorArea}</p>
+      <p className={styles.p}><strong>Terrasse : </strong> &nbsp;&nbsp;{props.terrace}</p>
+      <p className={styles.p}><strong>Type de bien : </strong> &nbsp;&nbsp;{props.typeOfRealty}</p>
+      <h1 className={styles.p}><strong>Profil acheteur souhaité pour le bien:</strong> 
         <ul><li>Délai: &nbsp;&nbsp;{props.delay} semaine(s)<br/></li>
         <li>Budget: &nbsp;&nbsp;{props.budget}€ <br/></li>
         <li>Financement: &nbsp;&nbsp;{props.financed} <br/></li>

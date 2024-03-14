@@ -35,16 +35,21 @@ function MyRealtys() {
       <div className={styles.header}>
         <HeaderConnected/>
       </div>
-      <div className={styles.container}>
-            <Link href='/AddRealtyPage'>
-            <button className={styles.btn}> + Ajouter un bien </button>
-          </Link>
-    <div className={styles.realtyCard}>
-          {realtys}
+      <div className={styles.btnContainer}>
+        <Link href='/AddRealtyPage'>
+          <button className={styles.btn}> + Ajouter un bien </button>
+        </Link>
       </div>
+      <div className={styles.container}>
+        <div className={styles.realtyCard}>
+          {realtys}
+        </div>
       </div>
     </div>
   );
+  
+  
+  
 }
 
 export default MyRealtys;

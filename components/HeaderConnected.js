@@ -17,11 +17,10 @@ function Header() {
     //Modifier nom de la page en fonction de la page actuelle
     const router = useRouter();
     const pageTitles = {
-      MyCriteriasPage: 'Mes critères',
+      MyCriteriasPage: ' Time to Match ! ',
       ProfilPage: 'Mon profil',
-      TimeToMatch: 'Time to Match ! - Vendeur',
       AddRealtyPage: 'Ajouter un bien',
-      MatchPage: 'Mes matchs',
+      MatchPage: ' Ma messagerie',
       NotificationsPage: 'Mes notifications',
       RealtysPage: 'Mes biens',
     };
