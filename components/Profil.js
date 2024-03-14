@@ -49,6 +49,7 @@ function Profil() {
         setDelay(data.user.delay);
         setFinanced(data.user.financed);
         setDescription(data.user.description);
+        setBudget(data.user.budget)
         setSelectedImage(data.user.selectedImage)
           });
       }, []);
