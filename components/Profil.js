@@ -70,7 +70,7 @@ const handleSubmit = () => {
         }),
     }).then(response => response.json()).then(data => {
         console.log(data)
-        setMessage("Profiil mis à jour")
+        setMessage("Profil mis à jour !")
        // data.result && dispatch(UpdateProfil(
     
     })
