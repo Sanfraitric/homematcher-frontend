@@ -118,8 +118,8 @@ function Likes() {
                     <h2>{selectedNotification.username}</h2>
                     <p>Description: {selectedNotification.description}</p>
                     <p>Email: {selectedNotification.email}</p>
-                    <p>Delay: {selectedNotification.delay}</p>
-                    <p>Financed: {selectedNotification.financed ? 'Oui' : 'Non'}</p>
+                    <p>Délai: {selectedNotification.delay}</p>
+                    <p>Financement: {selectedNotification.financed ? 'Oui' : 'Non'}</p>
                     <div className={styles.iconglobal}>
                         <FontAwesomeIcon className={styles.icon} icon={faXmark} onClick={handleDelete} />
                         <FontAwesomeIcon className={styles.icon} icon={faHeart} onClick={handleLick} />
