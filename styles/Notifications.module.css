@@ -47,8 +47,14 @@
 /*Texte*/
 
 .text{
-    font-weight: 400;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
     color:black;
+}
+.modalDescription {
+  font-family: 'Montserrat', sans-serif;
+  flex-direction: column;
+  padding: 10px;
 }
 
 /*Boutons*/
