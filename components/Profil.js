@@ -41,8 +41,9 @@ function Profil() {
             username: data.user.username,
             delay: data.user.delay,
             financed: data.user.financed,
-            financialCapacity: data.user.financialCapacity,
+            budget: data.user.budget,
             desciption: data.user.desciption,
+            likedBy: data.user.likedBy
         })
         );
         setUsername(data.user.username);

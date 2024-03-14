@@ -39,7 +39,7 @@ function Likes() {
 
     const handleDelete = async (index) => {
         try {
-            const response = await fetch(`http://localhost:3000/users/notifications/${index}`, {
+            const response = await fetch(`http://localhost:3000/users/notification/${index}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
