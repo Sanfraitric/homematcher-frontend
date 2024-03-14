@@ -68,7 +68,7 @@ function SignIn() {
             });
     };
 
-    const responseGoogle = (response) => {
+    const responseGoogle = () => {
         console.log(response);
     }
 

@@ -114,12 +114,14 @@ function Likes() {
             <div className={styles.modal}>
                 <div className={styles.modalContent}>
                     <span className={styles.close} onClick={closeModal}>&times;</span>
-                    <img src={selectedNotification.selectedImage} alt="Profile Picture" height={100} width={100} />
-                    <h2>{selectedNotification.username}</h2>
-                    <p>Description: {selectedNotification.description}</p>
-                    <p>Email: {selectedNotification.email}</p>
-                    <p>Delay: {selectedNotification.delay}</p>
-                    <p>Financed: {selectedNotification.financed ? 'Oui' : 'Non'}</p>
+                    <img src={selectedNotification.selectedImage} alt="Profile Picture" height={120} width={100} />
+                    <h2 className={styles.text}>{selectedNotification.username}</h2>
+                    <div className={styles.modalDescription}>
+                    <p><strong>Description:</strong> {selectedNotification.description}</p>
+                    <p><strong>Email:</strong> {selectedNotification.email}</p>
+                    <p><strong>Délai:</strong> {selectedNotification.delay}</p>
+                    <p><strong>Financement:</strong> {selectedNotification.financed ? 'Oui' : 'Non'}</p>
+                    </div>
                     <div className={styles.iconglobal}>
                         <FontAwesomeIcon className={styles.icon} icon={faXmark} onClick={handleDelete} />
                         <FontAwesomeIcon className={styles.icon} icon={faHeart} onClick={handleLick} />
