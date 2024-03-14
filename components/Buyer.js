@@ -106,6 +106,12 @@ function Buyer() {
     body: JSON.stringify({ realtyId, action })
     }).then(response => response.json())
     .then(data => {
+      if (index < card.length - 1) {
+        setIndex(index + 1);
+      } else {
+        // Quand on est arrivés à la fin du tableau, on reviens au debut 
+        setIndex(0);
+      }
     console.log(data)
     })
     }

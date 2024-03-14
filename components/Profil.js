@@ -41,8 +41,9 @@ function Profil() {
             username: data.user.username,
             delay: data.user.delay,
             financed: data.user.financed,
-            financialCapacity: data.user.financialCapacity,
+            budget: data.user.budget,
             desciption: data.user.desciption,
+            likedBy: data.user.likedBy
         })
         );
         setUsername(data.user.username);
@@ -70,7 +71,7 @@ const handleSubmit = () => {
         }),
     }).then(response => response.json()).then(data => {
         console.log(data)
-        setMessage("Profil mis à jour")
+        setMessage("Profil mis à jour !")
        // data.result && dispatch(UpdateProfil(
     
     })
