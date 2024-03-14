@@ -17,6 +17,7 @@ function Profil() {
     const [delay, setDelay] = useState(0);
     const [budget, setBudget] = useState(10000);
     const [financed, setFinanced] = useState(false);
+    const [message, setMessage] = useState('');
     //console.log(selectedImage)
 
     // Changer d'Avatar
@@ -48,6 +49,7 @@ function Profil() {
         setDelay(data.user.delay);
         setFinanced(data.user.financed);
         setDescription(data.user.description);
+        setSelectedImage(data.user.selectedImage)
           });
       }, []);
 
@@ -68,6 +70,7 @@ const handleSubmit = () => {
         }),
     }).then(response => response.json()).then(data => {
         console.log(data)
+        setMessage("Profiil mis à jour")
        // data.result && dispatch(UpdateProfil(
     
     })
@@ -148,6 +151,8 @@ const handleSubmit = () => {
         </div>
     </div> 
     <button onClick={handleSubmit} className={styles.button}>Mettre à jour mon profil ✓</button>
+    {message && <p className={styles.check} >{message}</p>}
+    
 </div>
 )
 }

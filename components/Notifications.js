@@ -12,7 +12,7 @@ function Likes() {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:3000/users/notifications/messages', {
+        fetch('http://localhost:3000/notification/messages', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
