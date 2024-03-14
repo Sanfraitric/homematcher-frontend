@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 
 function Match() {
-    const user = useSelector((state) => state.user.value.likedBy[0]);
+    const user = useSelector((state) => state.user.value);
     const [match, setMatch] = useState([])
     
     useEffect(() => { 
@@ -32,9 +32,8 @@ function Match() {
             </div>
             <div className={styles.body}>
             <div className={styles.match}>
-            <img src={match.selectedImage} className={styles.profilpic}/>
-            <h3 className={styles.username}>{match.username}</h3>
-            <p> Vous avez un nouveau message !</p>
+            <img src='./Avatar1.jpg'className={styles.profilpic}/>
+            <h3 className={styles.username}>Utilisateur</h3>
             <FontAwesomeIcon icon={faMessage} className={styles.icon} />
         </div>
             </div>
