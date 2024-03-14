@@ -192,14 +192,16 @@ cursor: pointer;
     height: 30px;
   }
 
+.warningMessage {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
 /*Boutons*/
 
+
 .button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 1vh 4vw;
-  margin: 14%;
   background-color: #FF4D4D;
   border-color: white;
   color: white;
@@ -209,9 +211,24 @@ cursor: pointer;
   font-weight: 600;
   cursor: pointer;
   border: none;
-  margin-left: 165px;
-  
-  }
+  margin-bottom: 100px; /* Ajoute une marge en bas pour séparer les boutons */
+  margin-top: 100px;
+}
+
+.button2 {
+  padding: 1vh 4vw;
+  background-color: #FF4D4D;
+  border-color: white;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 30px; /* Ajoute une marge en bas pour séparer les boutons */
+  margin-top: 100px;
+}
 
 .infoButton {
     background-color: #ff4d4d;

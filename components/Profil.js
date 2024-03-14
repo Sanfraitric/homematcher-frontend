@@ -31,12 +31,11 @@ function Profil() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `${user.token}` // Incluez le token dans l'en-tête Authorization
+            'Authorization': `${user.token}` 
           },
         })
           .then(response => response.json())
           .then(data => {
-        //console.log(data)
         data.result && dispatch(UpdateProfil({
             username: data.user.username,
             delay: data.user.delay,
@@ -59,7 +58,7 @@ const handleSubmit = () => {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `${user.token}` // Incluez le token dans l'en-tête Authorization
+            'Authorization': `${user.token}`
           },
           body: JSON.stringify({ 
             username,
