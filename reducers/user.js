@@ -10,6 +10,7 @@ const initialState = {
     description: null,
     token: null,
     isConnect: false,
+    likedBy: null,
   },
 };
 
@@ -33,6 +34,7 @@ export const userSlice = createSlice({
       state.value.budget = action.payload.budget;
       state.value.financed = action.payload.financed;
       state.value.description = action.payload.description;
+      state.value.likedBy = action.payload.likedBy;
     }
   },
 });
