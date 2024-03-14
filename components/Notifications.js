@@ -59,10 +59,8 @@ return (
         <div className={styles.header}>
             <HeaderConnected />
         </div>
-
         <div className={styles.notificationContainer}>
-            {notification}
-       
+            {notification}       
         </div>
 
     </div>
