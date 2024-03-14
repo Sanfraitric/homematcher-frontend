@@ -132,7 +132,7 @@ function AddRealty() {
                 }}
                 onPlaceChanged={() => {}}
                 >
-                  <input className={styles.inputText} type="text" placeholder="Selectionnez la ville, le département, la région ou le pays" onChange={(e) => setLocation(e.target.value)} />
+                  <input className={styles.inputText} type="text" placeholder="Selectionnez la ville, le département, la région ou le pays" onChange={(e) => setLocation(e.target.value)} value={location} />
                 </Autocomplete>
               </LoadScript>
               <h4 className={styles.inputTitle}> Description : </h4>
