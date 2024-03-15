@@ -50,7 +50,7 @@ function Home() {
       </div>
 
       <div className={styles.LleftContent}>
-        <h3 className={styles.contenttext}>Qui sommes nous ?</h3>
+        <h3 className={styles.contenttext}>Qui sommes gros test  nous ?</h3>
         <p className={styles.contenttextp}>Bienvenue chez Home Matcher, votre partenaire de confiance dans la recherche de votre prochain chez-vous. Nous sommes un collectif passionné d'experts en technologie, en immobilier et en design d'expérience utilisateur, unis par la vision commune de simplifier la quête souvent complexe et stressante du logement parfait.
         <br/><br/>
 Fondée en 2024, notre mission chez HomeMatcher est de transformer la façon dont les individus et les familles trouvent leur maison idéale. Nous croyons que la recherche d'un nouveau foyer devrait être une expérience excitante, transparente et personnalisée. <br/><br/>Pour réaliser cette vision, nous avons développé une plateforme innovante qui combine intelligence artificielle, données immobilières précises et interfaces intuitives pour offrir à chacun une expérience de recherche sur mesure.</p>
